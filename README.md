@@ -9,6 +9,10 @@
 +  [Three.js入门教程](http://www.cnblogs.com/yiyezhai/category/447410.html)
 +  图书：Learning Three.js:The JavaScript 3D Library for WebGL
 
+### [与Canvas的暧昧关系](http://www.it610.com/article/1339926.htm)
+
+
+
 
 
 
