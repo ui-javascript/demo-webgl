@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>立方体</title>
-    <script src="http://sqimg.qq.com/qq_product_operations/mma/javanli_test/lib/three.min.js"></script>
-    <style type="text/css">
+    <title>旋转立方体</title>
+    <script src="js/libs/three.min.js"></script>
+    <style>
         html, body {
             margin: 0;
-            padding: 0;
+            padding: 0; 
+            /*background-color: #fff;  */
         }
-
         #three_canvas {
             position: absolute;
             width: 100%;
@@ -22,8 +22,11 @@
 <script>
     var renderer, camera, scene, light, object;
     var width, height;
+
+
     function initRenderer() {
         width = document.getElementById('three_canvas').clientWidth;
+                                                    // 网页可见区域宽
         height = document.getElementById('three_canvas').clientHeight;
         renderer = new THREE.WebGLRenderer({
             canvas: document.getElementById('three_canvas')
@@ -34,6 +37,9 @@
 
     function initCamera() {
         camera = new THREE.OrthographicCamera(width / -2, width / 2, height / 2, height / -2, 1, 1000);
+        // 正交投影相机的视景体是一个长方体，
+        // OrthographicCamera的构造函数是这样的：
+        // OrthographicCamera( left, right, top, bottom, near, far ) 
         camera.position.x = 0;
         camera.position.y = 0;
         camera.position.z = 200;
@@ -46,27 +52,37 @@
             z: 0
         });
     }
+
     function initScene() {
         scene = new THREE.Scene();
     }
+
     function initObject() {
         var geometry = new THREE.CubeGeometry(100, 100, 100);
         object = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
         scene.add(object);
     }
+
     function render() {
         requestAnimationFrame(render);
         object.rotation.x += 0.05;
         object.rotation.y += 0.05;
+        // object.rotation.z += 0.05;
         renderer.render(scene, camera);
     }
+
     function threeStart() {
         initRenderer();
         initCamera();
         initScene();
         initObject();
+
+
+
         render();
+
     }
+
     window.onload = threeStart();
 </script>
 </body>
