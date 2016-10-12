@@ -26,7 +26,7 @@
 'use strict';
 
 Physijs.scripts.worker = 'libs/physijs_worker.js';
-Physijs.scripts.ammo = 'ammo.js';
+Physijs.scripts.ammo = 'libs/ammo.js';
 
 var scale = chroma.scale(['blue', 'white']);
 
@@ -40,7 +40,7 @@ initScene = function () {
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    renderer.setClearColorHex(0x000000);
+    renderer.setClearColor(0x000000);
     renderer.shadowMapEnabled = true;
 
 
