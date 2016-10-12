@@ -4,10 +4,10 @@
 
 <head>
     <title>Example 10.02 - Bump maps</title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
     <style>
         body {
             /* set margin to 0 and overflow to hidden, to go fullscreen */
@@ -25,7 +25,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
@@ -55,7 +55,7 @@
         scene.add(sphere2);
         console.log(sphere2.geometry.faceVertexUvs);
 
-        var floorTex = THREE.ImageUtils.loadTexture("../assets/textures/general/floor-wood.jpg")
+        var floorTex = THREE.ImageUtils.loadTexture("assets/textures/general/floor-wood.jpg")
         var plane = new THREE.Mesh(new THREE.CubeGeometry(200, 100, 0.1, 30), new THREE.MeshPhongMaterial({color: 0x3c3c3c, map: floorTex}));
         plane.position.y = -7.5;
         plane.rotation.x = -0.5 * Math.PI;
@@ -90,11 +90,11 @@
             this.rotate = false;
 
             this.changeTexture = function (e) {
-                var texture = THREE.ImageUtils.loadTexture("../assets/textures/general/" + e + ".jpg");
+                var texture = THREE.ImageUtils.loadTexture("assets/textures/general/" + e + ".jpg");
                 sphere2.material.map = texture;
                 sphere1.material.map = texture;
 
-                var bump = THREE.ImageUtils.loadTexture("../assets/textures/general/" + e + "-bump.jpg");
+                var bump = THREE.ImageUtils.loadTexture("assets/textures/general/" + e + "-bump.jpg");
                 sphere2.material.bumpMap = bump;
             }
 
@@ -114,13 +114,13 @@
         render();
 
         function createMesh(geom, imageFile, bump) {
-            var texture = THREE.ImageUtils.loadTexture("../assets/textures/general/" + imageFile)
+            var texture = THREE.ImageUtils.loadTexture("assets/textures/general/" + imageFile)
             geom.computeVertexNormals();
             var mat = new THREE.MeshPhongMaterial();
             mat.map = texture;
 
             if (bump) {
-                var bump = THREE.ImageUtils.loadTexture("../assets/textures/general/" + bump)
+                var bump = THREE.ImageUtils.loadTexture("assets/textures/general/" + bump)
                 mat.bumpMap = bump;
                 mat.bumpScale = 0.2;
                 console.log('d');

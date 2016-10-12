@@ -4,10 +4,10 @@
 
 <head>
     <title>Example 09.10 - Working with morph targets</title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
     <style>
         body {
             /* set margin to 0 and overflow to hidden, to go fullscreen */
@@ -25,7 +25,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
@@ -80,7 +80,7 @@
         var clock = new THREE.Clock();
 
         var loader = new THREE.JSONLoader();
-        loader.load('../assets/models/horse.js', function (geometry, mat) {
+        loader.load('assets/models/horse.js', function (geometry, mat) {
 
             var mat = new THREE.MeshLambertMaterial(
                     {color: 0xffffff, morphNormals: false,
@@ -124,7 +124,7 @@
 
             showFrame(0);
 
-        }, '../assets/models');
+        }, 'assets/models');
 
         function showFrame(e) {
             scene.remove(currentMesh);

@@ -4,10 +4,10 @@
 
 <head>
     <title>Example 10.04 - LightMap</title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
     <style>
         body {
             /* set margin to 0 and overflow to hidden, to go fullscreen */
@@ -25,7 +25,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
@@ -50,8 +50,8 @@
         renderer = webGLRenderer;
 
         var groundGeom = new THREE.PlaneGeometry(95, 95, 1, 1);
-        var lm = THREE.ImageUtils.loadTexture('../assets/textures/lightmap/lm-1.png');
-        var wood = THREE.ImageUtils.loadTexture('../assets/textures/general/floor-wood.jpg');
+        var lm = THREE.ImageUtils.loadTexture('assets/textures/lightmap/lm-1.png');
+        var wood = THREE.ImageUtils.loadTexture('assets/textures/general/floor-wood.jpg');
         var groundMaterial = new THREE.MeshBasicMaterial(
                 {color: 0x777777,
                     lightMap: lm,
@@ -82,7 +82,7 @@
 
 
         var meshMaterial = new THREE.MeshBasicMaterial();
-        meshMaterial.map = THREE.ImageUtils.loadTexture('../assets/textures/general/stone.jpg');
+        meshMaterial.map = THREE.ImageUtils.loadTexture('assets/textures/general/stone.jpg');
 
 
         var cube = new THREE.Mesh(cubeGeometry, meshMaterial);

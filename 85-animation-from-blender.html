@@ -4,10 +4,10 @@
 
 <head>
     <title>Example 09.13 - Animation from blender</title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
     <style>
         body {
             /* set margin to 0 and overflow to hidden, to go fullscreen */
@@ -25,7 +25,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
@@ -67,7 +67,7 @@
         var clock = new THREE.Clock();
 
         var loader = new THREE.JSONLoader();
-        loader.load('../assets/models/hand-2.js', function (geometry, mat) {
+        loader.load('assets/models/hand-2.js', function (geometry, mat) {
 
             // register the animation
             THREE.AnimationHandler.add(geometry.animation);
@@ -88,7 +88,7 @@
             // start the animation
             animation.play();
 
-        }, '../assets/models');
+        }, 'assets/models');
 
 
         render();

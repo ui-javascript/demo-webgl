@@ -4,27 +4,27 @@
 
 <head>
     <title>Example 11.04 - Shader Pass simple</title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
-    <script type="text/javascript" src="../libs/OBJLoader.js"></script>
-    <script type="text/javascript" src="../libs/MTLLoader.js"></script>
-    <script type="text/javascript" src="../libs/OBJMTLLoader.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
+    <script  src="libs/OBJLoader.js"></script>
+    <script  src="libs/MTLLoader.js"></script>
+    <script  src="libs/OBJMTLLoader.js"></script>
 
-    <script type="text/javascript" src="../libs/postprocessing/EffectComposer.js"></script>
-    <script type="text/javascript" src="../libs/postprocessing/ShaderPass.js"></script>
-    <script type="text/javascript" src="../libs/postprocessing/RenderPass.js"></script>
-    <script type="text/javascript" src="../libs/postprocessing/MaskPass.js"></script>
-    <script type="text/javascript" src="../libs/shaders/CopyShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/BrightnessContrastShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/ColorifyShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/SepiaShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/RGBShiftShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/ColorCorrectionShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/MirrorShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/VignetteShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/HueSaturationShader.js"></script>
+    <script  src="libs/postprocessing/EffectComposer.js"></script>
+    <script  src="libs/postprocessing/ShaderPass.js"></script>
+    <script  src="libs/postprocessing/RenderPass.js"></script>
+    <script  src="libs/postprocessing/MaskPass.js"></script>
+    <script  src="libs/shaders/CopyShader.js"></script>
+    <script  src="libs/shaders/BrightnessContrastShader.js"></script>
+    <script  src="libs/shaders/ColorifyShader.js"></script>
+    <script  src="libs/shaders/SepiaShader.js"></script>
+    <script  src="libs/shaders/RGBShiftShader.js"></script>
+    <script  src="libs/shaders/ColorCorrectionShader.js"></script>
+    <script  src="libs/shaders/MirrorShader.js"></script>
+    <script  src="libs/shaders/VignetteShader.js"></script>
+    <script  src="libs/shaders/HueSaturationShader.js"></script>
     <style>
         body {
             /* set margin to 0 and overflow to hidden, to go fullscreen */
@@ -42,7 +42,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
 // once everything is loaded, we run our Three.js stuff.
 $(function () {
@@ -90,8 +90,8 @@ $(function () {
     var cube = new THREE.Mesh(plane, new THREE.MeshPhongMaterial(
             {
                 color: 0xffffff,
-                map: THREE.ImageUtils.loadTexture("../assets/textures/general/plaster-diffuse.jpg"),
-                normalMap: THREE.ImageUtils.loadTexture("../assets/textures/general/plaster-normal.jpg"),
+                map: THREE.ImageUtils.loadTexture("assets/textures/general/plaster-diffuse.jpg"),
+                normalMap: THREE.ImageUtils.loadTexture("assets/textures/general/plaster-normal.jpg"),
                 normalScale: new THREE.Vector2(0.6, 0.6)
             }));
     cube.material.map.wrapS = THREE.RepeatWrapping;
@@ -181,7 +181,7 @@ $(function () {
     });
 
 
-    loader.load('../assets/models/sol/libertStatue.obj', '../assets/models/sol/libertStatue.mtl');
+    loader.load('assets/models/sol/libertStatue.obj', 'assets/models/sol/libertStatue.mtl');
 
     var mirror = new THREE.ShaderPass(THREE.MirrorShader);
     mirror.enabled = false;

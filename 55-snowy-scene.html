@@ -4,10 +4,10 @@
 
 <head>
     <title>Example 07.07 - Particles - Snowy scene</title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
     <style>
         body {
             /* set margin to 0 and overflow to hidden, to go fullscreen */
@@ -26,7 +26,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
@@ -127,10 +127,10 @@
 
         function createParticles(size, transparent, opacity, sizeAttenuation, color) {
 
-            var texture1 = THREE.ImageUtils.loadTexture("../assets/textures/particles/snowflake1.png");
-            var texture2 = THREE.ImageUtils.loadTexture("../assets/textures/particles/snowflake2.png");
-            var texture3 = THREE.ImageUtils.loadTexture("../assets/textures/particles/snowflake3.png");
-            var texture4 = THREE.ImageUtils.loadTexture("../assets/textures/particles/snowflake5.png");
+            var texture1 = THREE.ImageUtils.loadTexture("assets/textures/particles/snowflake1.png");
+            var texture2 = THREE.ImageUtils.loadTexture("assets/textures/particles/snowflake2.png");
+            var texture3 = THREE.ImageUtils.loadTexture("assets/textures/particles/snowflake3.png");
+            var texture4 = THREE.ImageUtils.loadTexture("assets/textures/particles/snowflake5.png");
 
             scene.add(createSystem("system1", texture1, size, transparent, opacity, sizeAttenuation, color));
             scene.add(createSystem("system2", texture2, size, transparent, opacity, sizeAttenuation, color));

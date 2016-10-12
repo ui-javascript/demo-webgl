@@ -3,28 +3,28 @@
 
 <head>
     <title>Example 11.03 - Post processing masks</title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
-    <script type="text/javascript" src="../libs/OrbitControls.js"></script>
-    <script type="text/javascript" src="../libs/postprocessing/ShaderPass.js"></script>
-    <script type="text/javascript" src="../libs/shaders/CopyShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/ColorifyShader.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
+    <script  src="libs/OrbitControls.js"></script>
+    <script  src="libs/postprocessing/ShaderPass.js"></script>
+    <script  src="libs/shaders/CopyShader.js"></script>
+    <script  src="libs/shaders/ColorifyShader.js"></script>
 
-    <script type="text/javascript" src="../libs/postprocessing/BloomPass.js"></script>
-    <script type="text/javascript" src="../libs/shaders/ConvolutionShader.js"></script>
+    <script  src="libs/postprocessing/BloomPass.js"></script>
+    <script  src="libs/shaders/ConvolutionShader.js"></script>
 
 
-    <script type="text/javascript" src="../libs/postprocessing/EffectComposer.js"></script>
+    <script  src="libs/postprocessing/EffectComposer.js"></script>
 
-    <script type="text/javascript" src="../libs/postprocessing/MaskPass.js"></script>
-    <script type="text/javascript" src="../libs/postprocessing/FilmPass.js"></script>
-    <script type="text/javascript" src="../libs/shaders/FilmShader.js"></script>
-    <script type="text/javascript" src="../libs/shaders/SepiaShader.js"></script>
-    <script type="text/javascript" src="../libs/postprocessing/RenderPass.js"></script>
-    <script type="text/javascript" src="../libs/postprocessing/SavePass.js"></script>
-    <script type="text/javascript" src="../libs/postprocessing/TexturePass.js"></script>
+    <script  src="libs/postprocessing/MaskPass.js"></script>
+    <script  src="libs/postprocessing/FilmPass.js"></script>
+    <script  src="libs/shaders/FilmShader.js"></script>
+    <script  src="libs/shaders/SepiaShader.js"></script>
+    <script  src="libs/postprocessing/RenderPass.js"></script>
+    <script  src="libs/postprocessing/SavePass.js"></script>
+    <script  src="libs/postprocessing/TexturePass.js"></script>
 
     <style>
         body {
@@ -43,7 +43,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
@@ -100,7 +100,7 @@
         sceneEarth.add(spotLight);
         sceneMars.add(spotLight2);
 
-        var materialColor = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture("../assets/textures/starry-deep-outer-space-galaxy.jpg"), depthTest: false });
+        var materialColor = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture("assets/textures/starry-deep-outer-space-galaxy.jpg"), depthTest: false });
         var bgPlane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), materialColor);
         bgPlane.position.z = -100;
         bgPlane.scale.set(window.innerWidth * 2, window.innerHeight * 2, 1);
@@ -154,8 +154,8 @@
         render();
 
         function createMarshMesh(geom) {
-            var planetTexture = THREE.ImageUtils.loadTexture("../assets/textures/planets/Mars_2k-050104.png");
-            var normalTexture = THREE.ImageUtils.loadTexture("../assets/textures/planets/Mars-normalmap_2k.png");
+            var planetTexture = THREE.ImageUtils.loadTexture("assets/textures/planets/Mars_2k-050104.png");
+            var normalTexture = THREE.ImageUtils.loadTexture("assets/textures/planets/Mars-normalmap_2k.png");
 
             var planetMaterial = new THREE.MeshPhongMaterial();
             planetMaterial.normalMap = normalTexture;
@@ -170,9 +170,9 @@
         }
 
         function createEarthMesh(geom) {
-            var planetTexture = THREE.ImageUtils.loadTexture("../assets/textures/planets/Earth.png");
-            var specularTexture = THREE.ImageUtils.loadTexture("../assets/textures/planets/EarthSpec.png");
-            var normalTexture = THREE.ImageUtils.loadTexture("../assets/textures/planets/EarthNormal.png");
+            var planetTexture = THREE.ImageUtils.loadTexture("assets/textures/planets/Earth.png");
+            var specularTexture = THREE.ImageUtils.loadTexture("assets/textures/planets/EarthSpec.png");
+            var normalTexture = THREE.ImageUtils.loadTexture("assets/textures/planets/EarthNormal.png");
 
 
             var planetMaterial = new THREE.MeshPhongMaterial();

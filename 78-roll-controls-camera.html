@@ -4,15 +4,15 @@
 
 <head>
     <title>Example 09.06 - Roll controls </title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/OBJLoader.js"></script>
-    <script type="text/javascript" src="../libs/MTLLoader.js"></script>
-    <script type="text/javascript" src="../libs/OBJMTLLoader.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
-    <script type="text/javascript" src="../libs/chroma.js"></script>
-    <script type="text/javascript" src="../libs/RollControls.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/OBJLoader.js"></script>
+    <script  src="libs/MTLLoader.js"></script>
+    <script  src="libs/OBJMTLLoader.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
+    <script  src="libs/chroma.js"></script>
+    <script  src="libs/RollControls.js"></script>
 
     <style>
         body {
@@ -31,7 +31,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
@@ -105,9 +105,9 @@
         });
 
 
-        var texture = THREE.ImageUtils.loadTexture('../assets/textures/Metro01.JPG');
+        var texture = THREE.ImageUtils.loadTexture('assets/textures/Metro01.JPG');
         //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
-        loader.load('../assets/models/city.obj', '../assets/models/city.mtl', {side: THREE.DoubleSide});
+        loader.load('assets/models/city.obj', 'assets/models/city.mtl', {side: THREE.DoubleSide});
         //texture.repeat.set( 1 , 1);
 
 

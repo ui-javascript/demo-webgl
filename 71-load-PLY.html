@@ -4,11 +4,11 @@
 
 <head>
     <title>Example 08.13 - Load ply model </title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/PLYLoader.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/PLYLoader.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
     <style>
         body {
             /* set margin to 0 and overflow to hidden, to go fullscreen */
@@ -26,7 +26,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
@@ -76,7 +76,7 @@
 
         var loader = new THREE.PLYLoader();
         var group = new THREE.Object3D();
-        loader.load("../assets/models/test.ply", function (geometry) {
+        loader.load("assets/models/test.ply", function (geometry) {
             var material = new THREE.ParticleBasicMaterial({
                 color: 0xffffff,
                 size: 0.4,

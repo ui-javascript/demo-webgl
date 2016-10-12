@@ -6,21 +6,21 @@
     <title>Rigid body - Physijs</title>
 
 
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/physi.js"></script>
-    <script type="text/javascript" src="../libs/chroma.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/physi.js"></script>
+    <script  src="libs/chroma.js"></script>
+    <script  src="libs/dat.gui.js"></script>
 
 
-    <script type="text/javascript">
+    <script >
 
         'use strict';
 
         var scale = chroma.scale(['green', 'white']);
 
-        Physijs.scripts.worker = '../libs/physijs_worker.js';
-        Physijs.scripts.ammo = '../libs/ammo.js';
+        Physijs.scripts.worker = 'libs/physijs_worker.js';
+        Physijs.scripts.ammo = 'libs/ammo.js';
 
         var initScene, render, applyForce, setMousePosition, mouse_position,
                 ground_material, box_material,
@@ -97,7 +97,7 @@
                                 {
                                     color: scale(Math.random()).hex(),
                                     transparent: true, opacity: 0.8,
-//                            map: THREE.ImageUtils.loadTexture( '../assets/textures/general/darker_wood.jpg' )
+//                            map: THREE.ImageUtils.loadTexture( 'assets/textures/general/darker_wood.jpg' )
                                 })));
                         stone.position = point.clone();
                         stone.lookAt(scene.position);
@@ -161,7 +161,7 @@
 
         function createGround() {
             var ground_material = Physijs.createMaterial(
-                    new THREE.MeshPhongMaterial({ map: THREE.ImageUtils.loadTexture('../assets/textures/general/wood-2.jpg') }),
+                    new THREE.MeshPhongMaterial({ map: THREE.ImageUtils.loadTexture('assets/textures/general/wood-2.jpg') }),
                     .9, .3);
 
             var ground = new Physijs.BoxMesh(new THREE.CubeGeometry(60, 1, 60), ground_material, 0);

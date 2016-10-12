@@ -4,11 +4,11 @@
 
 <head>
     <title>Example 09.12 - Load blender model </title>
-    <script type="text/javascript" src="../libs/three.js"></script>
-    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
-    <script type="text/javascript" src="../libs/stats.js"></script>
-    <script type="text/javascript" src="../libs/dat.gui.js"></script>
-    <script type="text/javascript" src="../libs/tween.min.js"></script>
+    <script  src="libs/three.js"></script>
+    <script  src="libs/jquery-1.9.0.js"></script>
+    <script  src="libs/stats.js"></script>
+    <script  src="libs/dat.gui.js"></script>
+    <script  src="libs/tween.min.js"></script>
     <style>
         body {
             /* set margin to 0 and overflow to hidden, to go fullscreen */
@@ -26,7 +26,7 @@
 </div>
 
 <!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+<script >
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
@@ -68,7 +68,7 @@
         var clock = new THREE.Clock();
 
         var loader = new THREE.JSONLoader();
-        loader.load('../assets/models/hand-1.js', function (geometry, mat) {
+        loader.load('assets/models/hand-1.js', function (geometry, mat) {
             var mat = new THREE.MeshLambertMaterial({color: 0xF0C8C9, skinning: true});
             mesh = new THREE.SkinnedMesh(geometry, mat);
 
@@ -87,7 +87,7 @@
             // and start the animation
             tween.start();
 
-        }, '../assets/models');
+        }, 'assets/models');
 
         var posSrc = {pos: -1}
         var tween = new TWEEN.Tween(posSrc).to({pos: 0}, 3000);
