@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
-    <title>Example 01.01 - Basic skeleton</title>
-    <script src="libs/three.js"></script>
-    <script src="libs/jquery-1.9.0.js"></script>
-    <script src="libs/stats.js"></script>
-    <script src="libs/dat.gui.js"></script>
+    <title>Example 03.01 - Ambient Light</title>
+    <script type="text/javascript" src="../libs/three.js"></script>
+    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
+    <script type="text/javascript" src="../libs/stats.js"></script>
+    <script type="text/javascript" src="../libs/dat.gui.js"></script>
     <style>
-        body{
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
         }
@@ -16,11 +18,17 @@
 </head>
 <body>
 
+<div id="Stats-output">
+</div>
 <!-- Div which will hold the Output -->
-<div id="Stats-output"></div>
-<div id="WebGL-output"></div>
-<script>
-$(function () {
+<div id="WebGL-output">
+</div>
+
+<!-- Javascript code that runs our Three.js examples -->
+<script type="text/javascript">
+
+    // once everything is loaded, we run our Three.js stuff.
+    $(function () {
 
         var stats = initStats();
 
@@ -149,6 +157,7 @@ $(function () {
             return stats;
         }
     });
+
 
 </script>
 </body>

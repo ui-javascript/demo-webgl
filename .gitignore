@@ -5,4 +5,7 @@
 /three.js-demo/*
 
 # 忽略assets文件夹
-/assets/*
+#/assets/*
+
+# 忽略tmp文件夹
+/tmp/*
