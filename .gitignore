@@ -1,0 +1,8 @@
+# 忽略three.js-master文件夹
+/three.js-master/*
+
+# 忽略three.js-demo文件夹
+/three.js-demo/*
+
+# 忽略assets文件夹
+/assets/*
