@@ -14,19 +14,19 @@
 
 <title>Physijs shapes</title>
 
-<script type="text/javascript" src="../libs/three.js"></script>
-<script type="text/javascript" src="../libs/stats.js"></script>
-<script type="text/javascript" src="../libs/physi.js"></script>
-<script type="text/javascript" src="../libs/dat.gui.js"></script>
-<script type="text/javascript" src="../libs/chroma.js"></script>
-<script type="text/javascript" src="../libs/perlin.js"></script>
+<script  src="libs/three.js"></script>
+<script  src="libs/stats.js"></script>
+<script  src="libs/physi.js"></script>
+<script  src="libs/dat.gui.js"></script>
+<script  src="libs/chroma.js"></script>
+<script  src="libs/perlin.js"></script>
 
-<script type="text/javascript">
+<script >
 
 'use strict';
 
-Physijs.scripts.worker = '../libs/physijs_worker.js';
-Physijs.scripts.ammo = '../libs/ammo.js';
+Physijs.scripts.worker = 'libs/physijs_worker.js';
+Physijs.scripts.ammo = 'libs/ammo.js';
 
 var scale = chroma.scale(['blue', 'white']);
 
@@ -210,7 +210,7 @@ function createHeightMap(pn) {
     var ground_material = Physijs.createMaterial(
             new THREE.MeshLambertMaterial(
                     {
-                        map: THREE.ImageUtils.loadTexture('../assets/textures/ground/grasslight-big.jpg')
+                        map: THREE.ImageUtils.loadTexture('assets/textures/ground/grasslight-big.jpg')
                     }),
             .3, // high friction
             .8 // low restitution
@@ -285,7 +285,7 @@ function createGround() {
             new THREE.MeshPhongMaterial(
                     {
 //                                color: 0xaaaaaa,
-                        map: THREE.ImageUtils.loadTexture('../assets/textures/general/floor-wood.jpg')
+                        map: THREE.ImageUtils.loadTexture('assets/textures/general/floor-wood.jpg')
                     }),
             1, // high friction
             .7 // low restitution
