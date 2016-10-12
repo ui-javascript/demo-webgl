@@ -108,6 +108,19 @@ $(function () {
             };
         }
 
+        // PerspectiveCamera 透视投影
+        // fov aspect near far
+        // fov 视场 人类有差不多180度的视场
+        // 计算机因为显示屏,选较小区域
+        // 游戏：60度 - 90度
+        // 推荐45度
+        // aspect 长宽比 采用整个窗口作为输出界面
+        // near 近面 从距离相机多近的地方开始渲染场景  推荐0.1
+        // far  远面 相机可以从它所处的位置看多远   太高影响渲染效率  推荐1000
+        
+        // OrthographicCamera 正交投影
+        // left right top bottom near far
+
         var gui = new dat.GUI();
         gui.add(controls, 'switchCamera');
         gui.add(controls, 'perspective').listen();

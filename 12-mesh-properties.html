@@ -23,14 +23,9 @@
  $(function () {
 
         var stats = initStats();
-
-        // create a scene, that will hold all our elements such as objects, cameras and lights.
         var scene = new THREE.Scene();
-
-        // create a camera, which defines where we're looking at.
-        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-        // create a render and set the size
+        var camera = new THREE.PerspectiveCamera(
+            45, window.innerWidth / window.innerHeight, 0.1, 1000);
         var renderer = new THREE.WebGLRenderer();
 
         renderer.setClearColorHex(0xEEEEEE, 1.0);
@@ -48,8 +43,6 @@
         plane.position.x=0
         plane.position.y=0
         plane.position.z=0
-
-        // add the plane to the scene
         scene.add(plane);
 
         // position and point the camera to the center of the scene
@@ -64,8 +57,8 @@
 
         // add spotlight for the shadows
         var spotLight = new THREE.SpotLight( 0xffffff );
-        spotLight.position.set( -40, 60, 020 );
-        spotLight.castShadow = true;
+        spotLight.position.set( -40, 60, 020 );  // 一次性设置
+        spotLight.castShadow = true;  
         scene.add( spotLight );
 
         // add the output of the renderer to the html element
