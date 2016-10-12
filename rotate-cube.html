@@ -10,6 +10,7 @@
             padding: 0;
             width: 100%; 
             overflow: hidden;
+
             /*background-color: #fff;  */
         }
         #three_canvas {
@@ -60,6 +61,7 @@
     }
 
     function initObject() {
+
         var geometry = new THREE.CubeGeometry(200, 200, 200);
         object = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
         scene.add(object);
@@ -78,7 +80,9 @@
         initCamera();
         initScene();
         initObject();
+
         render();
+
     }
 
     window.onload = threeStart();
