@@ -99,6 +99,7 @@
         scene.add(ambientLight);
 
         // add spotlight for the shadows
+        // 设置环境光
         var spotLight = new THREE.SpotLight(0xffffff);
         spotLight.position.set(-40, 60, -10);
         spotLight.castShadow = true;
@@ -119,7 +120,7 @@
         var gui = new dat.GUI();
         gui.addColor(controls, 'ambientColor').onChange(function (e) {
             ambientLight.color = new THREE.Color(e);
-        });
+        });  // 注意是addColor而不是add
 
 
         render();
