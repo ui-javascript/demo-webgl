@@ -31,72 +31,41 @@
 ###  光的类型
 ![](https://github.com/luo0412/luo-webGL-threeJS/raw/master/notebook/light-type.jpg)
 +  AmbientLight  
-    + 整体光  不需要制定位置
+    + 整体光  不需要指定位置
     + 不影响阴影生成   
     + 用于弱化阴影或添加颜色
     + 用色要保守
-+  
++  PointLight
+    + 夜空中的照明弹
+    + color intensity distance position visible
++  SpotLight
+    +  最常用 锥形效果 手电筒
+    +  属性
+![](https://github.com/luo0412/luo-webGL-threeJS/raw/master/notebook/SpotLight-properties.jpg)
+    +  exponent  光强以多快的速度从中心开始衰减
+    +  高intensity + 高exponent
+    +  小exponent + 小angle(角度太小渲染失真)
+    +  提示
+![](https://github.com/luo0412/luo-webGL-threeJS/raw/master/notebook/SpotLight-tip.jpg)
++  DirectinalLight
+    +  太阳光 平行光 被方向光照亮的区域受到的光强是一样的
+    +  包围对象的空间定义得越紧密，投影的效果越好
++  HemisphereLight 半球光光源
+    +  室外 自然 
+    +  替代方案：方向光来模拟太阳或环境光为场景提供基础色
+    +  groundColor(地面发出的光线) Color(天空) intensity
++  AreaLight 平面光
+    +  不在标准库中 改用THREE.WebGLDeferredRender 延迟渲染器
+
+### 镜头眩光：朝着太阳拍照
++  属性
+![](https://github.com/luo0412/luo-webGL-threeJS/raw/master/notebook/LensFlare.jpg)
 
 
 ###  THREE.Color对象
-+ setRGB(r,g,b)
-Sets the value of this color based on the supplied RGB
-values. The values range from 0 to 1.
-+ setHSV(h,s,v)
-Sets the value of this color based on the supplied HSV
-values. The values range from 0 to 1.
-+ setStyle(style)
-Sets the value of this color based on a CSS color.
-+ copy(color)
-Copies the color values from the provided color to this
-color.
-+ copyGammaToLinear(color)
-Mostly used internally:
-Sets the color of this object based on the supplied
-color. The color is first converted from the gamma
-color space to the linear color space. The gamma color
-space also uses RGB values, but uses an exponential
-scale instead of a linear one.
-+ copyLinearToGamma(color)
-Mostly used internally:
-Sets the color of this object based on the supplied
-color. The color is first converted from the linear color
-space to the gamma color space.
-+ convertGammaToLinear()
-Converts the current color from the gamma color
-space to the linear color space.
-+ convertLinearToGamma()
-Converts the current color from the linear color space
-to the gamma color space.
-+ getHex()
-Returns the value from this color object as a number.
-+ getHexString()
-Returns the value from this color object as a hex string.
-+ getStyle()
-Returns the value from this color object as a CSS-based
-value.
-+ getHSV()
-Returns the value from this color object as a HSV
-value.
-+ add(color)
-Adds the supplied color to the current color.
-+ addColors(color1, color2)
-Mostly used internally:
-Adds the supplied colors to the current color.
-+ addScalar(s)
-Mostly used internally:
-Adds a value to the RGB components of the current
-color.
-+ multiply(color)
-Mostly used internally:
-Multiplies the current color by the supplied color.
-+ multiplyScalar(s)
-Mostly used internally:
-Multiplies the light by the supplied value.
-+ lerp(color, alpha)
-Mostly used internally:
-Finds the color that is between the color of this
-object and the supplied color. The resulting color is
-multiplied by the supplied alpha value.
-+ clone()
-Creates an exact copy of this color.
+![](https://github.com/luo0412/luo-webGL-threeJS/raw/master/notebook/THREE.Color-1.jpg)
+![](https://github.com/luo0412/luo-webGL-threeJS/raw/master/notebook/THREE.Color-2.jpg)
+![](https://github.com/luo0412/luo-webGL-threeJS/raw/master/notebook/THREE.Color-3.jpg)
+
+
+

@@ -19,7 +19,6 @@
 
     <style>
         body {
-            /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
         }
@@ -53,6 +52,7 @@
 
         // create a render and set the size
 //        var renderer = new THREE.WebGLRenderer();
+        // 注意改用渲染器
         var renderer = new THREE.WebGLDeferredRenderer({
             width: window.innerWidth,
             height: window.innerHeight,
@@ -118,6 +118,7 @@
         areaLight3.height = 9.9;
         scene.add(areaLight3);
 
+        // 放置平面或方块来模拟平面光源
         var planeGeometry1 = new THREE.CubeGeometry(4, 10, 0);
         var planeGeometry1Mat = new THREE.MeshBasicMaterial({color: 0xff0000})
         var plane1 = new THREE.Mesh(planeGeometry1, planeGeometry1Mat);
