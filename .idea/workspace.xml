@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2815ed07-11c6-4ffb-9a57-ae0cd1584383" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/abc-basic-sample.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/BASIC.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/VR-NOTE.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/images/LensFlare.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/images/SpotLight-properties.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/images/SpotLight-tip.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/images/THREE.Color-1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/images/THREE.Color-2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/images/THREE.Color-3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/notebook/images/light-type.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/rotate-cube.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/01-basic-template.html" afterPath="$PROJECT_DIR$/01-basic/01-basic-template.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/02-first-scene.html" afterPath="$PROJECT_DIR$/01-basic/02-first-scene.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/03-example-light.html" afterPath="$PROJECT_DIR$/01-basic/03-example-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/04-materials-light-animation.html" afterPath="$PROJECT_DIR$/01-basic/04-materials-light-animation.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/05-control-gui.html" afterPath="$PROJECT_DIR$/01-basic/05-control-gui.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/06-ascii-renderer.html" afterPath="$PROJECT_DIR$/01-basic/06-ascii-renderer.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/07-basic-scene.html" afterPath="$PROJECT_DIR$/02-scene/07-basic-scene.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/08-foggy-scene.html" afterPath="$PROJECT_DIR$/02-scene/08-foggy-scene.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/09-forced-materials.html" afterPath="$PROJECT_DIR$/02-scene/09-forced-materials.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/10-geometries.html" afterPath="$PROJECT_DIR$/02-scene/10-geometries.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/11-custom-geometry.html" afterPath="$PROJECT_DIR$/02-scene/11-custom-geometry.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/12-mesh-properties.html" afterPath="$PROJECT_DIR$/02-scene/12-mesh-properties.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/13-both-cameras.html" afterPath="$PROJECT_DIR$/02-scene/13-both-cameras.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/14-cameras-lookat.html" afterPath="$PROJECT_DIR$/02-scene/14-cameras-lookat.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/15-ambient-light.html" afterPath="$PROJECT_DIR$/03-light/15-ambient-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/16-point-light.html" afterPath="$PROJECT_DIR$/03-light/16-point-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/17-spot-light.html" afterPath="$PROJECT_DIR$/03-light/17-spot-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/18-directional-light.html" afterPath="$PROJECT_DIR$/03-light/18-directional-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/19-hemisphere-light.html" afterPath="$PROJECT_DIR$/03-light/19-hemisphere-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/20-area-light.html" afterPath="$PROJECT_DIR$/03-light/20-area-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/21-lensflares.html" afterPath="$PROJECT_DIR$/03-light/21-lensflares.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/22-basic-mesh-material.html" afterPath="$PROJECT_DIR$/04-material/22-basic-mesh-material.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/23-depth-material.html" afterPath="$PROJECT_DIR$/04-material/23-depth-material.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/24-combined-material.html" afterPath="$PROJECT_DIR$/04-material/24-combined-material.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/25-mesh-normal-material.html" afterPath="$PROJECT_DIR$/04-material/25-mesh-normal-material.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/26-mesh-face-material.html" afterPath="$PROJECT_DIR$/04-material/26-mesh-face-material.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/27-mesh-lambert-material.html" afterPath="$PROJECT_DIR$/04-material/27-mesh-lambert-material.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/28-mesh-phong-material.html" afterPath="$PROJECT_DIR$/04-material/28-mesh-phong-material.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/29-shader-material.html" afterPath="$PROJECT_DIR$/04-material/29-shader-material.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/30-line-material.html" afterPath="$PROJECT_DIR$/04-material/30-line-material.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/31-line-material-dashed.html" afterPath="$PROJECT_DIR$/04-material/31-line-material-dashed.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/32-basic-2d-geometries-plane.html" afterPath="$PROJECT_DIR$/05-geometry/32-basic-2d-geometries-plane.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/33-basic-2d-geometries-circle.html" afterPath="$PROJECT_DIR$/05-geometry/33-basic-2d-geometries-circle.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/34-basic-2d-geometries-shape.html" afterPath="$PROJECT_DIR$/05-geometry/34-basic-2d-geometries-shape.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/35-basic-3d-geometries-cube.html" afterPath="$PROJECT_DIR$/05-geometry/35-basic-3d-geometries-cube.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/36-basic-3d-geometries-sphere.html" afterPath="$PROJECT_DIR$/05-geometry/36-basic-3d-geometries-sphere.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/37-basic-3d-geometries-cylinder.html" afterPath="$PROJECT_DIR$/05-geometry/37-basic-3d-geometries-cylinder.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/38-basic-3d-geometries-torus.html" afterPath="$PROJECT_DIR$/05-geometry/38-basic-3d-geometries-torus.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/39-basic-3d-geometries-torus-knot.html" afterPath="$PROJECT_DIR$/05-geometry/39-basic-3d-geometries-torus-knot.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/40-basic-3d-geometries-polyhedron.html" afterPath="$PROJECT_DIR$/05-geometry/40-basic-3d-geometries-polyhedron.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/41-advanced-3d-geometries-convex.html" afterPath="$PROJECT_DIR$/05-geometry-advanced/41-advanced-3d-geometries-convex.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/42-advanced-3d-geometries-lathe.html" afterPath="$PROJECT_DIR$/05-geometry-advanced/42-advanced-3d-geometries-lathe.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/43-extrude-geometry.html" afterPath="$PROJECT_DIR$/05-geometry-advanced/43-extrude-geometry.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/44-extrude-tube.html" afterPath="$PROJECT_DIR$/05-geometry-advanced/44-extrude-tube.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/45-extrude-svg.html" afterPath="$PROJECT_DIR$/05-geometry-advanced/45-extrude-svg.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/46-parametric-geometries.html" afterPath="$PROJECT_DIR$/05-geometry-advanced/46-parametric-geometries.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/47-text-geometry.html" afterPath="$PROJECT_DIR$/05-geometry-advanced/47-text-geometry.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/48-binary-operations.html" afterPath="$PROJECT_DIR$/05-geometry-advanced/48-binary-operations.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/49-particles.html" afterPath="$PROJECT_DIR$/06-particle/49-particles.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/50-particles-webgl.html" afterPath="$PROJECT_DIR$/06-particle/50-particles-webgl.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/51-basic-particle-system.html" afterPath="$PROJECT_DIR$/06-particle/51-basic-particle-system.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/52-program-based-particle-system.html" afterPath="$PROJECT_DIR$/06-particle/52-program-based-particle-system.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/53-program-based-particle-system-webgl.html" afterPath="$PROJECT_DIR$/06-particle/53-program-based-particle-system-webgl.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/54-rainy-scene.html" afterPath="$PROJECT_DIR$/06-particle/54-rainy-scene.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/55-snowy-scene.html" afterPath="$PROJECT_DIR$/06-particle/55-snowy-scene.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/56-sprites.html" afterPath="$PROJECT_DIR$/06-particle/56-sprites.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/57-sprites-3D.html" afterPath="$PROJECT_DIR$/06-particle/57-sprites-3D.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/58-create-particle-system-from-model.html" afterPath="$PROJECT_DIR$/06-particle/58-create-particle-system-from-model.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/abc-index.html" afterPath="$PROJECT_DIR$/01-basic/abc-index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/abc-r.html" afterPath="$PROJECT_DIR$/01-basic/abc-r.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/abc-shaders-1.html" afterPath="$PROJECT_DIR$/01-basic/abc-shaders-1.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/abc-shaders-2.html" afterPath="$PROJECT_DIR$/01-basic/abc-shaders-2.html" />
+    </list>
+    <ignored path="luo-webGL-threeJS.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="luo-webGL-threeJS" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/MyNotes/light.md" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="54" />
+    <option name="y" value="-8" />
+    <option name="width" value="1320" />
+    <option name="height" value="784" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="luo-webGL-threeJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="luo-webGL-threeJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="luo-webGL-threeJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="luo-webGL-threeJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="luo-webGL-threeJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyNotes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.lastSelected" value="configurable.group.appearance" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2815ed07-11c6-4ffb-9a57-ae0cd1584383" name="Default" comment="" />
+      <created>1476848347645</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1476848347645</updated>
+      <workItem from="1476848349512" duration="307000" />
+    </task>
+    <task id="LOCAL-00001" summary="调整文件结构">
+      <created>1476848584862</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1476848584862</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="307000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="54" y="-8" width="1320" height="784" extended-state="7" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960998" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="调整文件结构" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整文件结构" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/MyNotes/VR-notebook.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyNotes/Material-basic.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyNotes/light.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="418">
+            <caret line="65" column="67" selection-start-line="65" selection-start-column="67" selection-end-line="65" selection-end-column="67" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+  </component>
+</project>
