@@ -113,6 +113,7 @@
 
         render();
 
+        // 左边的墙细节更多，看上去更厚
         function createMesh(geom, imageFile, bump) {
             var texture = THREE.ImageUtils.loadTexture("../assets/textures/general/" + imageFile)
             geom.computeVertexNormals();

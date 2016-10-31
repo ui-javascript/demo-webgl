@@ -85,12 +85,14 @@
                 scene.add(knot);
             };
 
+            // 将几何体保存在浏览器的本地存储中
             this.save = function () {
                 var exporter = new THREE.GeometryExporter();
                 var result = exporter.parse(knot.geometry);
                 localStorage.setItem("json", JSON.stringify(result));
             }
 
+            // 加载几何体
             this.load = function () {
 
                 scene.remove(loadedMesh);
@@ -98,9 +100,9 @@
                 var json = localStorage.getItem("json");
 
                 if (json) {
-                    var loadedGeometry = JSON.parse(json);
+                    var loadedGeometry = JSON.parse(json); // 转化成JS对象
 
-                    var loader = new THREE.JSONLoader();
+                    var loader = new THREE.JSONLoader(); // 转化成几何体
                     var geom = loader.parse(loadedGeometry);
                     loadedMesh = createMesh(geom.geometry);
                     loadedMesh.position.x = -35;

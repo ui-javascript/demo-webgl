@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Example 10.08 - Repeat mapping</title>
+    <title>Repeat mapping 重复映射</title>
     <script  src="../libs/three.js"></script>
     <script  src="../libs/jquery-1.9.0.js"></script>
     <script  src="../libs/stats.js"></script>
@@ -41,7 +41,7 @@
 
         // create a render and set the size
         var webGLRenderer = new THREE.WebGLRenderer();
-        webGLRenderer.setClearColorHex(0xEEEEEE, 1.0);
+        webGLRenderer.setClearColor(0xEEEEEE, 1.0);
         webGLRenderer.setSize(window.innerWidth, window.innerHeight);
         webGLRenderer.shadowMapEnabled = true;
 
@@ -85,17 +85,19 @@
 
                 cube.material.map.repeat.set(controls.repeatX, controls.repeatY);
                 sphere.material.map.repeat.set(controls.repeatX, controls.repeatY);
+                  // repeatX 在x轴多久重复一次  1的话不会重复
+                  // 负数 出现镜像
 
                 if (controls.repeatWrapping) {
                     cube.material.map.wrapS = THREE.RepeatWrapping;
-                    cube.material.map.wrapT = THREE.RepeatWrapping;
-                    sphere.material.map.wrapS = THREE.RepeatWrapping;
-                    sphere.material.map.wrapT = THREE.RepeatWrapping;
+                    cube.material.map.wrapT = THREE.RepeatWrapping; // 纹理的包裹属性
+                    sphere.material.map.wrapS = THREE.RepeatWrapping; // wrapS 纹理沿x轴的行为
+                    sphere.material.map.wrapT = THREE.RepeatWrapping; // wrapT 纹理沿y轴的行为
                 } else {
                     cube.material.map.wrapS = THREE.ClampToEdgeWrapping;
                     cube.material.map.wrapT = THREE.ClampToEdgeWrapping;
                     sphere.material.map.wrapS = THREE.ClampToEdgeWrapping;
-                    sphere.material.map.wrapT = THREE.ClampToEdgeWrapping;
+                    sphere.material.map.wrapT = THREE.ClampToEdgeWrapping; // 默认行为 边缘像素拉伸
                 }
 
                 cube.material.map.needsUpdate = true;

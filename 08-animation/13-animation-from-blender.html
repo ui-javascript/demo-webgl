@@ -67,10 +67,10 @@
         var clock = new THREE.Clock();
 
         var loader = new THREE.JSONLoader();
-        loader.load('assets/models/hand-2.js', function (geometry, mat) {
+        loader.load('../assets/models/hand-2.js', function (geometry, mat) {
 
             // register the animation
-            THREE.AnimationHandler.add(geometry.animation);
+            THREE.AnimationHandler.add(geometry.animation); // 先注册动画
 
             // create a material
             var mat = new THREE.MeshLambertMaterial({color: 0xF0C8C9, skinning: true});
@@ -88,7 +88,7 @@
             // start the animation
             animation.play();
 
-        }, 'assets/models');
+        }, '../assets/models');
 
 
         render();
@@ -102,7 +102,7 @@
             if (mesh) {
 
 
-                THREE.AnimationHandler.update(delta);
+                THREE.AnimationHandler.update(delta); //
 
             }
 

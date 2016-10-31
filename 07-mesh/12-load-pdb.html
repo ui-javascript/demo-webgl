@@ -75,7 +75,7 @@
 
         var loader = new THREE.PDBLoader();
         var group = new THREE.Object3D();
-        loader.load("assets/models/diamond.pdb", function (geometry, geometryBonds) {
+        loader.load("../assets/models/diamond.pdb", function (geometry, geometryBonds) {
             var i = 0;
 
             geometry.vertices.forEach(function (position) {
@@ -87,6 +87,7 @@
             });
 
             for (var j = 0; j < geometryBonds.vertices.length; j += 2) {
+                // 原子间的键
                 var path = new THREE.SplineCurve3([geometryBonds.vertices[j], geometryBonds.vertices[j + 1]]);
                 var tube = new THREE.TubeGeometry(path, 1, 0.04)
                 var material = new THREE.MeshPhongMaterial({color: 0xcccccc});

@@ -70,7 +70,7 @@
         camControls.verticalMin = 1.0;
         camControls.verticalMax = 2.0;
         camControls.lon = -150;
-        camControls.lat = 120;
+        camControls.lat = 120; // 初次渲染时相机指向的位置
 
 
         var ambientLight = new THREE.AmbientLight(0x383838);
@@ -112,9 +112,9 @@
         });
 
 
-        var texture = THREE.ImageUtils.loadTexture('assets/textures/Metro01.JPG');
+        var texture = THREE.ImageUtils.loadTexture('../assets/textures/Metro01.JPG');
         //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
-        loader.load('assets/models/city.obj', 'assets/models/city.mtl', {side: THREE.DoubleSide});
+        loader.load('../assets/models/city.obj', '../assets/models/city.mtl', {side: THREE.DoubleSide});
         //texture.repeat.set( 1 , 1);
 
 

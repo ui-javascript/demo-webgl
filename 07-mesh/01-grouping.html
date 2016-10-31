@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <title>Example 08.01 - Grouping</title>
     <script  src="../libs/three.js"></script>
@@ -10,7 +8,6 @@
     <script  src="../libs/dat.gui.js"></script>
     <style>
         body {
-            /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
         }
@@ -122,6 +119,7 @@ $(function () {
             scene.add(group);
             controls.positionBoundingBox();
 
+            // 在中心放置箭头
             var arrow = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), group.position, 10, 0x0000ff);
             scene.add(arrow);
 

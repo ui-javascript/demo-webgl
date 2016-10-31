@@ -81,7 +81,7 @@
                 var geometry = new THREE.Geometry();
                 for (var i = 0; i < controls.numberOfObjects; i++) {
                     THREE.GeometryUtils.merge(geometry, controls.addCube());
-                }
+                } // 将多个几何体合并成联合体 提高性能
                 scene.add(new THREE.Mesh(geometry, cubeMaterial));
                 } else {
                     for (var i = 0; i < controls.numberOfObjects; i++) {

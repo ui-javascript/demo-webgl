@@ -57,4 +57,21 @@ function onReady() { THREE.js code }
 + union 联合
 + subtract 相减
 
+### 几何体组合和合并
+### 从外部资源中加载几何体
++ 格式
+    + JSON
+    + OBJ 和 MTL(一般一起使用,材质定义在OBJ中)
+    + Collada 定义XML类文件中数字内容的格式
+    + STL 快速成型 三维打印
+        + THREE有STLExporter.js 导出
+    + CTM  压缩存储表示三维网格的三角形面片
+    + VTK 指定顶点和面 Three.js支持ASCII
+    + PDB 定义蛋白质的形状 [蛋白质数据银行](http://www.rcsb.org/)
+    + PLY 保存三维扫描仪的数据
++ GeometryExporter.js
++ SceneExporter.js 导出的JSON明确描述了物体光源场景等信息
+
+### 
+
 

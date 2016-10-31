@@ -161,6 +161,9 @@
 
             system = new THREE.ParticleSystem(geom, material);
             system.sortParticles = true;
+                         // 保证粒子在渲染前沿着屏幕上的z轴排好序
+                         // 不设置可能导致
+                         // 部分交叠的粒子或者透明度不正确
             system.name = "particles";
             scene.add(system);
         }

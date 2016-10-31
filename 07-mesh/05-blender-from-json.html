@@ -75,7 +75,8 @@
         var mesh;
 
         var loader = new THREE.JSONLoader();
-        loader.load('assets/models/misc_chair01.js', function (geometry, mat) {
+        // 这里是load函数而不是JSON
+        loader.load('../assets/models/misc_chair01.js', function (geometry, mat) {
             mesh = new THREE.Mesh(geometry, mat[0]);
 
             mesh.scale.x = 15;
@@ -84,7 +85,7 @@
 
             scene.add(mesh);
 
-        }, 'assets/models');
+        }, '../assets/models'); // 回调函数 纹理所在
 
 
         render();

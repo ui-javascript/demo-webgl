@@ -73,7 +73,7 @@
         var loader = new THREE.CTMLoader();
         var group = new THREE.Object3D();
 
-        loader.load("assets/models/auditt_wheel.ctm", function (geometry) {
+        loader.load("../assets/models/auditt_wheel.ctm", function (geometry) {
             var mat = new THREE.MeshLambertMaterial({color: 0xff8888});
             group = new THREE.Mesh(geometry, mat);
             group.scale.set(20, 20, 20);

@@ -37,7 +37,7 @@
     $(function () {
 
 
-        var clock = new THREE.Clock();
+        var clock = new THREE.Clock(); // 计算一个渲染循环耗费的时间
 
         var stats = initStats();
 
@@ -60,7 +60,7 @@
         camera.position.z = 300;
         camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-
+        // 创建控价绑定到相机上
         var trackballControls = new THREE.TrackballControls(camera);
 
         trackballControls.rotateSpeed = 1.0;
@@ -110,9 +110,9 @@
         });
 
 
-        var texture = THREE.ImageUtils.loadTexture('assets/textures/Metro01.JPG');
+        var texture = THREE.ImageUtils.loadTexture('../assets/textures/Metro01.JPG');
         //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
-        loader.load('assets/models/city.obj', 'assets/models/city.mtl', {side: THREE.DoubleSide});
+        loader.load('../assets/models/city.obj', '../assets/models/city.mtl', {side: THREE.DoubleSide});
         //texture.repeat.set( 1 , 1);
 
 
@@ -144,9 +144,10 @@
             }
         }
 
-
+        // 在render循环中更新相机的位置
         function render() {
             stats.update();
+
             var delta = clock.getDelta();
 
             if (mesh) {

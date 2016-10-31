@@ -49,7 +49,7 @@ $(function () {
 
 
     var textureCube = createCubeMap();
-    var shader = THREE.ShaderLib[ "cube" ];
+    var shader = THREE.ShaderLib[ "cube" ]; // 特殊的着色器 结合shaderMaterial
     shader.uniforms[ "tCube" ].value = textureCube;
     var material = new THREE.ShaderMaterial({
                 fragmentShader: shader.fragmentShader,
@@ -202,6 +202,7 @@ $(function () {
 
 //        var textureCube = THREE.ImageUtils.loadTextureCube( urls );
         var textureCube = THREE.ImageUtils.loadTextureCube(urls, new THREE.CubeReflectionMapping());
+                                                               // 如果是折射 CubeRefractionMapping
         return textureCube;
     }
 

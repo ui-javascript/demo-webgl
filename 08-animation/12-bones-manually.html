@@ -68,9 +68,10 @@
         var clock = new THREE.Clock();
 
         var loader = new THREE.JSONLoader();
-        loader.load('assets/models/hand-1.js', function (geometry, mat) {
+        loader.load('../assets/models/hand-1.js', function (geometry, mat) {
             var mat = new THREE.MeshLambertMaterial({color: 0xF0C8C9, skinning: true});
-            mesh = new THREE.SkinnedMesh(geometry, mat);
+                                                                    // sknning设置为true
+            mesh = new THREE.SkinnedMesh(geometry, mat); // 带有蒙皮的网格像素
 
             // rotate the complete hand
             mesh.rotation.x = 0.5 * Math.PI;
@@ -78,7 +79,7 @@
 
             // make sure to set quaternation to false for easy rotation
             mesh.bones.forEach(function (e) {
-                e.useQuaternion = false;
+                e.useQuaternion = false; // 否则要用四元数来定义骨骼的旋转
             })
 
             // add the mesh
@@ -87,7 +88,7 @@
             // and start the animation
             tween.start();
 
-        }, 'assets/models');
+        }, '../assets/models');
 
         var posSrc = {pos: -1}
         var tween = new TWEEN.Tween(posSrc).to({pos: 0}, 3000);
@@ -99,7 +100,9 @@
         tween.chain(tweenBack);
         tweenBack.chain(tween);
 
-
+        // 设置指部骨头绕Z轴的旋转
+        // 运行的是模型中预定义好的动画
+        // 不用手工移动这些骨头
         var onUpdate = function () {
             var pos = this.pos;
 

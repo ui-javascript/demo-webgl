@@ -119,7 +119,7 @@ $(function () {
     });
 
 
-    loader.load('assets/models/sol/libertStatue.obj', 'assets/models/sol/libertStatue.mtl', {side: THREE.DoubleSide});
+    loader.load('../assets/models/sol/libertStatue.obj', '../assets/models/sol/libertStatue.mtl', {side: THREE.DoubleSide});
 
 
     // setup the control gui
@@ -218,7 +218,7 @@ $(function () {
 
         var delta = clock.getDelta();
         THREE.AnimationHandler.update(delta);
-        pathControls.update(delta);
+        pathControls.update(delta); // 是相机自动沿着轨道移动
 
 //            console.log(camera.position);
 //            console.log(pathControls.lat + ": " + pathControls.lon);

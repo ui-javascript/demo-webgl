@@ -71,7 +71,7 @@
 
 
         function getTexture() {
-            var texture = new THREE.ImageUtils.loadTexture("assets/textures/particles/sprite-sheet.png");
+            var texture = new THREE.ImageUtils.loadTexture("../assets/textures/particles/sprite-sheet.png");
             return texture;
         }
 
@@ -81,7 +81,7 @@
                         opacity: opacity,
                         color: color,
                         transparent: transparent,
-                        useScreenCoordinates: false,
+                        useScreenCoordinates: false, // 三维中要设置为false
                         sizeAttenuation: true,
                         map: getTexture()}
             );

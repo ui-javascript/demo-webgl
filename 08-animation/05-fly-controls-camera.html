@@ -64,7 +64,7 @@
         var flyControls = new THREE.FlyControls(camera);
 
         flyControls.movementSpeed = 25;
-        flyControls.domElement = document.querySelector("#WebGL-output");
+        flyControls.domElement = document.querySelector("#WebGL-output"); // 注意这步，防止怪异行为
         flyControls.rollSpeed = Math.PI / 24;
         flyControls.autoForward = true;
         flyControls.dragToLook = false;
@@ -108,9 +108,9 @@
         });
 
 
-        var texture = THREE.ImageUtils.loadTexture('assets/textures/Metro01.JPG');
+        var texture = THREE.ImageUtils.loadTexture('../assets/textures/Metro01.JPG');
         //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
-        loader.load('assets/models/city.obj', 'assets/models/city.mtl', {side: THREE.DoubleSide});
+        loader.load('../assets/models/city.obj', '../assets/models/city.mtl', {side: THREE.DoubleSide});
         //texture.repeat.set( 1 , 1);
 
 

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <title>Example 09.11 - Manual morph targets</title>
     <script  src="../libs/three.js"></script>
@@ -109,7 +107,7 @@
             this.influence2 = 0.01;
 
             this.update = function () {
-                cube.morphTargetInfluences[0] = controls.influence1;
+                cube.morphTargetInfluences[0] = controls.influence1; // 如何变换到指定的方块
                 cube.morphTargetInfluences[1] = controls.influence2;
             };
         }

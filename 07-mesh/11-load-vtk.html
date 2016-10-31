@@ -76,7 +76,7 @@
 
         var loader = new THREE.VTKLoader();
         var group = new THREE.Object3D();
-        loader.load("assets/models/moai_fixed.vtk", function (geometry) {
+        loader.load("../assets/models/moai_fixed.vtk", function (geometry) {
             var mat = new THREE.MeshLambertMaterial({color: 0xaaffaa});
             group = new THREE.Mesh(geometry, mat);
             group.scale.set(9, 9, 9);

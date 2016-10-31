@@ -78,12 +78,12 @@
         var clock = new THREE.Clock();
 
         var loader = new THREE.JSONLoader();
-        loader.load('assets/models/ogre/ogro.js', function (geometry, mat) {
+        loader.load('../assets/models/ogre/ogro.js', function (geometry, mat) {
             geometry.computeMorphNormals();
 
             var mat = new THREE.MeshLambertMaterial(
                     {
-                        map: THREE.ImageUtils.loadTexture("assets/models/ogre/skins/skin.jpg"),
+                        map: THREE.ImageUtils.loadTexture("../assets/models/ogre/skins/skin.jpg"),
                         morphTargets: true, morphNormals: true
                     });
 
@@ -91,7 +91,7 @@
 
 
             mesh.rotation.y = 0.7;
-            mesh.parseAnimations();
+            mesh.parseAnimations();  // 解析动画
 
             // parse the animations and add them to the control
             var animLabels = [];
@@ -106,7 +106,7 @@
             gui.add(controls, 'fps', 1, 20).step(1).onChange(function (e) {
                 mesh.playAnimation(controls.animations, controls.fps);
             });
-            mesh.playAnimation('crattack', 10);
+            mesh.playAnimation('crattack', 10); // 指定要播放的动画的名字 而不是整个动画
 
 
             scene.add(mesh);

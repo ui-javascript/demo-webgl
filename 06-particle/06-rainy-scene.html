@@ -85,8 +85,7 @@
 
 
         function createParticles(size, transparent, opacity, sizeAttenuation, color) {
-
-
+            // THREE.ImageUtils.loadTexture()方法加载外部图片
             var texture1 = THREE.ImageUtils.loadTexture("assets/textures/particles/raindrop-1.png");
             var texture2 = THREE.ImageUtils.loadTexture("assets/textures/particles/raindrop-2.png");
 
@@ -98,7 +97,7 @@
                 transparent: transparent,
                 opacity: opacity,
                 map: texture1,
-                blending: THREE.AdditiveBlending,
+                blending: THREE.AdditiveBlending, // 融合模式 背景像素的颜色会被添加到新元素上
                 sizeAttenuation: sizeAttenuation,
                 color: color});
 
@@ -125,8 +124,8 @@
                         Math.random() * range - range / 2,
                         Math.random() * range * 1.5,
                         Math.random() * range - range / 2);
-                particle.velocityY = 0.1 + Math.random() / 5;
-                particle.velocityX = (Math.random() - 0.5) / 3;
+                particle.velocityY = 0.1 + Math.random() / 5; // 横向移动速度
+                particle.velocityX = (Math.random() - 0.5) / 3; // 下降速度
                 geom2.vertices.push(particle);
             }
 
@@ -149,6 +148,7 @@
 
         var step = 0;
 
+        // 在渲染循环体中移动
         function render() {
 
             stats.update();

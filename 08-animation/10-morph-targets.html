@@ -79,12 +79,13 @@
         var currentMesh;
         var clock = new THREE.Clock();
 
+        // 创建一个MorphAnimMesh对象
         var loader = new THREE.JSONLoader();
-        loader.load('assets/models/horse.js', function (geometry, mat) {
+        loader.load('../assets/models/horse.js', function (geometry, mat) {
 
             var mat = new THREE.MeshLambertMaterial(
                     {color: 0xffffff, morphNormals: false,
-                        morphTargets: true,
+                        morphTargets: true, // 否则网格不会动
                         vertexColors: THREE.FaceColors});
 
 
@@ -112,6 +113,8 @@
             geometry.computeVertexNormals();
             geometry.computeFaceNormals();
             geometry.computeMorphNormals();
+                  // 确保形变目标的所有法向量都会被计算
+                  // 正确的光照和阴影
 
             console.log(geometry);
 
@@ -124,7 +127,7 @@
 
             showFrame(0);
 
-        }, 'assets/models');
+        }, '../assets/models');
 
         function showFrame(e) {
             scene.remove(currentMesh);
@@ -133,6 +136,7 @@
             console.log(currentMesh);
         }
 
+        // 辅助函数 保证动画中使用正确的颜色
         function morphColorsToFaceColors(geometry) {
 
             if (geometry.morphColors && geometry.morphColors.length) {

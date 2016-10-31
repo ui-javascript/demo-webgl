@@ -58,8 +58,9 @@
 
         scene.add(mesh);
 
+        // 加载的是一张包含了所有精灵图形的图片
         var getTexture = function () {
-            var texture = new THREE.ImageUtils.loadTexture("assets/textures/particles/sprite-sheet.png");
+            var texture = new THREE.ImageUtils.loadTexture("../assets/textures/particles/sprite-sheet.png");
             return texture;
         }
 
@@ -100,12 +101,14 @@
                         color: color,
                         transparent: transparent,
                         useScreenCoordinates: true,
+                                        // 完全忽略相机
+                                        // 相对于窗口左上角来定位
                         map: getTexture()}
             );
 
             // we have 1 row, with five sprites
-            spriteMaterial.uvOffset.set(1 / 5 * spriteNumber, 0);
-            spriteMaterial.uvScale.set(1 / 5, 1);
+            spriteMaterial.uvOffset.set(1 / 5 * spriteNumber, 0); // 偏移
+            spriteMaterial.uvScale.set(1 / 5, 1); // 缩放
             spriteMaterial.alignment = THREE.SpriteAlignment.bottomCenter;
             spriteMaterial.scaleByViewport = true;
             spriteMaterial.blending = THREE.AdditiveBlending;

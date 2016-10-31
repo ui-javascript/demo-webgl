@@ -42,7 +42,7 @@
 
         // create a render and set the size
         var webGLRenderer = new THREE.WebGLRenderer();
-        webGLRenderer.setClearColorHex(0x000, 1.0);
+        webGLRenderer.setClearColor(0x000, 1.0);
         webGLRenderer.setSize(window.innerWidth, window.innerHeight);
         webGLRenderer.shadowMapEnabled = true;
 
@@ -77,6 +77,7 @@
 
         // create a tween
         // http://sole.github.io/tween.js/examples/03_graphs.html
+        // 两个补间 tween 和 tweenBack
         var posSrc = {pos: 1}
         var tween = new TWEEN.Tween(posSrc).to({pos: 0}, 5000);
         tween.easing(TWEEN.Easing.Sinusoidal.InOut);
@@ -85,7 +86,7 @@
         tweenBack.easing(TWEEN.Easing.Sinusoidal.InOut);
 
         tween.chain(tweenBack);
-        tweenBack.chain(tween);
+        tweenBack.chain(tween); // 使两个补间首尾相连 循环
 
 
         var onUpdate = function () {
@@ -109,7 +110,7 @@
 
         var loader = new THREE.PLYLoader();
 
-        loader.load("assets/models/test.ply", function (geometry) {
+        loader.load("../assets/models/test.ply", function (geometry) {
             loadedGeometry = geometry.clone();
 
             var material = new THREE.ParticleBasicMaterial({
@@ -156,7 +157,7 @@
 
         function render() {
             stats.update();
-            TWEEN.update();
+            TWEEN.update(); // 告诉Tween库什么时候应该刷新已知的所有补间
             requestAnimationFrame(render);
             webGLRenderer.render(scene, camera);
         }

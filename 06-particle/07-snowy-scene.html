@@ -41,7 +41,7 @@
 
         // create a render and set the size
         var webGLRenderer = new THREE.WebGLRenderer();
-        webGLRenderer.setClearColorHex(0x000000, 1.0);
+        webGLRenderer.setClearColor(0x000000, 1.0);
         webGLRenderer.setSize(window.innerWidth, window.innerHeight);
 
         // position and point the camera to the center of the scene
@@ -103,7 +103,7 @@
                 opacity: opacity,
                 map: texture,
                 blending: THREE.AdditiveBlending,
-                depthWrite: false,
+                depthWrite: false, // webgl的深度缓存 保证粒子系统之间不会相互影响
                 sizeAttenuation: sizeAttenuation,
                 color: color});
 
@@ -127,10 +127,10 @@
 
         function createParticles(size, transparent, opacity, sizeAttenuation, color) {
 
-            var texture1 = THREE.ImageUtils.loadTexture("assets/textures/particles/snowflake1.png");
-            var texture2 = THREE.ImageUtils.loadTexture("assets/textures/particles/snowflake2.png");
-            var texture3 = THREE.ImageUtils.loadTexture("assets/textures/particles/snowflake3.png");
-            var texture4 = THREE.ImageUtils.loadTexture("assets/textures/particles/snowflake5.png");
+            var texture1 = THREE.ImageUtils.loadTexture("../assets/textures/particles/snowflake1.png");
+            var texture2 = THREE.ImageUtils.loadTexture("../assets/textures/particles/snowflake2.png");
+            var texture3 = THREE.ImageUtils.loadTexture("../assets/textures/particles/snowflake3.png");
+            var texture4 = THREE.ImageUtils.loadTexture("../assets/textures/particles/snowflake5.png");
 
             scene.add(createSystem("system1", texture1, size, transparent, opacity, sizeAttenuation, color));
             scene.add(createSystem("system2", texture2, size, transparent, opacity, sizeAttenuation, color));
@@ -143,6 +143,7 @@
 
             stats.update();
 
+            // 在渲染循环中刷新每个粒子系统的粒子
             scene.children.forEach(function (child) {
                 if (child instanceof THREE.ParticleSystem) {
                     var vertices = child.geometry.vertices;
