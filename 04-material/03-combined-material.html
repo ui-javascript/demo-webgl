@@ -43,7 +43,7 @@
 
         renderer.sortObjects = false;
 
-        renderer.setClearColorHex(0x00000, 1.0);
+        renderer.setClearColor(0x00000, 1.0);
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMapEnabled = true;
 
@@ -82,10 +82,12 @@
                 var cubeGeometry = new THREE.CubeGeometry(cubeSize, cubeSize, cubeSize);
 
                 //var cubeMaterial = new THREE.MeshLambertMaterial({color:  Math.random() * 0xffffff });
+                // 联合材质
                 var cubeMaterial = new THREE.MeshDepthMaterial();
                 var colorMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, transparent: true, blending: THREE.MultiplyBlending})
                 var cube = new THREE.SceneUtils.createMultiMaterialObject(cubeGeometry, [colorMaterial, cubeMaterial]);
-                cube.children[1].scale.set(0.99, 0.99, 0.99);
+                cube.children[1].scale.set(0.99, 0.99, 0.99); // 避免闪烁
+                                                 // 使下一种材质对渲染的颜色没有任何影响
                 cube.castShadow = true;
 
                 // position the cube randomly in the scene

@@ -85,6 +85,8 @@
                         polyhedron = createMesh(new THREE.OctahedronGeometry(controls.radius, controls.detail));
                         break;
                     case 'Custom':
+                        // 直接使用PolyhedronGeometry
+                        // 指定顶点和面
                         var vertices = [
                             [ 1, 0, 1 ],
                             [ 1, 0, -1 ],

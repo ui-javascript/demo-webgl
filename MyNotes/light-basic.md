@@ -29,12 +29,12 @@
 +  Scene.getChildByName()  
 
 ###  光的类型
-![](https://github.com/luo0412/luo-webGL-threeJS/raw/master/MyNotes/images/light-type.jpg)
 +  AmbientLight  
     + 整体光  不需要指定位置
     + 不影响阴影生成   
     + 用于弱化阴影或添加颜色
     + 用色要保守
+    ![](https://github.com/luo0412/luo-webGL-threeJS/raw/master/MyNotes/images/light-type.jpg)
 +  PointLight
     + 夜空中的照明弹
     + color intensity distance position visible

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Example 04.09 - Linematerial</title>
+    <title>Example 04.10 - Linematerial Dashed</title>
     <script  src="../libs/three.js"></script>
     <script  src="../libs/jquery-1.9.0.js"></script>
     <script  src="../libs/stats.js"></script>
@@ -40,7 +40,7 @@ $(function () {
     // create a render and set the size
     var renderer = new THREE.WebGLRenderer();
 
-    renderer.setClearColorHex(0xEEEEEE, 1.0);
+    renderer.setClearColor(0xAAAAAA, 1.0);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.shadowMapEnabled = true;
 
@@ -76,10 +76,9 @@ $(function () {
     });
 
     lines.colors = colors;
-    var material = new THREE.LineBasicMaterial({
-        opacity: 1.0,
-        linewidth: 1,
-        vertexColors: THREE.VertexColors });
+
+    lines.computeLineDistances(); // 必须调用
+    var material = new THREE.LineDashedMaterial({ vertexColors: true, color: 0xffffff, dashSize: 3, gapSize: 1, scale: 0.1 });
 
     var line = new THREE.Line(lines, material);
     line.position.set(25, -30, -60);

@@ -1,18 +1,17 @@
-1<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 
 <head>
-    <title>Example 04.10 - Linematerial Dashed</title>
+    <title>Example 04.09 - Linematerial</title>
     <script  src="../libs/three.js"></script>
     <script  src="../libs/jquery-1.9.0.js"></script>
     <script  src="../libs/stats.js"></script>
     <style>
         body {
-            /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
-        }1
+        }
     </style>
 </head>
 <body>
@@ -40,7 +39,7 @@ $(function () {
     // create a render and set the size
     var renderer = new THREE.WebGLRenderer();
 
-    renderer.setClearColorHex(0xAAAAAA, 1.0);
+    renderer.setClearColor(0xEEEEEE, 1.0);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.shadowMapEnabled = true;
 
@@ -71,14 +70,15 @@ $(function () {
     points.forEach(function (e) {
         lines.vertices.push(new THREE.Vector3(e.x, e.z, e.y));
         colors[ i ] = new THREE.Color(0xffffff);
-        colors[ i ].setHSL(e.x / 100 + 0.5, (  e.y * 20 ) / 300, 0.8);
+        colors[ i ].setHSL(e.x / 100 + 0.5, (  e.y * 20 ) / 300, 0.8); // HSL 更直观
         i++;
     });
 
     lines.colors = colors;
-
-    lines.computeLineDistances();
-    var material = new THREE.LineDashedMaterial({ vertexColors: true, color: 0xffffff, dashSize: 3, gapSize: 1, scale: 0.1 });
+    var material = new THREE.LineBasicMaterial({
+        opacity: 1.0,
+        linewidth: 1,
+        vertexColors: THREE.VertexColors });
 
     var line = new THREE.Line(lines, material);
     line.position.set(25, -30, -60);
@@ -99,6 +99,7 @@ $(function () {
         renderer.render(scene, camera);
     }
 
+    // 一种填充二维空间的简单方法
     function gosper(a, b) {
 
         var turtle = [0, 0, 0];

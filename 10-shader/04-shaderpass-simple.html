@@ -90,8 +90,8 @@ $(function () {
     var cube = new THREE.Mesh(plane, new THREE.MeshPhongMaterial(
             {
                 color: 0xffffff,
-                map: THREE.ImageUtils.loadTexture("assets/textures/general/plaster-diffuse.jpg"),
-                normalMap: THREE.ImageUtils.loadTexture("assets/textures/general/plaster-normal.jpg"),
+                map: THREE.ImageUtils.loadTexture("../assets/textures/general/plaster-diffuse.jpg"),
+                normalMap: THREE.ImageUtils.loadTexture("../assets/textures/general/plaster-normal.jpg"),
                 normalScale: new THREE.Vector2(0.6, 0.6)
             }));
     cube.material.map.wrapS = THREE.RepeatWrapping;
@@ -181,7 +181,7 @@ $(function () {
     });
 
 
-    loader.load('assets/models/sol/libertStatue.obj', 'assets/models/sol/libertStatue.mtl');
+    loader.load('../assets/models/sol/libertStatue.obj', '../assets/models/sol/libertStatue.mtl');
 
     var mirror = new THREE.ShaderPass(THREE.MirrorShader);
     mirror.enabled = false;

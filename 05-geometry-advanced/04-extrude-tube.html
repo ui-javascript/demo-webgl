@@ -10,7 +10,6 @@
     <script  src="../libs/dat.gui.js"></script>
     <style>
         body {
-            /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
         }
@@ -40,7 +39,7 @@
 
         // create a render and set the size
         var webGLRenderer = new THREE.WebGLRenderer();
-        webGLRenderer.setClearColorHex(0xEEEEEE, 1.0);
+        webGLRenderer.setClearColor(0xEEEEEE, 1.0);
         webGLRenderer.setSize(window.innerWidth, window.innerHeight);
         webGLRenderer.shadowMapEnabled = true;
 
@@ -126,7 +125,7 @@
 
             // use the same points to create a convexgeometry
             var tubeGeometry = new THREE.TubeGeometry(new THREE.SplineCurve3(points), segments, radius, radiusSegments, closed);
-            tubeMesh = createMesh(tubeGeometry);
+            tubeMesh = createMesh(tubeGeometry); // 管道
             scene.add(tubeMesh);
         }
 

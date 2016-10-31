@@ -129,7 +129,7 @@
         render();
 
         function createMesh(geom, texture) {
-            var texture = THREE.ImageUtils.loadTexture("assets/textures/general/" + texture)
+            var texture = THREE.ImageUtils.loadTexture("../assets/textures/general/" + texture)
             var bumpMap = new THREE.Texture(canvas);
 
             geom.computeVertexNormals();

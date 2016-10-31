@@ -41,7 +41,7 @@
         // create a render and set the size
         var renderer = new THREE.WebGLRenderer();
 
-        renderer.setClearColorHex(0xEEEEEE, 1.0);
+        renderer.setClearColor(0xEEEEEE, 1.0);
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMapEnabled = false;
 
@@ -90,12 +90,13 @@
         mats.push(new THREE.MeshBasicMaterial({ color: 0xffffff  }));
         var faceMaterial = new THREE.MeshFaceMaterial(mats);
 
+        // 3 x 3 x 3
         for (var x = 0; x < 3; x++) {
             for (var y = 0; y < 3; y++) {
                 for (var z = 0; z < 3; z++) {
                     var cubeGeom = new THREE.CubeGeometry(2.9, 2.9, 2.9);
                     var cube = new THREE.Mesh(cubeGeom, faceMaterial);
-                    cube.position = new THREE.Vector3(x * 3 - 3, y * 3, z * 3 - 3);
+                    cube.position = new THREE.Vector3(x * 3 - 3, y * 3, z * 3 - 3); // -3偏置
                     group.add(cube);
                 }
             }
@@ -120,7 +121,7 @@
             stats.update();
 
 
-            group.rotation.y = step += 0.01;
+            group.rotation.y = step += 0.01; // 使整个组绕着它的中心（0,0,0）旋转
             // render using requestAnimationFrame
             requestAnimationFrame(render);
             renderer.render(scene, camera);

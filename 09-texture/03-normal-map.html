@@ -55,7 +55,7 @@ $(function () {
     scene.add(sphere2);
     console.log(sphere2.geometry.faceVertexUvs);
 
-    var floorTex = THREE.ImageUtils.loadTexture("assets/textures/general/floor-wood.jpg")
+    var floorTex = THREE.ImageUtils.loadTexture("../assets/textures/general/floor-wood.jpg")
     var plane = new THREE.Mesh(new THREE.CubeGeometry(200, 100, 0.1, 30), new THREE.MeshPhongMaterial({color: 0x3c3c3c, map: floorTex}));
     plane.position.y = -7.5;
     plane.rotation.x = -0.5 * Math.PI;
@@ -112,11 +112,11 @@ $(function () {
         this.rotate = false;
 
         this.changeTexture = function (e) {
-            var texture = THREE.ImageUtils.loadTexture("assets/textures/general/" + e + ".jpg");
+            var texture = THREE.ImageUtils.loadTexture("../assets/textures/general/" + e + ".jpg");
             sphere2.material.map = texture;
             sphere1.material.map = texture;
 
-            var bump = THREE.ImageUtils.loadTexture("assets/textures/general/" + e + "-normal.jpg");
+            var bump = THREE.ImageUtils.loadTexture("../assets/textures/general/" + e + "-normal.jpg");
             sphere2.material.normalMap = bump;
         }
 
@@ -137,8 +137,8 @@ $(function () {
     function createMesh(geom, imageFile, normal) {
 
         if (normal) {
-            var t = THREE.ImageUtils.loadTexture("assets/textures/general/" + imageFile);
-            var m = THREE.ImageUtils.loadTexture("assets/textures/general/" + normal);
+            var t = THREE.ImageUtils.loadTexture("../assets/textures/general/" + imageFile);
+            var m = THREE.ImageUtils.loadTexture("../assets/textures/general/" + normal);
             var mat2 = new THREE.MeshPhongMaterial({
                 map: t,
                 normalMap: m
@@ -146,7 +146,7 @@ $(function () {
             var mesh = new THREE.Mesh(geom, mat2);
             return mesh;
         } else {
-            var t = THREE.ImageUtils.loadTexture("assets/textures/general/" + imageFile);
+            var t = THREE.ImageUtils.loadTexture("../assets/textures/general/" + imageFile);
             var mat1 = new THREE.MeshPhongMaterial({
                 map: t
             })

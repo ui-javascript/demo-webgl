@@ -50,8 +50,8 @@
         renderer = webGLRenderer;
 
         var groundGeom = new THREE.PlaneGeometry(95, 95, 1, 1);
-        var lm = THREE.ImageUtils.loadTexture('assets/textures/lightmap/lm-1.png');
-        var wood = THREE.ImageUtils.loadTexture('assets/textures/general/floor-wood.jpg');
+        var lm = THREE.ImageUtils.loadTexture('../assets/textures/lightmap/lm-1.png');
+        var wood = THREE.ImageUtils.loadTexture('../assets/textures/general/floor-wood.jpg');
         var groundMaterial = new THREE.MeshBasicMaterial(
                 {color: 0x777777,
                     lightMap: lm,
@@ -82,7 +82,7 @@
 
 
         var meshMaterial = new THREE.MeshBasicMaterial();
-        meshMaterial.map = THREE.ImageUtils.loadTexture('assets/textures/general/stone.jpg');
+        meshMaterial.map = THREE.ImageUtils.loadTexture('../assets/textures/general/stone.jpg');
 
 
         var cube = new THREE.Mesh(cubeGeometry, meshMaterial);

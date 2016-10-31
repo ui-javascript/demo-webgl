@@ -18,6 +18,7 @@
 </head>
 <body>
 
+<!-- 着色器 GLSL语言来写-->
 <script id="vertex-shader" type="x-shader/x-vertex">
     uniform float time;
 
@@ -325,7 +326,7 @@
     }
 
     vec4 color_final = vec4(color, 1.0);
-    gl_FragColor = color_final;
+    gl_FragColor = color_final; // 传回THREE.js库的颜色
     }
 </script>
 
@@ -352,7 +353,7 @@
         // create a render and set the size
 
         var renderer = new THREE.WebGLRenderer();
-        renderer.setClearColorHex(0x000000, 1.0);
+        renderer.setClearColor(0x000000, 1.0);
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMapEnabled = true;
 

@@ -6,7 +6,7 @@
     <title>旋转立方体2</title>
     <link rel="stylesheet" href="">
     <style>
-        body{
+        body {
             margin: 0;
             overflow: hidden;
         } 
@@ -30,7 +30,7 @@ $(document).ready(function() {
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(
         45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    var renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer({ antialias: true});
 
     camera.position.x = -30;
     camera.position.y = 40;
@@ -51,7 +51,9 @@ $(document).ready(function() {
     // var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     
     var cube = new THREE.Mesh(cubeGeometry, 
-                   new THREE.MeshNormalMaterial()); // 普通材质
+                   new THREE.MeshNormalMaterial());
+                                        // 普通材质
+                                        // 法向分量和颜色对应
 
     cube.position.x = -4;
     cube.position.y = 3;

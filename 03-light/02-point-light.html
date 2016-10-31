@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <title>Example 03.02 - point Light</title>
     <script  src="../libs/three.js"></script>
@@ -10,7 +8,6 @@
     <script  src="../libs/dat.gui.js"></script>
     <style>
         body {
-            /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
         }
@@ -18,38 +15,29 @@
 </head>
 <body>
 
-<div id="Stats-output">
-</div>
-<!-- Div which will hold the Output -->
-<div id="WebGL-output">
-</div>
+<div id="Stats-output"></div>
+<div id="WebGL-output"></div>
 
-<!-- Javascript code that runs our Three.js examples -->
 <script >
 
-    // once everything is loaded, we run our Three.js stuff.
     $(function () {
 
         var stats = initStats();
 
         // create a scene, that will hold all our elements such as objects, cameras and lights.
         var scene = new THREE.Scene();
-
-        // create a camera, which defines where we're looking at.
         var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-        // create a render and set the size
         var renderer = new THREE.WebGLRenderer();
 
-        renderer.setClearColorHex(0xEEEEEE, 1.0);
+        renderer.setClearColor(0xEEEEEE, 1.0);
         renderer.setSize(window.innerWidth, window.innerHeight);
-        // renderer.shadowMapEnabled = true;
+         renderer.shadowMapEnabled = true;
 
         // create the ground plane
         var planeGeometry = new THREE.PlaneGeometry(60, 20, 1, 1);
         var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
         var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-        //plane.receiveShadow  = true;
+//        plane.receiveShadow  = true;
 
         // rotate and position the plane
         plane.rotation.x = -0.5 * Math.PI;

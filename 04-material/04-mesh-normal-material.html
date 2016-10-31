@@ -70,6 +70,7 @@ $(function () {
     sphere.position.y = 3;
     sphere.position.z = 2;
 
+    // THREE.ArrowHelper 添加法向量的箭头
     for (var f = 0, fl = sphere.geometry.faces.length; f < fl; f++) {
         var face = sphere.geometry.faces[ f ];
         var arrow = new THREE.ArrowHelper(
