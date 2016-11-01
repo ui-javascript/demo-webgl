@@ -36,5 +36,97 @@ texture = THREE.ImageUtils.loadTexture('texture.png', {},
 + 图片加载是异步的  渲染循环 回调函数
 + 纹理的repeat属性  包裹属性 ClampToEdgeWrapping → RepeatWrapping
 
-### 后期处理
+### 渲染后期处理
++ 基本后期处理通道
+    + BloomPass 泛光通道 和 FilmPass 胶片通道
++ 掩码
++ TexturePass 纹理通道 保存渲染结果
++ ShaderPass 着色器通道 
+    + eg.褐色滤镜 镜像效果 颜色调整
+    + 模糊效果 更高级的滤镜
++ 开发一个简单的着色器，来创建自定义的后期处理效果
++ 步骤
+    + 创建EffectComposer对象 在对象上添加后期处理通道
+    + 在render循环中使用EffectComposer渲染场景
++ HorizontalTiltShiftShader 移轴
++ 定制灰度图着色器
+    + vertexShader 调整每个顶点的位置
+    + fragmentShader  决定每个像素的颜色
++ 定制位着色器
+
+### 后期处理通道
++ BloomPass
++ DotScreenPass 一层黑点
++ FilmPass 电视屏幕
++ MaskPass 掩膜
++ RenderPass
++ SavePass
++ ShaderPass
++ TexturePass 
+
+###  basic-vertex-shader
+Use this as displacement:
+Base example on [this](http://aerotwist.com/tutorials/an-introduction-to-shaders-part-2/)
+Show this as [example](http://www.clicktorelease.com/code/perlin/explosion.html)
+
+### basic-fragment-shader
+Create something like this:
+```
+// pass in mouse as uniforms
+// pass in resolution?
+
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform float time;
+uniform vec2 mouse;
+uniform vec2 resolution;
+
+void main( void ) {
+
+vec2 position = ( gl_FragCoord.xy / resolution.xy ) + mouse / 4.0;
+
+float color = 0.0;
+color += sin( position.x * cos( time / 15.0 ) * 80.0 ) + cos( position.y * cos( time / 15.0 ) * 10.0 );
+color += sin( position.y * cos( time / 10.0 ) * 40.0 ) + cos( position.x * sin( time / 25.0 ) * 40.0 );
+color += sin( position.x * sin( time / 5.0 ) * 10.0 ) + sin( position.y * sin( time / 35.0 ) * 80.0 );
+color *= sin( time / 10.0 ) * 0.5;
+
+gl_FragColor = vec4( vec3( color, color * 0.5, sin( color + time / 3.0 ) * 0.75 ), 1.0 );
+
+}
+```
+
+### 后期处理注意
++ 不是所有通道的结果都会输出到屏幕
++ 效果组合器添加通道的顺序很重要
++ 重用某个EffectComposer,可以使用TexturePass
++ EffectComposer有多个RenderPass clear设为false
+
+### Physijs 添加物理效果
++ [Physijs](http://chandlerprall.github.io/Physijs/)
++ 另一个著名的物理引擎 [ammo.js](  https://github.com/kripken/ammo.js/)
++ 后台线程中执行计算
++ [网页线程web workers](https://html.spec.whatwg.org/multipage/workers.html)
++ Physijs只是ammo.js的一个包装器
++ Cannon.js
++ Physijs的基础图形
+    + PlaneMesh 厚度为0的平面
+    + BoxMesh 类似方块的几何体
+    + SphereMesh 球形
+    + CylinderMesh 上下一致的圆柱体
+    + ConeMesh 
+    + CapsuleMesh 胶囊网格
+    + ConvexMesh 凸包网格
+    + ConcaveMesh 比上面细致 但性能影响极大
+    + HeightfieldMesh 高度场网格 
++ 使用约束限制对象移动
+    + PointConstraint 限制两点间的移动
+    + HingeConstraint 活页/门 
+    + SliderConstraint 将移动限制到一个轴
+    + ConeTwistConstraint 球销 移动受一系列角度限制
+    + DOFConstraint 实现细节的控制
++ _dirtyPosition _dirtyRotation 
 + 

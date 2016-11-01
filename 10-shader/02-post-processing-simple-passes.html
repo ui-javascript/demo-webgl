@@ -89,6 +89,7 @@ $(function () {
     // add the output of the renderer to the html element
     $("#WebGL-output").append(webGLRenderer.domElement);
 
+    // 加入通道renderPass
     var renderPass = new THREE.RenderPass(scene, camera);
     var effectCopy = new THREE.ShaderPass(THREE.CopyShader);
     effectCopy.renderToScreen = true;
@@ -108,6 +109,7 @@ $(function () {
 
     // we use a texture pass to pass the rendered output to
     // a texture, so we can reuse it
+    // 作为其他效果组合器的输入
     var renderScene = new THREE.TexturePass(composer.renderTarget2);
 
     // lower left corner
@@ -254,7 +256,7 @@ $(function () {
         webGLRenderer.clear();
 
         webGLRenderer.setViewport(0, 0, 2 * halfWidth, 2 * halfHeight);
-        composer.render(delta);
+        composer.render(delta); // 代替WebGLRender
 
         webGLRenderer.setViewport(0, 0, halfWidth, halfHeight);
         composer1.render(delta);

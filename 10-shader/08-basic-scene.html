@@ -19,8 +19,8 @@
 
         var scale = chroma.scale(['green', 'white']);
 
-        Physijs.scripts.worker = 'libs/physijs_worker.js';
-        Physijs.scripts.ammo = 'libs/ammo.js';
+        Physijs.scripts.worker = '../libs/physijs_worker.js';
+        Physijs.scripts.ammo = '../libs/ammo.js';
 
         var initScene, render, applyForce, setMousePosition, mouse_position,
                 ground_material, box_material,
@@ -161,7 +161,7 @@
 
         function createGround() {
             var ground_material = Physijs.createMaterial(
-                    new THREE.MeshPhongMaterial({ map: THREE.ImageUtils.loadTexture('assets/textures/general/wood-2.jpg') }),
+                    new THREE.MeshPhongMaterial({ map: THREE.ImageUtils.loadTexture('../assets/textures/general/wood-2.jpg') }),
                     .9, .3);
 
             var ground = new Physijs.BoxMesh(new THREE.CubeGeometry(60, 1, 60), ground_material, 0);
