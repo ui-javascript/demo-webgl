@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2815ed07-11c6-4ffb-9a57-ae0cd1584383" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/##-basic-fragment-shader.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/##-basic-vertex-shader.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/##-env-map-dynamic.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/##-normal-obj-mtl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/13-hinge.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/10-shader/02-post-processing-simple-passes.html" afterPath="$PROJECT_DIR$/10-shader/02-post-processing-simple-passes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/10-shader/05-shaderpass-blur.html" afterPath="$PROJECT_DIR$/10-shader/05-shaderpass-blur.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/10-shader/06-shaderpass-advanced.html" afterPath="$PROJECT_DIR$/10-shader/06-shaderpass-advanced.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/10-shader/07-shaderpass-custom.html" afterPath="$PROJECT_DIR$/10-shader/07-shaderpass-custom.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/10-shader/08-basic-scene.html" afterPath="$PROJECT_DIR$/10-shader/08-basic-scene.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/10-shader/09-material-properties.html" afterPath="$PROJECT_DIR$/10-shader/09-material-properties.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/10-shader/10-shapes.html" afterPath="$PROJECT_DIR$/10-shader/10-shapes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyNotes/three-Texture.md" afterPath="$PROJECT_DIR$/MyNotes/three-Texture.md" />
     </list>
     <ignored path="luo-webGL-threeJS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +24,7 @@
     <favorites_list name="luo-webGL-threeJS" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -260,7 +247,8 @@
       <workItem from="1477910023507" duration="1381000" />
       <workItem from="1477912731510" duration="13408000" />
       <workItem from="1477958665659" duration="5299000" />
-      <workItem from="1477966904750" duration="1829000" />
+      <workItem from="1477966904750" duration="1942000" />
+      <workItem from="1477977266900" duration="29000" />
     </task>
     <task id="LOCAL-00001" summary="调整文件结构">
       <created>1476848584862</created>
@@ -273,10 +261,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54454000" />
+    <option name="totallyTimeSpent" value="54596000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1320" height="784" extended-state="7" />
+    <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16848674" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -614,7 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="228" column="13" selection-start-line="228" selection-start-column="13" selection-end-line="228" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -622,24 +609,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="99" column="52" selection-start-line="99" selection-start-column="52" selection-end-line="99" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/10-shader/13-hinge.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="173" column="18" selection-start-line="173" selection-start-column="18" selection-end-line="173" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/10-shader/13-hinge.html" />
     <entry file="file://$PROJECT_DIR$/MyNotes/three-Texture.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="285">
             <caret line="122" column="31" selection-start-line="122" selection-start-column="31" selection-end-line="122" selection-end-column="31" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -652,7 +630,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-95">
           <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -660,7 +637,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1417">
           <caret line="206" column="25" selection-start-line="206" selection-start-column="25" selection-end-line="206" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
