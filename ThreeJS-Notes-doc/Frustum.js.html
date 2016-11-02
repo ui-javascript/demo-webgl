@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: math/Frustum.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: math/Frustum.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @author mrdoob / http://mrdoob.com/
+ * @author alteredq / http://alteredqualia.com/
+ * @author bhouston / http://exocortex.com
+ */
+/**
+ * @classdesc 平截头体对象&lt;br />
+ * 注释内容部分参照 http://blog.csdn.net/omni360
+ * @param {THREE.Plane} p0
+ * @param {THREE.Plane} p1
+ * @param {THREE.Plane} p2
+ * @param {THREE.Plane} p3
+ * @param {THREE.Plane} p4
+ * @param {THREE.Plane} p5
+ * @constructor
+ */
+THREE.Frustum = function ( p0, p1, p2, p3, p4, p5 ) {
+
+	this.planes = [
+
+		( p0 !== undefined ) ? p0 : new THREE.Plane(),
+		( p1 !== undefined ) ? p1 : new THREE.Plane(),
+		( p2 !== undefined ) ? p2 : new THREE.Plane(),
+		( p3 !== undefined ) ? p3 : new THREE.Plane(),
+		( p4 !== undefined ) ? p4 : new THREE.Plane(),
+		( p5 !== undefined ) ? p5 : new THREE.Plane()
+
+	];
+
+};
+
+THREE.Frustum.prototype = {
+
+	constructor: THREE.Frustum,
+	/**
+	 * @desc 设置平截头体对象
+	 * @param {THREE.Plane} p0
+	 * @param {THREE.Plane} p1
+	 * @param {THREE.Plane} p2
+	 * @param {THREE.Plane} p3
+	 * @param {THREE.Plane} p4
+	 * @param {THREE.Plane} p5
+	 * @returns {THREE.Frustum}
+	 */
+	set: function ( p0, p1, p2, p3, p4, p5 ) {
+
+		var planes = this.planes;
+
+		planes[ 0 ].copy( p0 );
+		planes[ 1 ].copy( p1 );
+		planes[ 2 ].copy( p2 );
+		planes[ 3 ].copy( p3 );
+		planes[ 4 ].copy( p4 );
+		planes[ 5 ].copy( p5 );
+
+		return this;
+
+	},
+	/**
+	 * @desc 拷贝平截头体对象
+	 * @param {THREE.Frustum} frustum
+	 * @returns {THREE.Frustum}
+	 */
+	copy: function ( frustum ) {
+
+		var planes = this.planes;
+
+		for ( var i = 0; i &lt; 6; i ++ ) {
+
+			planes[ i ].copy( frustum.planes[ i ] );
+
+		}
+
+		return this;
+
+	},
+	/**
+	 * @desc 通过对当前平截头体应用变换,返回新的平截头体
+	 * @param {THREE.Matrix4} m
+	 * @returns {THREE.Frustum}
+	 */
+	setFromMatrix: function ( m ) {
+
+		var planes = this.planes;
+		var me = m.elements;
+		var me0 = me[ 0 ], me1 = me[ 1 ], me2 = me[ 2 ], me3 = me[ 3 ];
+		var me4 = me[ 4 ], me5 = me[ 5 ], me6 = me[ 6 ], me7 = me[ 7 ];
+		var me8 = me[ 8 ], me9 = me[ 9 ], me10 = me[ 10 ], me11 = me[ 11 ];
+		var me12 = me[ 12 ], me13 = me[ 13 ], me14 = me[ 14 ], me15 = me[ 15 ];
+
+		planes[ 0 ].setComponents( me3 - me0, me7 - me4, me11 - me8, me15 - me12 ).normalize();
+		planes[ 1 ].setComponents( me3 + me0, me7 + me4, me11 + me8, me15 + me12 ).normalize();
+		planes[ 2 ].setComponents( me3 + me1, me7 + me5, me11 + me9, me15 + me13 ).normalize();
+		planes[ 3 ].setComponents( me3 - me1, me7 - me5, me11 - me9, me15 - me13 ).normalize();
+		planes[ 4 ].setComponents( me3 - me2, me7 - me6, me11 - me10, me15 - me14 ).normalize();
+		planes[ 5 ].setComponents( me3 + me2, me7 + me6, me11 + me10, me15 + me14 ).normalize();
+
+		return this;
+
+	},
+	/**
+	 * @function
+	 * @desc 当前平截头体是否与参数object对象相交
+	 * @param {THREE.Object3D} object
+	 * @return {boolean}
+	 */
+	intersectsObject: function () {
+
+		var sphere = new THREE.Sphere();
+
+		return function ( object ) {
+
+			var geometry = object.geometry;
+
+			if ( geometry.boundingSphere === null ) geometry.computeBoundingSphere();
+
+			sphere.copy( geometry.boundingSphere );
+			sphere.applyMatrix4( object.matrixWorld );
+
+			return this.intersectsSphere( sphere );
+
+		};
+
+	}(),
+	/**
+	 * @desc 当前平截头体是否与参数sphere球体对象相交
+	 * @param {THREE.Sphere} sphere
+	 * @returns {boolean}
+	 */
+	intersectsSphere: function ( sphere ) {
+
+		var planes = this.planes;
+		var center = sphere.center;
+		var negRadius = - sphere.radius;
+
+		for ( var i = 0; i &lt; 6; i ++ ) {
+
+			var distance = planes[ i ].distanceToPoint( center );
+
+			if ( distance &lt; negRadius ) {
+
+				return false;
+
+			}
+
+		}
+
+		return true;
+
+	},
+	/**
+	 *
+	 * @function
+	 * @desc 当前平截头体是否与参数box立方体对象相交
+	 * @param {THREE.Box3} box
+	 * @returns {boolean}
+	 */
+	intersectsBox: function () {
+
+		var p1 = new THREE.Vector3(),
+			p2 = new THREE.Vector3();
+
+		return function ( box ) {
+
+			var planes = this.planes;
+
+			for ( var i = 0; i &lt; 6 ; i ++ ) {
+
+				var plane = planes[ i ];
+
+				p1.x = plane.normal.x > 0 ? box.min.x : box.max.x;
+				p2.x = plane.normal.x > 0 ? box.max.x : box.min.x;
+				p1.y = plane.normal.y > 0 ? box.min.y : box.max.y;
+				p2.y = plane.normal.y > 0 ? box.max.y : box.min.y;
+				p1.z = plane.normal.z > 0 ? box.min.z : box.max.z;
+				p2.z = plane.normal.z > 0 ? box.max.z : box.min.z;
+
+				var d1 = plane.distanceToPoint( p1 );
+				var d2 = plane.distanceToPoint( p2 );
+
+				// if both outside plane, no intersection
+
+				if ( d1 &lt; 0 && d2 &lt; 0 ) {
+
+					return false;
+
+				}
+			}
+
+			return true;
+		};
+
+	}(),
+
+	/**
+	 * @desc 参数point(一个Vector3的三维点坐标)是否在当前平截头体内
+	 * @param {THREE.Vector3} point
+	 * @returns {boolean}
+	 */
+	containsPoint: function ( point ) {
+
+		var planes = this.planes;
+
+		for ( var i = 0; i &lt; 6; i ++ ) {
+
+			if ( planes[ i ].distanceToPoint( point ) &lt; 0 ) {
+
+				return false;
+
+			}
+
+		}
+
+		return true;
+
+	},
+	/**
+	 * @desc 克隆当前平截头体
+	 * @returns {THREE.Frustum}
+	 */
+	clone: function () {
+
+		return new THREE.Frustum().copy( this );
+
+	}
+
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="THREE.html">THREE</a></li><li><a href="THREE.AmbientLight.html">AmbientLight</a></li><li><a href="THREE.AreaLight.html">AreaLight</a></li><li><a href="THREE.Bone.html">Bone</a></li><li><a href="THREE.Box2.html">Box2</a></li><li><a href="THREE.Box3.html">Box3</a></li><li><a href="THREE.BufferAttribute.html">BufferAttribute</a></li><li><a href="THREE.BufferGeometry.html">BufferGeometry</a></li><li><a href="THREE.Camera.html">Camera</a></li><li><a href="THREE.Clock.html">Clock</a></li><li><a href="THREE.Color.html">Color</a></li><li><a href="THREE.CompressedTexture.html">CompressedTexture</a></li><li><a href="THREE.CubeCamera.html">CubeCamera</a></li><li><a href="THREE.CubeTexture.html">CubeTexture</a></li><li><a href="THREE.DataTexture.html">DataTexture</a></li><li><a href="THREE.DirectionalLight.html">DirectionalLight</a></li><li><a href="THREE.Euler.html">Euler</a></li><li><a href="THREE.EventDispatcher.html">EventDispatcher</a></li><li><a href="THREE.Face3.html">Face3</a></li><li><a href="THREE.Fog.html">Fog</a></li><li><a href="THREE.FogExp2.html">FogExp2</a></li><li><a href="THREE.FontUtils.html">FontUtils</a></li><li><a href="THREE.Frustum.html">Frustum</a></li><li><a href="THREE.Geometry.html">Geometry</a></li><li><a href="THREE.Group.html">Group</a></li><li><a href="THREE.HemisphereLight.html">HemisphereLight</a></li><li><a href="THREE.ImageUtils.html">ImageUtils</a></li><li><a href="THREE.ImmediateRenderObject.html">ImmediateRenderObject</a></li><li><a href="THREE.LensFlare.html">LensFlare</a></li><li><a href="THREE.LensFlarePlugin.html">LensFlarePlugin</a></li><li><a href="THREE.Light.html">Light</a></li><li><a href="THREE.Line.html">Line</a></li><li><a href="THREE.Line3.html">Line3</a></li><li><a href="THREE.LineBasicMaterial.html">LineBasicMaterial</a></li><li><a href="THREE.LineDashedMaterial.html">LineDashedMaterial</a></li><li><a href="THREE.LOD.html">LOD</a></li><li><a href="THREE.Material.html">Material</a></li><li><a href="THREE.Math.html">Math</a></li><li><a href="THREE.Matrix3.html">Matrix3</a></li><li><a href="THREE.Matrix4.html">Matrix4</a></li><li><a href="THREE.Mesh.html">Mesh</a></li><li><a href="THREE.MeshBasicMaterial.html">MeshBasicMaterial</a></li><li><a href="THREE.MeshDepthMaterial.html">MeshDepthMaterial</a></li><li><a href="THREE.MeshFaceMaterial.html">MeshFaceMaterial</a></li><li><a href="THREE.MeshLambertMaterial.html">MeshLambertMaterial</a></li><li><a href="THREE.MeshNormalMaterial.html">MeshNormalMaterial</a></li><li><a href="THREE.MeshPhongMaterial.html">MeshPhongMaterial</a></li><li><a href="THREE.MorphAnimMesh.html">MorphAnimMesh</a></li><li><a href="THREE.MorphBlendMesh.html">MorphBlendMesh</a></li><li><a href="THREE.Object3D.html">Object3D</a></li><li><a href="THREE.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="THREE.Particle.html">Particle</a></li><li><a href="THREE.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="THREE.Plane.html">Plane</a></li><li><a href="THREE.PointCloud.html">PointCloud</a></li><li><a href="THREE.PointCloudMaterial.html">PointCloudMaterial</a></li><li><a href="THREE.PointLight.html">PointLight</a></li><li><a href="THREE.Quaternion.html">Quaternion</a></li><li><a href="THREE.RawShaderMaterial.html">RawShaderMaterial</a></li><li><a href="THREE.Ray.html">Ray</a></li><li><a href="THREE.Raycaster.html">Raycaster</a></li><li><a href="THREE.Scene.html">Scene</a></li><li><a href="THREE.SceneUtils.html">SceneUtils</a></li><li><a href="THREE.ShaderLib.html">ShaderLib</a></li><li><a href="THREE.ShaderMaterial.html">ShaderMaterial</a></li><li><a href="THREE.ShadowMapPlugin.html">ShadowMapPlugin</a></li><li><a href="THREE.Skeleton.html">Skeleton</a></li><li><a href="THREE.SkinnedMesh.html">SkinnedMesh</a></li><li><a href="THREE.Sphere.html">Sphere</a></li><li><a href="THREE.Spline.html">Spline</a></li><li><a href="THREE.SpotLight.html">SpotLight</a></li><li><a href="THREE.Sprite.html">Sprite</a></li><li><a href="THREE.SpriteMaterial.html">SpriteMaterial</a></li><li><a href="THREE.SpritePlugin.html">SpritePlugin</a></li><li><a href="THREE.Texture.html">Texture</a></li><li><a href="THREE.Triangle.html">Triangle</a></li><li><a href="THREE.UniformsLib.html">UniformsLib</a></li><li><a href="THREE.UniformsUtils.html">UniformsUtils</a></li><li><a href="THREE.Vector2.html">Vector2</a></li><li><a href="THREE.Vector3.html">Vector3</a></li><li><a href="THREE.Vector4.html">Vector4</a></li><li><a href="THREE.VideoTexture.html">VideoTexture</a></li><li><a href="THREE.WebGLExtensions.html">WebGLExtensions</a></li><li><a href="THREE.WebGLProgram.html">WebGLProgram</a></li><li><a href="THREE.WebGLRenderer.html">WebGLRenderer</a></li><li><a href="THREE.WebGLRenderTarget.html">WebGLRenderTarget</a></li><li><a href="THREE.WebGLRenderTargetCube.html">WebGLRenderTargetCube</a></li><li><a href="THREE.WebGLShader.html">WebGLShader</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Feb 06 2015 12:49:14 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

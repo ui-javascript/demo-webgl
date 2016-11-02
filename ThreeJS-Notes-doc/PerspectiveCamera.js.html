@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: cameras/PerspectiveCamera.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: cameras/PerspectiveCamera.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @author mrdoob / http://mrdoob.com/
+ * @author greggman / http://games.greggman.com/
+ * @author zz85 / http://www.lab4games.net/zz85/blog
+ */
+/**
+ * @classdesc 透视投影相机&lt;br />
+ * 注释内容部分参照 http://blog.csdn.net/omni360
+ * @desc 根据 fov, aspect, near, far 生成透视投影相机
+ * @constructor
+ * @param {float} fov		相机的可视角度,可选参数,如果未指定,初始化为50
+ * @param {float} aspect	相机可视范围的长宽比,可选参数,如果未指定,初始化为1
+ * @param {float} near		相对于深度剪切面的近的距离，必须为正数,可选参数,如果未指定,初始化为0.1
+ * @param {float} far		相对于深度剪切面的远的距离，必须为正数,可选参数,如果未指定,初始化为2000
+ * @extends {THREE.Camera}
+ */
+THREE.PerspectiveCamera = function ( fov, aspect, near, far ) {
+
+	THREE.Camera.call( this );
+	/**
+	 * @default
+	 * @type {string}
+	 */
+	this.type = 'PerspectiveCamera';
+
+	/**
+	 * @desc 缩放比例
+	 * @default
+	 * @type {float}
+	 */
+	this.zoom = 1;
+	/**
+	 * @desc 相机的可视角度,可选参数
+	 * @default 50
+	 * @type {float}
+	 */
+	this.fov = fov !== undefined ? fov : 50;
+	/**
+	 * @desc 相机可视范围的长宽比
+	 * @default 1
+	 * @type {float}
+	 */
+	this.aspect = aspect !== undefined ? aspect : 1;
+	/**
+	 * @desc 相对于深度剪切面的近的距离
+	 * @default 0.1
+	 * @type {float}
+	 */
+	this.near = near !== undefined ? near : 0.1;
+	/**
+	 * @desc 相对于深度剪切面的远的距离
+	 * @default 2000
+	 * @type {float}
+	 */
+	this.far = far !== undefined ? far : 2000;
+
+	this.updateProjectionMatrix();
+
+};
+/**
+ * @desc 透视相机对象从THREE.Camera的原型继承所有属性方法
+ * @type {THREE.Camera}
+ */
+THREE.PerspectiveCamera.prototype = Object.create( THREE.Camera.prototype );
+
+
+/**
+ * Uses Focal Length (in mm) to estimate and set FOV
+ * 35mm (fullframe) camera is used if frame size is not specified;
+ * Formula based on http://www.bobatkins.com/photography/technical/field_of_view.html
+ * 使用焦距(单位毫米)设置相机时,如果画幅大小没有指定,默认使用FOV(视野)35mm(全画幅)相机
+ */
+/**
+ * @desc 焦距 focalLength, 画幅大小 frameHeight 更新透视投影相机的视野
+ * @param {float} focalLength	焦距
+ * @param {float} frameHeight	画幅大小
+ */
+THREE.PerspectiveCamera.prototype.setLens = function ( focalLength, frameHeight ) {
+
+	if ( frameHeight === undefined ) frameHeight = 24;
+
+	this.fov = 2 * THREE.Math.radToDeg( Math.atan( frameHeight / ( focalLength * 2 ) ) );
+	this.updateProjectionMatrix();
+
+};
+
+
+/**
+ * Sets an offset in a larger frustum. This is useful for multi-window or
+ * multi-monitor/multi-machine setups.
+ * 为一个大的平截头体设置视口偏移,这个方法在多显示器,多台机器,显示器矩阵上应用非常有效
+ * For example, if you have 3x2 monitors and each monitor is 1920x1080 and
+ * the monitors are in grid like this
+ * 比如,你有3x2 个显示器,每个显示器的分辨率是1920x1080,组成的显示器矩阵向下面的网格
+ *   +---+---+---+
+ *   | A | B | C |
+ *   +---+---+---+
+ *   | D | E | F |
+ *   +---+---+---+
+ *
+ * then for each monitor you would call it like this
+ * 然后,你可以向下面这样为每台显示器调用setOffset()方法,让每个显示器显示画布的一部分
+ *   var w = 1920;
+ *   var h = 1080;
+ *   var fullWidth = w * 3;
+ *   var fullHeight = h * 2;
+ *
+ *   --A--
+ *   camera.setOffset( fullWidth, fullHeight, w * 0, h * 0, w, h );
+ *   --B--
+ *   camera.setOffset( fullWidth, fullHeight, w * 1, h * 0, w, h );
+ *   --C--
+ *   camera.setOffset( fullWidth, fullHeight, w * 2, h * 0, w, h );
+ *   --D--
+ *   camera.setOffset( fullWidth, fullHeight, w * 0, h * 1, w, h );
+ *   --E--
+ *   camera.setOffset( fullWidth, fullHeight, w * 1, h * 1, w, h );
+ *   --F--
+ *   camera.setOffset( fullWidth, fullHeight, w * 2, h * 1, w, h );
+ *
+ *   Note there is no reason monitors have to be the same size or in a grid.
+ *   注意,有可能,这些显示器不是同样的尺寸.所以你可以根据需要设置你想要的各种方式
+ */
+/**
+ * 一个大的平截头体设置视口偏移,这个方法在多显示器,多台机器,显示器矩阵上应用非常有效
+ * @param {number} fullWidth	一个超大的摄像机场景的总宽度
+ * @param {number} fullHeight	一个超大的摄像机场景的总高度
+ * @param {number} x	当前摄像机左上角点的x坐标在网格内的起始点
+ * @param {number} y	当前摄像机左上角点的y坐标在网格内的起始点
+ * @param {number} width	当前摄像机的宽度
+ * @param {number} height	当前摄像机的高度
+ */
+THREE.PerspectiveCamera.prototype.setViewOffset = function ( fullWidth, fullHeight, x, y, width, height ) {
+	/**
+	 * @memberof THREE.PerspectiveCamera
+	 * @type {number}
+	 */
+	this.fullWidth = fullWidth;
+	/**
+	 * @memberof THREE.PerspectiveCamera
+	 * @type {number}
+	 */
+	this.fullHeight = fullHeight;
+	/**
+	 * @memberof THREE.PerspectiveCamera
+	 * @type {number}
+	 */
+	this.x = x;
+	/**
+	 * @memberof THREE.PerspectiveCamera
+	 * @type {number}
+	 */
+	this.y = y;
+	/**
+	 * @memberof THREE.PerspectiveCamera
+	 * @type {number}
+	 */
+	this.width = width;
+	/**
+	 * @memberof THREE.PerspectiveCamera
+	 * @type {number}
+	 */
+	this.height = height;
+
+	this.updateProjectionMatrix();
+
+};
+
+/**
+ * @desc 返回透视投影相机的可视边界的矩阵.当相机的参数被更改后,必须调用此参数
+ */
+THREE.PerspectiveCamera.prototype.updateProjectionMatrix = function () {
+
+	var fov = THREE.Math.radToDeg( 2 * Math.atan( Math.tan( THREE.Math.degToRad( this.fov ) * 0.5 ) / this.zoom ) );
+
+	if ( this.fullWidth ) {
+
+		var aspect = this.fullWidth / this.fullHeight;
+		var top = Math.tan( THREE.Math.degToRad( fov * 0.5 ) ) * this.near;
+		var bottom = - top;
+		var left = aspect * bottom;
+		var right = aspect * top;
+		var width = Math.abs( right - left );
+		var height = Math.abs( top - bottom );
+
+		this.projectionMatrix.makeFrustum(
+			left + this.x * width / this.fullWidth,
+			left + ( this.x + this.width ) * width / this.fullWidth,
+			top - ( this.y + this.height ) * height / this.fullHeight,
+			top - this.y * height / this.fullHeight,
+			this.near,
+			this.far
+		);
+
+	} else {
+
+		this.projectionMatrix.makePerspective( fov, this.aspect, this.near, this.far );
+
+	}
+
+};
+/**
+ * @desc 克隆透视投影矩阵
+ * @returns {THREE.PerspectiveCamera}
+ */
+THREE.PerspectiveCamera.prototype.clone = function () {
+
+	var camera = new THREE.PerspectiveCamera();
+
+	THREE.Camera.prototype.clone.call( this, camera );
+
+	camera.zoom = this.zoom;
+
+	camera.fov = this.fov;
+	camera.aspect = this.aspect;
+	camera.near = this.near;
+	camera.far = this.far;
+
+	camera.projectionMatrix.copy( this.projectionMatrix );
+
+	return camera;
+
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="THREE.html">THREE</a></li><li><a href="THREE.AmbientLight.html">AmbientLight</a></li><li><a href="THREE.AreaLight.html">AreaLight</a></li><li><a href="THREE.Bone.html">Bone</a></li><li><a href="THREE.Box2.html">Box2</a></li><li><a href="THREE.Box3.html">Box3</a></li><li><a href="THREE.BufferAttribute.html">BufferAttribute</a></li><li><a href="THREE.BufferGeometry.html">BufferGeometry</a></li><li><a href="THREE.Camera.html">Camera</a></li><li><a href="THREE.Clock.html">Clock</a></li><li><a href="THREE.Color.html">Color</a></li><li><a href="THREE.CompressedTexture.html">CompressedTexture</a></li><li><a href="THREE.CubeCamera.html">CubeCamera</a></li><li><a href="THREE.CubeTexture.html">CubeTexture</a></li><li><a href="THREE.DataTexture.html">DataTexture</a></li><li><a href="THREE.DirectionalLight.html">DirectionalLight</a></li><li><a href="THREE.Euler.html">Euler</a></li><li><a href="THREE.EventDispatcher.html">EventDispatcher</a></li><li><a href="THREE.Face3.html">Face3</a></li><li><a href="THREE.Fog.html">Fog</a></li><li><a href="THREE.FogExp2.html">FogExp2</a></li><li><a href="THREE.FontUtils.html">FontUtils</a></li><li><a href="THREE.Frustum.html">Frustum</a></li><li><a href="THREE.Geometry.html">Geometry</a></li><li><a href="THREE.Group.html">Group</a></li><li><a href="THREE.HemisphereLight.html">HemisphereLight</a></li><li><a href="THREE.ImageUtils.html">ImageUtils</a></li><li><a href="THREE.ImmediateRenderObject.html">ImmediateRenderObject</a></li><li><a href="THREE.LensFlare.html">LensFlare</a></li><li><a href="THREE.LensFlarePlugin.html">LensFlarePlugin</a></li><li><a href="THREE.Light.html">Light</a></li><li><a href="THREE.Line.html">Line</a></li><li><a href="THREE.Line3.html">Line3</a></li><li><a href="THREE.LineBasicMaterial.html">LineBasicMaterial</a></li><li><a href="THREE.LineDashedMaterial.html">LineDashedMaterial</a></li><li><a href="THREE.LOD.html">LOD</a></li><li><a href="THREE.Material.html">Material</a></li><li><a href="THREE.Math.html">Math</a></li><li><a href="THREE.Matrix3.html">Matrix3</a></li><li><a href="THREE.Matrix4.html">Matrix4</a></li><li><a href="THREE.Mesh.html">Mesh</a></li><li><a href="THREE.MeshBasicMaterial.html">MeshBasicMaterial</a></li><li><a href="THREE.MeshDepthMaterial.html">MeshDepthMaterial</a></li><li><a href="THREE.MeshFaceMaterial.html">MeshFaceMaterial</a></li><li><a href="THREE.MeshLambertMaterial.html">MeshLambertMaterial</a></li><li><a href="THREE.MeshNormalMaterial.html">MeshNormalMaterial</a></li><li><a href="THREE.MeshPhongMaterial.html">MeshPhongMaterial</a></li><li><a href="THREE.MorphAnimMesh.html">MorphAnimMesh</a></li><li><a href="THREE.MorphBlendMesh.html">MorphBlendMesh</a></li><li><a href="THREE.Object3D.html">Object3D</a></li><li><a href="THREE.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="THREE.Particle.html">Particle</a></li><li><a href="THREE.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="THREE.Plane.html">Plane</a></li><li><a href="THREE.PointCloud.html">PointCloud</a></li><li><a href="THREE.PointCloudMaterial.html">PointCloudMaterial</a></li><li><a href="THREE.PointLight.html">PointLight</a></li><li><a href="THREE.Quaternion.html">Quaternion</a></li><li><a href="THREE.RawShaderMaterial.html">RawShaderMaterial</a></li><li><a href="THREE.Ray.html">Ray</a></li><li><a href="THREE.Raycaster.html">Raycaster</a></li><li><a href="THREE.Scene.html">Scene</a></li><li><a href="THREE.SceneUtils.html">SceneUtils</a></li><li><a href="THREE.ShaderLib.html">ShaderLib</a></li><li><a href="THREE.ShaderMaterial.html">ShaderMaterial</a></li><li><a href="THREE.ShadowMapPlugin.html">ShadowMapPlugin</a></li><li><a href="THREE.Skeleton.html">Skeleton</a></li><li><a href="THREE.SkinnedMesh.html">SkinnedMesh</a></li><li><a href="THREE.Sphere.html">Sphere</a></li><li><a href="THREE.Spline.html">Spline</a></li><li><a href="THREE.SpotLight.html">SpotLight</a></li><li><a href="THREE.Sprite.html">Sprite</a></li><li><a href="THREE.SpriteMaterial.html">SpriteMaterial</a></li><li><a href="THREE.SpritePlugin.html">SpritePlugin</a></li><li><a href="THREE.Texture.html">Texture</a></li><li><a href="THREE.Triangle.html">Triangle</a></li><li><a href="THREE.UniformsLib.html">UniformsLib</a></li><li><a href="THREE.UniformsUtils.html">UniformsUtils</a></li><li><a href="THREE.Vector2.html">Vector2</a></li><li><a href="THREE.Vector3.html">Vector3</a></li><li><a href="THREE.Vector4.html">Vector4</a></li><li><a href="THREE.VideoTexture.html">VideoTexture</a></li><li><a href="THREE.WebGLExtensions.html">WebGLExtensions</a></li><li><a href="THREE.WebGLProgram.html">WebGLProgram</a></li><li><a href="THREE.WebGLRenderer.html">WebGLRenderer</a></li><li><a href="THREE.WebGLRenderTarget.html">WebGLRenderTarget</a></li><li><a href="THREE.WebGLRenderTargetCube.html">WebGLRenderTargetCube</a></li><li><a href="THREE.WebGLShader.html">WebGLShader</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Feb 06 2015 12:49:14 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

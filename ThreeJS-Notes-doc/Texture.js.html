@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: textures/Texture.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: textures/Texture.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @author mrdoob / http://mrdoob.com/
+ * @author alteredq / http://alteredqualia.com/
+ * @author szimek / https://github.com/szimek/
+ */
+
+/**
+ * @classdesc 纹理对象基类&lt;br />
+ * 注释内容部分参照 http://blog.csdn.net/omni360
+ * @desc 用来创建一个反射折射或者纹理贴图对象
+ * @param {Image} image	图片等Image类型对象
+ * @param {number} mapping	映射模式
+ * @param {number} wrapS	S方向覆盖模式
+ * @param {number} wrapT	T方向覆盖模式
+ * @param {number} magFilter	纹理在放大时的过滤方式
+ * @param {number} minFilter	纹理在缩小时的过滤方式
+ * @param {number} format	像素数据的颜色格式
+ * @param {number} type	数据类型,默认为不带符号8位整形值
+ * @param {float} anisotropy	各向异性,取值范围0.0-1.0 ,,经常用来通过这个值,产生不同的表面效果,木材和金属都发光,但是发光的特点是有区别的.
+ * @constructor
+ */
+THREE.Texture = function ( image, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy ) {
+
+	Object.defineProperty( this, 'id', { value: THREE.TextureIdCount ++ } );
+	/**
+	 * @desc 纹理的唯一ID
+	 */
+	this.uuid = THREE.Math.generateUUID();
+	/**
+	 * @default
+	 * @type {string}
+	 */
+	this.name = '';
+	/**
+	 * @default THREE.Texture.DEFAULT_IMAGE
+	 * @type {Image}
+	 */
+	this.image = image !== undefined ? image : THREE.Texture.DEFAULT_IMAGE;
+
+	/**
+	 * @desc 存放mipmaps的数组&lt;br />
+	 * Mipmap在三维世界中,显示一张图的大小与摄象机的位置有关,近的地方,图片实际象素就大一些,远的地方图片实际象&lt;br />
+	 * 素就会小一些,就要进行一些压缩,例如一张64*64的图,在近处,显示出来可能是50*50,在远处可能显示出来是20*20.&lt;br />
+	 * 如果只限于简单的支掉某些像素,将会使缩小后的图片损失很多细节,图片变得很粗糙,因此,图形学有很多复杂的方&lt;br />
+	 * 法来处理缩小图片的问题,使得缩小后的图片依然清晰,然而,这些计算都会耗费一定的时间.&lt;br />
+	 *&lt;br />
+	 * Mipmap纹理技术是目前解决纹理分辨率与视点距离关系的最有效途径,它会先将图片压缩成很多逐渐缩小的图片,&lt;br />
+	 * 例如一张64*64的图片,会产生64*64,32*32,16*16,8*8,4*4,2*2,1*1的7张图片,当屏幕上需要绘制像素点为20*20 时，&lt;br />
+	 * 程序只是利用 32*32 和 16*16 这两张图片来计算出即将显示为 20*20 大小的一个图片，这比单独利用 32*32 的&lt;br />
+	 * 那张原始片计算出来的图片效果要好得多，速度也更快.&lt;br />
+	 *&lt;br />
+	 * 参考:http://zh.wikipedia.org/wiki/Mipmap&lt;br />
+	 * 参考:http://staff.cs.psu.ac.th/iew/cs344-481/p1-williams.pdf&lt;br />
+	 * 参考:http://blog.csdn.net/linber214/article/details/3342051&lt;br />
+	 * @default
+	 * @type {Array}
+	 */
+	this.mipmaps = [];
+	/**
+	 * @desc 映射模式,有&lt;br />
+	 * THREE.UVMapping平展映射&lt;br />
+	 * THREE.CubeReflectionMapping 立方体反射映射&lt;br />
+	 * THREE.CubeRefractionMapping立方体折射映射&lt;br />
+	 * THREE.SphericalReflectionMapping球面反射映射&lt;br />
+	 * THREE.SphericalRefractionMapping球面折射映射.
+	 * @default THREE.Texture.DEFAULT_MAPPING
+	 * @type {number}
+	 */
+	this.mapping = mapping !== undefined ? mapping : THREE.Texture.DEFAULT_MAPPING;
+	/**
+	 * @desc S方向纹理覆盖方式，有&lt;br />
+	 * THREE.RepeatWrapping = 1000;			//平铺&lt;br />
+	 * THREE.ClampToEdgeWrapping = 1001;	//夹取&lt;br />
+	 * THREE.MirroredRepeatWrapping = 1002;	//镜像&lt;br />
+	 * 纹理映射范围 (0.0 , 1.0)
+	 * @default THREE.ClampToEdgeWrapping
+	 * @type {number}
+	 */
+	this.wrapS = wrapS !== undefined ? wrapS : THREE.ClampToEdgeWrapping;
+	/**
+	 * @desc T方向纹理覆盖方式，有&lt;br />
+	 * THREE.RepeatWrapping = 1000;			//平铺&lt;br />
+	 * THREE.ClampToEdgeWrapping = 1001;	//夹取&lt;br />
+	 * THREE.MirroredRepeatWrapping = 1002;	//镜像&lt;br />
+	 * 纹理映射范围 (0.0 , 1.0)
+	 * @default THREE.ClampToEdgeWrapping
+	 * @type {number}
+	 */
+	this.wrapT = wrapT !== undefined ? wrapT : THREE.ClampToEdgeWrapping;
+	/**
+	 * @desc 纹理放大采样方式，有&lt;br />
+	 * THREE.NearestFilter = 1003;					//在纹理基层上执行最邻近过滤,&lt;br />
+	 * THREE.NearestMipMapNearestFilter = 1004;		//在mip层之间执行线性插补，并执行最临近的过滤,&lt;br />
+	 * THREE.NearestMipMapLinearFilter = 1005;		//选择最临近的mip层，并执行最临近的过滤,&lt;br />
+	 * THREE.LinearFilter = 1006;					//在纹理基层上执行线性过滤&lt;br />
+	 * THREE.LinearMipMapNearestFilter = 1007;		//选择最临近的mip层，并执行线性过滤,&lt;br />
+	 * THREE.LinearMipMapLinearFilter = 1008;		//在mip层之间执行线性插补，并执行线性过滤&lt;br />
+	 * @default THREE.LinearFilter
+	 * @type {number}
+	 */
+	this.magFilter = magFilter !== undefined ? magFilter : THREE.LinearFilter;
+	/**
+	 * @desc 纹理缩小采样方式，只有缩小能用Mipmap ，有&lt;br />
+	 * THREE.NearestFilter = 1003;					//在纹理基层上执行最邻近过滤,&lt;br />
+	 * THREE.NearestMipMapNearestFilter = 1004;		//在mip层之间执行线性插补，并执行最临近的过滤,&lt;br />
+	 * THREE.NearestMipMapLinearFilter = 1005;		//选择最临近的mip层，并执行最临近的过滤,&lt;br />
+	 * THREE.LinearFilter = 1006;					//在纹理基层上执行线性过滤&lt;br />
+	 * THREE.LinearMipMapNearestFilter = 1007;		//选择最临近的mip层，并执行线性过滤,&lt;br />
+	 * THREE.LinearMipMapLinearFilter = 1008;		//在mip层之间执行线性插补，并执行线性过滤&lt;br />
+	 * @default THREE.LinearMipMapLinearFilter
+	 * @type {number}
+	 */
+	this.minFilter = minFilter !== undefined ? minFilter : THREE.LinearMipMapLinearFilter;
+	/**
+	 * @desc  各向异性,取值范围0.0-1.0,经常用来通过这个值,产生不同的表面效果,木材和金属都发光,但是发光的特点是有区别的.
+	 * @default 1
+	 * @type {float}
+	 */
+	this.anisotropy = anisotropy !== undefined ? anisotropy : 1;
+	/**
+	 * @desc 像素颜色格式，有&lt;br />
+	 * THREE.AlphaFormat = 1019;			//GL_ALPHA  Alpha 值&lt;br />
+	 * THREE.RGBFormat = 1020;				//Red, Green, Blue 三原色值&lt;br />
+	 * THREE.RGBAFormat = 1021;				//Red, Green, Blue 和 Alpha 值&lt;br />
+	 * THREE.LuminanceFormat = 1022;		//灰度值&lt;br />
+	 * THREE.LuminanceAlphaFormat = 1023;	//灰度值和 Alpha 值&lt;br />
+	 * @default THREE.RGBAFormat
+	 * @type {number}
+	 */
+	this.format = format !== undefined ? format : THREE.RGBAFormat;
+	/**
+	 * @desc 定义纹理像素的数据类型，有&lt;br />
+	 * THREE.UnsignedByteType = 1009;			//不带符号8位整形值(一个字节)&lt;br />
+	 * THREE.ByteType = 1010;					//带符号8位整形值(一个字节)&lt;br />
+	 * THREE.ShortType = 1011;					//带符号16位整形值(2个字节)&lt;br />
+	 * THREE.UnsignedShortType = 1012;			//不带符号16未整形值(2个字节)&lt;br />
+	 * THREE.IntType = 1013;					//带符号32位整形值(4个字节)&lt;br />
+	 * THREE.UnsignedIntType = 1014;			//不带符号32位整形值(4个字节)&lt;br />
+	 * THREE.FloatType = 1015;					//单精度浮点型(4个字节)
+	 * @default THREE.UnsignedByteType
+	 * @type {number}
+	 */
+	this.type = type !== undefined ? type : THREE.UnsignedByteType;
+	/**
+	 * @desc 纹理偏移值
+	 * @default ( 0 , 0)
+	 * @type {THREE.Vector2}
+	 */
+	this.offset = new THREE.Vector2( 0, 0 );
+	/**
+	 * @desc 纹理重复值
+	 * @default ( 1 , 1)
+	 * @type {THREE.Vector2}
+	 */
+	this.repeat = new THREE.Vector2( 1, 1 );
+	/**
+	 * @desc 是否生成Mipmap
+	 * @default
+	 * @type {boolean}
+	 */
+	this.generateMipmaps = true;
+	/**
+	 * @desc 预乘Alpha值,如果设置为true,纹素的rgb值会先乘以alpha值,然后在存储
+	 * @default
+	 * @type {boolean}
+	 */
+	this.premultiplyAlpha = false;
+	/**
+	 * @desc 纹理是否需要垂直翻转
+	 * @default
+	 * @type {boolean}
+	 */
+	this.flipY = true;
+	/**
+	 * @desc 字节对齐
+	 * @default
+	 * @type {number}
+	 */
+	this.unpackAlignment = 4; // valid values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
+	/**
+	 * @desc 当设为true，则纹理已更新
+	 * @default
+	 * @pravite
+	 * @type {number}
+	 */
+	this._needsUpdate = false;
+	/**
+	 * @dsc 更新回调函数
+	 * @type {null}
+	 */
+	this.onUpdate = null;
+
+};
+/**
+ * @memberof THREE.Texture
+ * @desc 默认纹理
+ * @type {number}
+ */
+THREE.Texture.DEFAULT_IMAGE = undefined;
+/**
+ * @memberof THREE.Texture
+ * @desc 默认UVMapping方式
+ * @type {number}
+ */
+THREE.Texture.DEFAULT_MAPPING = new THREE.UVMapping();
+
+THREE.Texture.prototype = {
+
+	constructor: THREE.Texture,
+	/**
+	 * @desc 获得是否更新
+	 * @returns {number}
+	 */
+	get needsUpdate () {
+
+		return this._needsUpdate;
+
+	},
+
+	/**
+	 * @desc 设置是否更新，若为true则执行更新函数
+	 * @param value
+	 */
+	set needsUpdate ( value ) {
+
+		if ( value === true ) this.update();
+
+		this._needsUpdate = value;
+
+	},
+	/**
+	 * @desc 纹理克隆
+	 * @param {THREE.Texture} texture
+	 * @returns {THREE.Texture}
+	 */
+	clone: function ( texture ) {
+
+		if ( texture === undefined ) texture = new THREE.Texture();
+
+		texture.image = this.image;
+		texture.mipmaps = this.mipmaps.slice( 0 );
+
+		texture.mapping = this.mapping;
+
+		texture.wrapS = this.wrapS;
+		texture.wrapT = this.wrapT;
+
+		texture.magFilter = this.magFilter;
+		texture.minFilter = this.minFilter;
+
+		texture.anisotropy = this.anisotropy;
+
+		texture.format = this.format;
+		texture.type = this.type;
+
+		texture.offset.copy( this.offset );
+		texture.repeat.copy( this.repeat );
+
+		texture.generateMipmaps = this.generateMipmaps;
+		texture.premultiplyAlpha = this.premultiplyAlpha;
+		texture.flipY = this.flipY;
+		texture.unpackAlignment = this.unpackAlignment;
+
+		return texture;
+
+	},
+	/**
+	 * @desc 纹理更新事件
+	 */
+	update: function () {
+
+		this.dispatchEvent( { type: 'update' } );
+
+	},
+	/**
+	 * @desc 纹理销毁事件
+	 */
+	dispose: function () {
+
+		this.dispatchEvent( { type: 'dispose' } );
+
+	}
+
+};
+
+THREE.EventDispatcher.prototype.apply( THREE.Texture.prototype );
+/**
+ * @memberof THREE
+ * @desc 全局纹理数目
+ * @type {number}
+ */
+THREE.TextureIdCount = 0;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="THREE.html">THREE</a></li><li><a href="THREE.AmbientLight.html">AmbientLight</a></li><li><a href="THREE.AreaLight.html">AreaLight</a></li><li><a href="THREE.Bone.html">Bone</a></li><li><a href="THREE.Box2.html">Box2</a></li><li><a href="THREE.Box3.html">Box3</a></li><li><a href="THREE.BufferAttribute.html">BufferAttribute</a></li><li><a href="THREE.BufferGeometry.html">BufferGeometry</a></li><li><a href="THREE.Camera.html">Camera</a></li><li><a href="THREE.Clock.html">Clock</a></li><li><a href="THREE.Color.html">Color</a></li><li><a href="THREE.CompressedTexture.html">CompressedTexture</a></li><li><a href="THREE.CubeCamera.html">CubeCamera</a></li><li><a href="THREE.CubeTexture.html">CubeTexture</a></li><li><a href="THREE.DataTexture.html">DataTexture</a></li><li><a href="THREE.DirectionalLight.html">DirectionalLight</a></li><li><a href="THREE.Euler.html">Euler</a></li><li><a href="THREE.EventDispatcher.html">EventDispatcher</a></li><li><a href="THREE.Face3.html">Face3</a></li><li><a href="THREE.Fog.html">Fog</a></li><li><a href="THREE.FogExp2.html">FogExp2</a></li><li><a href="THREE.FontUtils.html">FontUtils</a></li><li><a href="THREE.Frustum.html">Frustum</a></li><li><a href="THREE.Geometry.html">Geometry</a></li><li><a href="THREE.Group.html">Group</a></li><li><a href="THREE.HemisphereLight.html">HemisphereLight</a></li><li><a href="THREE.ImageUtils.html">ImageUtils</a></li><li><a href="THREE.ImmediateRenderObject.html">ImmediateRenderObject</a></li><li><a href="THREE.LensFlare.html">LensFlare</a></li><li><a href="THREE.LensFlarePlugin.html">LensFlarePlugin</a></li><li><a href="THREE.Light.html">Light</a></li><li><a href="THREE.Line.html">Line</a></li><li><a href="THREE.Line3.html">Line3</a></li><li><a href="THREE.LineBasicMaterial.html">LineBasicMaterial</a></li><li><a href="THREE.LineDashedMaterial.html">LineDashedMaterial</a></li><li><a href="THREE.LOD.html">LOD</a></li><li><a href="THREE.Material.html">Material</a></li><li><a href="THREE.Math.html">Math</a></li><li><a href="THREE.Matrix3.html">Matrix3</a></li><li><a href="THREE.Matrix4.html">Matrix4</a></li><li><a href="THREE.Mesh.html">Mesh</a></li><li><a href="THREE.MeshBasicMaterial.html">MeshBasicMaterial</a></li><li><a href="THREE.MeshDepthMaterial.html">MeshDepthMaterial</a></li><li><a href="THREE.MeshFaceMaterial.html">MeshFaceMaterial</a></li><li><a href="THREE.MeshLambertMaterial.html">MeshLambertMaterial</a></li><li><a href="THREE.MeshNormalMaterial.html">MeshNormalMaterial</a></li><li><a href="THREE.MeshPhongMaterial.html">MeshPhongMaterial</a></li><li><a href="THREE.MorphAnimMesh.html">MorphAnimMesh</a></li><li><a href="THREE.MorphBlendMesh.html">MorphBlendMesh</a></li><li><a href="THREE.Object3D.html">Object3D</a></li><li><a href="THREE.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="THREE.Particle.html">Particle</a></li><li><a href="THREE.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="THREE.Plane.html">Plane</a></li><li><a href="THREE.PointCloud.html">PointCloud</a></li><li><a href="THREE.PointCloudMaterial.html">PointCloudMaterial</a></li><li><a href="THREE.PointLight.html">PointLight</a></li><li><a href="THREE.Quaternion.html">Quaternion</a></li><li><a href="THREE.RawShaderMaterial.html">RawShaderMaterial</a></li><li><a href="THREE.Ray.html">Ray</a></li><li><a href="THREE.Raycaster.html">Raycaster</a></li><li><a href="THREE.Scene.html">Scene</a></li><li><a href="THREE.SceneUtils.html">SceneUtils</a></li><li><a href="THREE.ShaderLib.html">ShaderLib</a></li><li><a href="THREE.ShaderMaterial.html">ShaderMaterial</a></li><li><a href="THREE.ShadowMapPlugin.html">ShadowMapPlugin</a></li><li><a href="THREE.Skeleton.html">Skeleton</a></li><li><a href="THREE.SkinnedMesh.html">SkinnedMesh</a></li><li><a href="THREE.Sphere.html">Sphere</a></li><li><a href="THREE.Spline.html">Spline</a></li><li><a href="THREE.SpotLight.html">SpotLight</a></li><li><a href="THREE.Sprite.html">Sprite</a></li><li><a href="THREE.SpriteMaterial.html">SpriteMaterial</a></li><li><a href="THREE.SpritePlugin.html">SpritePlugin</a></li><li><a href="THREE.Texture.html">Texture</a></li><li><a href="THREE.Triangle.html">Triangle</a></li><li><a href="THREE.UniformsLib.html">UniformsLib</a></li><li><a href="THREE.UniformsUtils.html">UniformsUtils</a></li><li><a href="THREE.Vector2.html">Vector2</a></li><li><a href="THREE.Vector3.html">Vector3</a></li><li><a href="THREE.Vector4.html">Vector4</a></li><li><a href="THREE.VideoTexture.html">VideoTexture</a></li><li><a href="THREE.WebGLExtensions.html">WebGLExtensions</a></li><li><a href="THREE.WebGLProgram.html">WebGLProgram</a></li><li><a href="THREE.WebGLRenderer.html">WebGLRenderer</a></li><li><a href="THREE.WebGLRenderTarget.html">WebGLRenderTarget</a></li><li><a href="THREE.WebGLRenderTargetCube.html">WebGLRenderTargetCube</a></li><li><a href="THREE.WebGLShader.html">WebGLShader</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Feb 06 2015 12:49:14 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

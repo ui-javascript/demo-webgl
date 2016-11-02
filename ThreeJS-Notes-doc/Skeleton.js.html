@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: objects/Skeleton.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: objects/Skeleton.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @author mikael emtinger / http://gomo.se/
+ * @author alteredq / http://alteredqualia.com/
+ * @author michael guerrero / http://realitymeltdown.com
+ * @author ikerr / http://verold.com
+ */
+/**
+ * @classdesc 骨架对象&lt;br />
+ * 注释内容部分参照 http://blog.csdn.net/omni360
+ * @desc 是骨骼对象的几何,是蒙皮对象的一部分&lt;br />
+ * 用来制作支持骨骼动画,当前有两种模型动画的方式：&lt;br />
+ * 顶点动画和骨骼动画。顶点动画中，每帧动画其实就是模型特定姿态的一个“快照”。&lt;br />
+ * 通过在帧之间插值的方法，
+ * @param {THREE.Bone[]} bones 骨骼对象数组
+ * @param {THREE.Matrix4[]} boneInverses 骨骼对象逆矩阵
+ * @param {boolean} useVertexTexture 是否适应顶点纹理，该属性之后不可以设置
+ * @constructor
+ */
+THREE.Skeleton = function ( bones, boneInverses, useVertexTexture ) {
+	/**
+	 * @desc 是否使用顶点纹理
+	 * @default true
+	 * @type {boolean}
+	 */
+	this.useVertexTexture = useVertexTexture !== undefined ? useVertexTexture : true;
+	/**
+	 * @desc 单位矩阵
+	 * @type {THREE.Matrix4}
+	 */
+	this.identityMatrix = new THREE.Matrix4();
+
+	// copy the bone array
+	// 拷贝骨骼数组
+	bones = bones || [];
+	/**
+	 * @desc 骨骼数组
+	 * @type {Array.&lt;THREE.Bone>}
+	 */
+	this.bones = bones.slice( 0 );
+
+	// create a bone texture or an array of floats
+	// 创建骨架纹理或者骨架纹理数组
+	if ( this.useVertexTexture ) {
+
+		// layout (1 matrix = 4 pixels)
+		//      RGBA RGBA RGBA RGBA (=> column1, column2, column3, column4)
+		//  with  8x8  pixel texture max   16 bones  (8 * 8  / 4)
+		//       16x16 pixel texture max   64 bones (16 * 16 / 4)
+		//       32x32 pixel texture max  256 bones (32 * 32 / 4)
+		//       64x64 pixel texture max 1024 bones (64 * 64 / 4)
+
+		var size;
+
+		if ( this.bones.length > 256 )
+			size = 64;
+		else if ( this.bones.length > 64 )
+			size = 32;
+		else if ( this.bones.length > 16 )
+			size = 16;
+		else
+			size = 8;
+		/**
+		 * @desc 骨骼纹理宽度
+		 * @memberof THREE.Skeleton
+		 */
+		this.boneTextureWidth = size;
+		/**
+		 * @desc 骨骼纹理高度
+		 * @memberof THREE.Skeleton
+		 */
+		this.boneTextureHeight = size;
+		/**
+		 * @desc 骨骼矩阵
+		 * @memberof THREE.Skeleton
+		 * @type {Float32Array}
+		 */
+		this.boneMatrices = new Float32Array( this.boneTextureWidth * this.boneTextureHeight * 4 ); // 4 floats per RGBA pixel
+		/**
+		 * @desc 骨骼纹理
+		 * @memberof THREE.Skeleton
+		 * @type {THREE.DataTexture}
+		 */
+		this.boneTexture = new THREE.DataTexture( this.boneMatrices, this.boneTextureWidth, this.boneTextureHeight, THREE.RGBAFormat, THREE.FloatType );
+		/**
+		 * @desc 骨骼纹理缩小插值方式
+		 * @memberof THREE.Skeleton
+		 * @type {number}
+		 */
+		this.boneTexture.minFilter = THREE.NearestFilter;
+		/**
+		 * @desc 骨骼纹理放大插值方式
+		 * @memberof THREE.Skeleton
+		 * @type {number}
+		 */
+		this.boneTexture.magFilter = THREE.NearestFilter;
+		/**
+		 * @desc 骨骼纹理是否生成Mipmap
+		 * @memberof THREE.Skeleton
+		 * @type {boolean}
+		 */
+		this.boneTexture.generateMipmaps = false;
+		/**
+		 * @desc 骨骼纹理是否Y反转
+		 * @memberof THREE.Skeleton
+		 * @type {boolean}
+		 */
+		this.boneTexture.flipY = false;
+
+	} else {
+		// 不使用顶点纹理
+		this.boneMatrices = new Float32Array( 16 * this.bones.length );
+
+	}
+
+	// use the supplied bone inverses or calculate the inverses
+	// 使用提供的骨架位置逆矩阵或计算骨架位置逆矩阵
+	if ( boneInverses === undefined ) {
+		// 如果没有提供骨架位置逆矩阵
+		// 计算骨架位置逆矩阵
+		this.calculateInverses();
+
+	} else {
+		// 如果提供了逆矩阵,并和骨骼数量相等
+		if ( this.bones.length === boneInverses.length ) {
+			// 复制骨架的逆矩阵
+			this.boneInverses = boneInverses.slice( 0 );
+
+		} else {
+			// 如果提供的骨骼逆矩阵和骨骼数量不一致
+			// 提示用户骨骼的逆矩阵和骨骼数量不一致
+			console.warn( 'THREE.Skeleton bonInverses is the wrong length.' );
+			// 清空骨骼逆矩阵
+			this.boneInverses = [];
+			// 并将骨骼逆矩阵和骨骼数量保持不一致
+			for ( var b = 0, bl = this.bones.length; b &lt; bl; b ++ ) {
+
+				this.boneInverses.push( new THREE.Matrix4() );
+
+			}
+
+		}
+
+	}
+
+};
+/**
+ * @desc 方法重新计算骨骼的逆矩阵
+ */
+THREE.Skeleton.prototype.calculateInverses = function () {
+
+	this.boneInverses = [];
+
+	for ( var b = 0, bl = this.bones.length; b &lt; bl; b ++ ) {
+
+		var inverse = new THREE.Matrix4();
+
+		if ( this.bones[ b ] ) {
+			// 获得当前骨骼的位置属性的逆矩阵
+			inverse.getInverse( this.bones[ b ].matrixWorld );
+
+		}
+		// 返回包含骨骼逆矩阵的Skeleton骨架对象
+		this.boneInverses.push( inverse );
+
+	}
+
+};
+/**
+ * @desc 重新计算骨骼的计算本地矩阵,位置,旋转缩放属性
+ */
+THREE.Skeleton.prototype.pose = function () {
+
+	var bone;
+
+	// recover the bind-time world matrices
+	// 恢复在绑定时的世界坐标矩阵
+	for ( var b = 0, bl = this.bones.length; b &lt; bl; b ++ ) {
+
+		bone = this.bones[ b ];
+
+		if ( bone ) {
+			// 恢复在绑定时的世界坐标矩阵
+			bone.matrixWorld.getInverse( this.boneInverses[ b ] );
+
+		}
+
+	}
+
+	// compute the local matrices, positions, rotations and scales
+	// 计算本地矩阵,位置,旋转缩放属性
+	for ( var b = 0, bl = this.bones.length; b &lt; bl; b ++ ) {
+
+		bone = this.bones[ b ];
+
+		if ( bone ) {
+			// 如果骨骼有父级对象
+			if ( bone.parent ) {
+				// 求逆父级对象的世界坐标矩阵
+				bone.matrix.getInverse( bone.parent.matrixWorld );
+				// 将当前骨骼的矩阵与父级对象的世界坐标矩阵相乘
+				bone.matrix.multiply( bone.matrixWorld );
+
+			} else {
+				// 复制自身的世界坐标矩阵
+				bone.matrix.copy( bone.matrixWorld );
+
+			}
+			// 调用decompose()方法,重新设置骨骼对象的位置,旋转缩放属性.
+			bone.matrix.decompose( bone.position, bone.quaternion, bone.scale );
+
+		}
+
+	}
+
+};
+/**
+ * @function
+ * @desc 法更新当前骨架的缓冲区数据,并更新纹理标识设置为true
+ */
+THREE.Skeleton.prototype.update = ( function () {
+
+	var offsetMatrix = new THREE.Matrix4();
+	
+	return function () {
+
+		// flatten bone matrices to array
+		// 展开骨骼矩阵到数组
+		for ( var b = 0, bl = this.bones.length; b &lt; bl; b ++ ) {
+
+			// compute the offset between the current and the original transform
+			// 计算当前位置到原始位置的偏移距离
+			var matrix = this.bones[ b ] ? this.bones[ b ].matrixWorld : this.identityMatrix;
+
+			offsetMatrix.multiplyMatrices( matrix, this.boneInverses[ b ] );
+			// 调用flattenToArrayOffset方法,通过参数offset(b * 16)指定偏移量,将矩阵展开到数组(参数array)中,返回新的数组.
+			offsetMatrix.flattenToArrayOffset( this.boneMatrices, b * 16 );
+
+		}
+		// 如果使用顶点纹理
+		if ( this.useVertexTexture ) {
+			// 将更新标识设置为true.
+			this.boneTexture.needsUpdate = true;
+
+		}
+		
+	};
+
+} )();
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="THREE.html">THREE</a></li><li><a href="THREE.AmbientLight.html">AmbientLight</a></li><li><a href="THREE.AreaLight.html">AreaLight</a></li><li><a href="THREE.Bone.html">Bone</a></li><li><a href="THREE.Box2.html">Box2</a></li><li><a href="THREE.Box3.html">Box3</a></li><li><a href="THREE.BufferAttribute.html">BufferAttribute</a></li><li><a href="THREE.BufferGeometry.html">BufferGeometry</a></li><li><a href="THREE.Camera.html">Camera</a></li><li><a href="THREE.Clock.html">Clock</a></li><li><a href="THREE.Color.html">Color</a></li><li><a href="THREE.CompressedTexture.html">CompressedTexture</a></li><li><a href="THREE.CubeCamera.html">CubeCamera</a></li><li><a href="THREE.CubeTexture.html">CubeTexture</a></li><li><a href="THREE.DataTexture.html">DataTexture</a></li><li><a href="THREE.DirectionalLight.html">DirectionalLight</a></li><li><a href="THREE.Euler.html">Euler</a></li><li><a href="THREE.EventDispatcher.html">EventDispatcher</a></li><li><a href="THREE.Face3.html">Face3</a></li><li><a href="THREE.Fog.html">Fog</a></li><li><a href="THREE.FogExp2.html">FogExp2</a></li><li><a href="THREE.FontUtils.html">FontUtils</a></li><li><a href="THREE.Frustum.html">Frustum</a></li><li><a href="THREE.Geometry.html">Geometry</a></li><li><a href="THREE.Group.html">Group</a></li><li><a href="THREE.HemisphereLight.html">HemisphereLight</a></li><li><a href="THREE.ImageUtils.html">ImageUtils</a></li><li><a href="THREE.ImmediateRenderObject.html">ImmediateRenderObject</a></li><li><a href="THREE.LensFlare.html">LensFlare</a></li><li><a href="THREE.LensFlarePlugin.html">LensFlarePlugin</a></li><li><a href="THREE.Light.html">Light</a></li><li><a href="THREE.Line.html">Line</a></li><li><a href="THREE.Line3.html">Line3</a></li><li><a href="THREE.LineBasicMaterial.html">LineBasicMaterial</a></li><li><a href="THREE.LineDashedMaterial.html">LineDashedMaterial</a></li><li><a href="THREE.LOD.html">LOD</a></li><li><a href="THREE.Material.html">Material</a></li><li><a href="THREE.Math.html">Math</a></li><li><a href="THREE.Matrix3.html">Matrix3</a></li><li><a href="THREE.Matrix4.html">Matrix4</a></li><li><a href="THREE.Mesh.html">Mesh</a></li><li><a href="THREE.MeshBasicMaterial.html">MeshBasicMaterial</a></li><li><a href="THREE.MeshDepthMaterial.html">MeshDepthMaterial</a></li><li><a href="THREE.MeshFaceMaterial.html">MeshFaceMaterial</a></li><li><a href="THREE.MeshLambertMaterial.html">MeshLambertMaterial</a></li><li><a href="THREE.MeshNormalMaterial.html">MeshNormalMaterial</a></li><li><a href="THREE.MeshPhongMaterial.html">MeshPhongMaterial</a></li><li><a href="THREE.MorphAnimMesh.html">MorphAnimMesh</a></li><li><a href="THREE.MorphBlendMesh.html">MorphBlendMesh</a></li><li><a href="THREE.Object3D.html">Object3D</a></li><li><a href="THREE.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="THREE.Particle.html">Particle</a></li><li><a href="THREE.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="THREE.Plane.html">Plane</a></li><li><a href="THREE.PointCloud.html">PointCloud</a></li><li><a href="THREE.PointCloudMaterial.html">PointCloudMaterial</a></li><li><a href="THREE.PointLight.html">PointLight</a></li><li><a href="THREE.Quaternion.html">Quaternion</a></li><li><a href="THREE.RawShaderMaterial.html">RawShaderMaterial</a></li><li><a href="THREE.Ray.html">Ray</a></li><li><a href="THREE.Raycaster.html">Raycaster</a></li><li><a href="THREE.Scene.html">Scene</a></li><li><a href="THREE.SceneUtils.html">SceneUtils</a></li><li><a href="THREE.ShaderLib.html">ShaderLib</a></li><li><a href="THREE.ShaderMaterial.html">ShaderMaterial</a></li><li><a href="THREE.ShadowMapPlugin.html">ShadowMapPlugin</a></li><li><a href="THREE.Skeleton.html">Skeleton</a></li><li><a href="THREE.SkinnedMesh.html">SkinnedMesh</a></li><li><a href="THREE.Sphere.html">Sphere</a></li><li><a href="THREE.Spline.html">Spline</a></li><li><a href="THREE.SpotLight.html">SpotLight</a></li><li><a href="THREE.Sprite.html">Sprite</a></li><li><a href="THREE.SpriteMaterial.html">SpriteMaterial</a></li><li><a href="THREE.SpritePlugin.html">SpritePlugin</a></li><li><a href="THREE.Texture.html">Texture</a></li><li><a href="THREE.Triangle.html">Triangle</a></li><li><a href="THREE.UniformsLib.html">UniformsLib</a></li><li><a href="THREE.UniformsUtils.html">UniformsUtils</a></li><li><a href="THREE.Vector2.html">Vector2</a></li><li><a href="THREE.Vector3.html">Vector3</a></li><li><a href="THREE.Vector4.html">Vector4</a></li><li><a href="THREE.VideoTexture.html">VideoTexture</a></li><li><a href="THREE.WebGLExtensions.html">WebGLExtensions</a></li><li><a href="THREE.WebGLProgram.html">WebGLProgram</a></li><li><a href="THREE.WebGLRenderer.html">WebGLRenderer</a></li><li><a href="THREE.WebGLRenderTarget.html">WebGLRenderTarget</a></li><li><a href="THREE.WebGLRenderTargetCube.html">WebGLRenderTargetCube</a></li><li><a href="THREE.WebGLShader.html">WebGLShader</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Feb 06 2015 12:49:14 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

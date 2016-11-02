@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: objects/PointCloud.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: objects/PointCloud.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @author alteredq / http://alteredqualia.com/
+ */
+/**
+ * @classdesc 点云对象&lt;br />
+ * 注释内容部分参照 http://blog.csdn.net/omni360
+ * @param {THREE.Geometry} geometry 点云对象的几何对象
+ * @param {THREE.Material} material	点云对象的材质对象
+ * @constructor
+ */
+THREE.PointCloud = function ( geometry, material ) {
+
+	THREE.Object3D.call( this );
+
+	this.type = 'PointCloud';
+	/**
+	 * @desc 点云对象的几何对象
+	 * @type {THREE.Geometry}
+	 */
+	this.geometry = geometry !== undefined ? geometry : new THREE.Geometry();
+	/**
+	 * @desc 点云对象的材质对象
+	 * @type {THREE.Material}
+	 */
+	this.material = material !== undefined ? material : new THREE.PointCloudMaterial( { color: Math.random() * 0xffffff } );
+	/**
+	 * @desc 是否对点云排序
+	 * @type {boolean}
+	 */
+	this.sortParticles = false;
+
+};
+/**
+ * @desc PointCloud从Objec3D的原型继承所有属性方法
+ * @type {THREE.Object3D}
+ */
+THREE.PointCloud.prototype = Object.create( THREE.Object3D.prototype );
+
+/**
+ * @function
+ * @desc 点云的拾取判断函数
+ * @param {THREE.Raycaster} raycaster 拾取射线对象
+ * @param {*} intersects 拾取结果对象数组
+ */
+THREE.PointCloud.prototype.raycast = ( function () {
+
+	var inverseMatrix = new THREE.Matrix4();
+	var ray = new THREE.Ray();
+
+	return function ( raycaster, intersects ) {
+
+		var object = this;
+		var geometry = object.geometry;
+		var threshold = raycaster.params.PointCloud.threshold;
+
+		inverseMatrix.getInverse( this.matrixWorld );
+		ray.copy( raycaster.ray ).applyMatrix4( inverseMatrix );
+		// 外包围盒碰撞判断
+		if ( geometry.boundingBox !== null ) {
+
+			if ( ray.isIntersectionBox( geometry.boundingBox ) === false ) {
+
+				return;
+
+			}
+
+		}
+
+		var localThreshold = threshold / ( ( this.scale.x + this.scale.y + this.scale.z ) / 3 );
+		var position = new THREE.Vector3();
+		//检查射线与点云元素是否碰撞的具体实现.
+		var testPoint = function ( point, index ) {
+
+			var rayPointDistance = ray.distanceToPoint( point );
+
+			if ( rayPointDistance &lt; localThreshold ) {
+
+				var intersectPoint = ray.closestPointToPoint( point );
+				intersectPoint.applyMatrix4( object.matrixWorld );
+
+				var distance = raycaster.ray.origin.distanceTo( intersectPoint );
+
+				intersects.push( {
+
+					distance: distance,
+					distanceToRay: rayPointDistance,
+					point: intersectPoint.clone(),
+					index: index,
+					face: null,
+					object: object
+
+				} );
+
+			}
+
+		};
+		// 如果geometry对象是BufferGeometry对象
+		if ( geometry instanceof THREE.BufferGeometry ) {
+
+			var attributes = geometry.attributes;
+			var positions = attributes.position.array;
+			// 下面对三种数据格式的pointCloud对象的元素进行检测.
+			if ( attributes.index !== undefined ) {
+
+				var indices = attributes.index.array;
+				var offsets = geometry.offsets;
+
+				if ( offsets.length === 0 ) {
+
+					var offset = {
+						start: 0,
+						count: indices.length,
+						index: 0
+					};
+
+					offsets = [ offset ];
+
+				}
+
+				for ( var oi = 0, ol = offsets.length; oi &lt; ol; ++oi ) {
+
+					var start = offsets[ oi ].start;
+					var count = offsets[ oi ].count;
+					var index = offsets[ oi ].index;
+
+					for ( var i = start, il = start + count; i &lt; il; i ++ ) {
+
+						var a = index + indices[ i ];
+
+						position.fromArray( positions, a * 3 );
+
+						testPoint( position, a );
+
+					}
+
+				}
+
+			} else {
+
+				var pointCount = positions.length / 3;
+
+				for ( var i = 0; i &lt; pointCount; i ++ ) {
+
+					position.set(
+						positions[ 3 * i ],
+						positions[ 3 * i + 1 ],
+						positions[ 3 * i + 2 ]
+					);
+
+					testPoint( position, i );
+
+				}
+
+			}
+
+		} else {
+
+			var vertices = this.geometry.vertices;
+
+			for ( var i = 0; i &lt; vertices.length; i ++ ) {
+
+				testPoint( vertices[ i ], i );
+
+			}
+
+		}
+
+	};
+
+}() );
+/**
+ * @desc Three.PointCloud 克隆函数
+ * @param {THREE.PointCloud} object
+ * @returns {THREE.PointCloud}
+ */
+THREE.PointCloud.prototype.clone = function ( object ) {
+
+	if ( object === undefined ) object = new THREE.PointCloud( this.geometry, this.material );
+
+	object.sortParticles = this.sortParticles;
+
+	THREE.Object3D.prototype.clone.call( this, object );
+
+	return object;
+
+};
+
+// Backwards compatibility
+/**
+ * @ignore
+ * @param geometry
+ * @param material
+ * @returns {THREE.PointCloud}
+ * @constructor
+ */
+THREE.ParticleSystem = function ( geometry, material ) {
+
+	console.warn( 'THREE.ParticleSystem has been renamed to THREE.PointCloud.' );
+	return new THREE.PointCloud( geometry, material );
+
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="THREE.html">THREE</a></li><li><a href="THREE.AmbientLight.html">AmbientLight</a></li><li><a href="THREE.AreaLight.html">AreaLight</a></li><li><a href="THREE.Bone.html">Bone</a></li><li><a href="THREE.Box2.html">Box2</a></li><li><a href="THREE.Box3.html">Box3</a></li><li><a href="THREE.BufferAttribute.html">BufferAttribute</a></li><li><a href="THREE.BufferGeometry.html">BufferGeometry</a></li><li><a href="THREE.Camera.html">Camera</a></li><li><a href="THREE.Clock.html">Clock</a></li><li><a href="THREE.Color.html">Color</a></li><li><a href="THREE.CompressedTexture.html">CompressedTexture</a></li><li><a href="THREE.CubeCamera.html">CubeCamera</a></li><li><a href="THREE.CubeTexture.html">CubeTexture</a></li><li><a href="THREE.DataTexture.html">DataTexture</a></li><li><a href="THREE.DirectionalLight.html">DirectionalLight</a></li><li><a href="THREE.Euler.html">Euler</a></li><li><a href="THREE.EventDispatcher.html">EventDispatcher</a></li><li><a href="THREE.Face3.html">Face3</a></li><li><a href="THREE.Fog.html">Fog</a></li><li><a href="THREE.FogExp2.html">FogExp2</a></li><li><a href="THREE.FontUtils.html">FontUtils</a></li><li><a href="THREE.Frustum.html">Frustum</a></li><li><a href="THREE.Geometry.html">Geometry</a></li><li><a href="THREE.Group.html">Group</a></li><li><a href="THREE.HemisphereLight.html">HemisphereLight</a></li><li><a href="THREE.ImageUtils.html">ImageUtils</a></li><li><a href="THREE.ImmediateRenderObject.html">ImmediateRenderObject</a></li><li><a href="THREE.LensFlare.html">LensFlare</a></li><li><a href="THREE.LensFlarePlugin.html">LensFlarePlugin</a></li><li><a href="THREE.Light.html">Light</a></li><li><a href="THREE.Line.html">Line</a></li><li><a href="THREE.Line3.html">Line3</a></li><li><a href="THREE.LineBasicMaterial.html">LineBasicMaterial</a></li><li><a href="THREE.LineDashedMaterial.html">LineDashedMaterial</a></li><li><a href="THREE.LOD.html">LOD</a></li><li><a href="THREE.Material.html">Material</a></li><li><a href="THREE.Math.html">Math</a></li><li><a href="THREE.Matrix3.html">Matrix3</a></li><li><a href="THREE.Matrix4.html">Matrix4</a></li><li><a href="THREE.Mesh.html">Mesh</a></li><li><a href="THREE.MeshBasicMaterial.html">MeshBasicMaterial</a></li><li><a href="THREE.MeshDepthMaterial.html">MeshDepthMaterial</a></li><li><a href="THREE.MeshFaceMaterial.html">MeshFaceMaterial</a></li><li><a href="THREE.MeshLambertMaterial.html">MeshLambertMaterial</a></li><li><a href="THREE.MeshNormalMaterial.html">MeshNormalMaterial</a></li><li><a href="THREE.MeshPhongMaterial.html">MeshPhongMaterial</a></li><li><a href="THREE.MorphAnimMesh.html">MorphAnimMesh</a></li><li><a href="THREE.MorphBlendMesh.html">MorphBlendMesh</a></li><li><a href="THREE.Object3D.html">Object3D</a></li><li><a href="THREE.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="THREE.Particle.html">Particle</a></li><li><a href="THREE.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="THREE.Plane.html">Plane</a></li><li><a href="THREE.PointCloud.html">PointCloud</a></li><li><a href="THREE.PointCloudMaterial.html">PointCloudMaterial</a></li><li><a href="THREE.PointLight.html">PointLight</a></li><li><a href="THREE.Quaternion.html">Quaternion</a></li><li><a href="THREE.RawShaderMaterial.html">RawShaderMaterial</a></li><li><a href="THREE.Ray.html">Ray</a></li><li><a href="THREE.Raycaster.html">Raycaster</a></li><li><a href="THREE.Scene.html">Scene</a></li><li><a href="THREE.SceneUtils.html">SceneUtils</a></li><li><a href="THREE.ShaderLib.html">ShaderLib</a></li><li><a href="THREE.ShaderMaterial.html">ShaderMaterial</a></li><li><a href="THREE.ShadowMapPlugin.html">ShadowMapPlugin</a></li><li><a href="THREE.Skeleton.html">Skeleton</a></li><li><a href="THREE.SkinnedMesh.html">SkinnedMesh</a></li><li><a href="THREE.Sphere.html">Sphere</a></li><li><a href="THREE.Spline.html">Spline</a></li><li><a href="THREE.SpotLight.html">SpotLight</a></li><li><a href="THREE.Sprite.html">Sprite</a></li><li><a href="THREE.SpriteMaterial.html">SpriteMaterial</a></li><li><a href="THREE.SpritePlugin.html">SpritePlugin</a></li><li><a href="THREE.Texture.html">Texture</a></li><li><a href="THREE.Triangle.html">Triangle</a></li><li><a href="THREE.UniformsLib.html">UniformsLib</a></li><li><a href="THREE.UniformsUtils.html">UniformsUtils</a></li><li><a href="THREE.Vector2.html">Vector2</a></li><li><a href="THREE.Vector3.html">Vector3</a></li><li><a href="THREE.Vector4.html">Vector4</a></li><li><a href="THREE.VideoTexture.html">VideoTexture</a></li><li><a href="THREE.WebGLExtensions.html">WebGLExtensions</a></li><li><a href="THREE.WebGLProgram.html">WebGLProgram</a></li><li><a href="THREE.WebGLRenderer.html">WebGLRenderer</a></li><li><a href="THREE.WebGLRenderTarget.html">WebGLRenderTarget</a></li><li><a href="THREE.WebGLRenderTargetCube.html">WebGLRenderTargetCube</a></li><li><a href="THREE.WebGLShader.html">WebGLShader</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Feb 06 2015 12:49:14 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

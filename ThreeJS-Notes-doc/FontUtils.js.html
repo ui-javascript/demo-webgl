@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: extras/FontUtils.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: extras/FontUtils.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @author zz85 / http://www.lab4games.net/zz85/blog
+ * @author alteredq / http://alteredqualia.com/
+ *
+ * For Text operations in three.js (See TextGeometry)
+ *
+ * It uses techniques used in:
+ *
+ * 	typeface.js and canvastext
+ * 		For converting fonts and rendering with javascript
+ *		http://typeface.neocracy.org
+ *
+ *	Triangulation ported from AS3
+ *		Simple Polygon Triangulation
+ *		http://actionsnippet.com/?p=1462
+ *
+ * 	A Method to triangulate shapes with holes
+ *		http://www.sakri.net/blog/2009/06/12/an-approach-to-triangulating-polygons-with-holes/
+ *
+ */
+/**
+ * @classdesc 字体对象工具集&lt;br />
+ * 注释内容部分参照 http://blog.csdn.net/omni360
+ * @constructor
+ */
+THREE.FontUtils = {
+	/**
+	 * @desc 字体面
+	 */
+	faces: {},
+
+	// Just for now. face[weight][style]
+	/**
+	 * @desc 字体名称
+	 */
+	face: 'helvetiker',
+	/**
+	 * @desc 字体宽度，是字体的笔画宽度
+	 */
+	weight: 'normal',
+	/**
+	 * @desc 字体样式，粗体，斜体等
+	 */
+	style: 'normal',
+	/**
+	 * @desc 字体尺寸
+	 */
+	size: 150,
+	/**
+	 * @desc 字体间距
+	 */
+	divisions: 10,
+	/**
+	 * @desc 获取字体的信息
+	 * @returns {*}
+	 */
+	getFace: function () {
+
+		try {
+
+			return this.faces[ this.face ][ this.weight ][ this.style ];
+
+		} catch (e) {
+
+			throw "The font " + this.face + " with " + this.weight + " weight and " + this.style + " style is missing."
+
+		};
+
+	},
+	/**
+	 * @desc 读取字体文件内的字符的比划图形路径数据
+	 * @param {*} data 字体形数据
+	 * @returns {*}
+	 */
+	loadFace: function ( data ) {
+		// 字体族名字转换成小写
+		var family = data.familyName.toLowerCase();
+
+		var ThreeFont = this;
+
+		ThreeFont.faces[ family ] = ThreeFont.faces[ family ] || {};
+
+		ThreeFont.faces[ family ][ data.cssFontWeight ] = ThreeFont.faces[ family ][ data.cssFontWeight ] || {};
+		ThreeFont.faces[ family ][ data.cssFontWeight ][ data.cssFontStyle ] = data;
+
+		var face = ThreeFont.faces[ family ][ data.cssFontWeight ][ data.cssFontStyle ] = data;
+
+		return data;
+
+	},
+	/**
+	 * @desc 绘制字符&lt;br />
+	 * 从读取的字体数据中,按照文字内容中的每个字符,获得字符的比划路径
+	 * @param {string} text
+	 * @returns {{paths: Array, offset: number}}
+	 */
+	drawText: function ( text ) {
+
+		var characterPts = [], allPts = [];
+
+		// RenderText
+
+		var i, p,
+			// 字体文件内的字符的比划图形路径数据.
+			face = this.getFace(),
+			// 字体缩放
+			scale = this.size / face.resolution,
+			// 字符间距
+			offset = 0,
+			// 分割字符串
+			chars = String( text ).split( '' ),
+			length = chars.length;
+		// 字体路径顶点数据数组
+		var fontPaths = [];
+		// 遍历所有的字符
+		for ( i = 0; i &lt; length; i ++ ) {
+
+			var path = new THREE.Path();
+			// 调用extractGlyphPoints方法,解析字符路径.
+			var ret = this.extractGlyphPoints( chars[ i ], face, scale, offset, path );
+			offset += ret.offset;
+
+			fontPaths.push( ret.path );
+
+		}
+
+		// get the width
+		// 字宽,字体笔划的宽度
+		var width = offset / 2;
+		//
+		// for ( p = 0; p &lt; allPts.length; p++ ) {
+		//
+		// 	allPts[ p ].x -= width;
+		//
+		// }
+
+		//var extract = this.extractPoints( allPts, characterPts );
+		//extract.contour = allPts;
+
+		//extract.paths = fontPaths;
+		//extract.offset = width;
+
+		return { paths: fontPaths, offset: width };
+
+	},
+
+
+	/**
+	 * @desc 解析字符路径.返回特定格式的字符路径对象
+	 * @param {string} c 字符
+	 * @param {*} face 字体文件内的字符的比划图形路径数据
+	 * @param {float} scale 字体缩放
+	 * @param {float} offset 字体间距
+	 * @param {string} path 文字的图形路径.
+	 * @returns {{offset: number, path: *}}
+	 */
+	extractGlyphPoints: function ( c, face, scale, offset, path ) {
+
+		var pts = [];
+
+		var i, i2, divisions,
+			outline, action, length,
+			scaleX, scaleY,
+			x, y, cpx, cpy, cpx0, cpy0, cpx1, cpy1, cpx2, cpy2,
+			laste,
+			glyph = face.glyphs[ c ] || face.glyphs[ '?' ];
+
+		if ( ! glyph ) return;
+
+		if ( glyph.o ) {
+
+			outline = glyph._cachedOutline || ( glyph._cachedOutline = glyph.o.split( ' ' ) );
+			length = outline.length;
+
+			scaleX = scale;
+			scaleY = scale;
+
+			for ( i = 0; i &lt; length; ) {
+
+				action = outline[ i ++ ];
+
+				//console.log( action );
+
+				switch ( action ) {
+
+				case 'm':
+
+					// Move To
+
+					x = outline[ i ++ ] * scaleX + offset;
+					y = outline[ i ++ ] * scaleY;
+
+					path.moveTo( x, y );
+					break;
+
+				case 'l':
+
+					// Line To
+
+					x = outline[ i ++ ] * scaleX + offset;
+					y = outline[ i ++ ] * scaleY;
+					path.lineTo( x,y );
+					break;
+
+				case 'q':
+
+					// QuadraticCurveTo
+
+					cpx  = outline[ i ++ ] * scaleX + offset;
+					cpy  = outline[ i ++ ] * scaleY;
+					cpx1 = outline[ i ++ ] * scaleX + offset;
+					cpy1 = outline[ i ++ ] * scaleY;
+
+					path.quadraticCurveTo( cpx1, cpy1, cpx, cpy );
+
+					laste = pts[ pts.length - 1 ];
+
+					if ( laste ) {
+
+						cpx0 = laste.x;
+						cpy0 = laste.y;
+
+						for ( i2 = 1, divisions = this.divisions; i2 &lt;= divisions; i2 ++ ) {
+
+							var t = i2 / divisions;
+							var tx = THREE.Shape.Utils.b2( t, cpx0, cpx1, cpx );
+							var ty = THREE.Shape.Utils.b2( t, cpy0, cpy1, cpy );
+					  }
+
+				  }
+
+				  break;
+
+				case 'b':
+
+					// Cubic Bezier Curve
+
+					cpx  = outline[ i ++ ] *  scaleX + offset;
+					cpy  = outline[ i ++ ] *  scaleY;
+					cpx1 = outline[ i ++ ] *  scaleX + offset;
+					cpy1 = outline[ i ++ ] *  scaleY;
+					cpx2 = outline[ i ++ ] *  scaleX + offset;
+					cpy2 = outline[ i ++ ] *  scaleY;
+
+					path.bezierCurveTo( cpx1, cpy1, cpx2, cpy2, cpx, cpy );
+
+					laste = pts[ pts.length - 1 ];
+
+					if ( laste ) {
+
+						cpx0 = laste.x;
+						cpy0 = laste.y;
+
+						for ( i2 = 1, divisions = this.divisions; i2 &lt;= divisions; i2 ++ ) {
+
+							var t = i2 / divisions;
+							var tx = THREE.Shape.Utils.b3( t, cpx0, cpx1, cpx2, cpx );
+							var ty = THREE.Shape.Utils.b3( t, cpy0, cpy1, cpy2, cpy );
+
+						}
+
+					}
+
+					break;
+
+				}
+
+			}
+		}
+
+
+
+		return { offset: glyph.ha * scale, path:path };
+	}
+
+};
+
+/**
+ * @desc 根据文字内容(参数text),参数选项(参数parameters),生成文字路径轮廓图形数组
+ * @param {string} text 文字内容
+ * @param {*} parameters 绘制参数
+ * @returns {Array} 文字路径轮廓图形数组
+ */
+THREE.FontUtils.generateShapes = function ( text, parameters ) {
+
+	// Parameters 
+	// 参数选项
+	parameters = parameters || {};
+	// 字体的大小,如果未定义初始化为100.
+	var size = parameters.size !== undefined ? parameters.size : 100;
+	// 拉伸厚度上的细分线段数,如果未定义初始化为4
+	var curveSegments = parameters.curveSegments !== undefined ? parameters.curveSegments : 4;
+	// 字体名称,如果未定义初始化为'helvetiker'
+	var font = parameters.font !== undefined ? parameters.font : 'helvetiker';
+	// 字体宽度,如果未定义初始化为'normal'
+	var weight = parameters.weight !== undefined ? parameters.weight : 'normal';
+	// 字体样式,如果未定义初始化为'normal'
+	var style = parameters.style !== undefined ? parameters.style : 'normal';
+
+	THREE.FontUtils.size = size;
+	THREE.FontUtils.divisions = curveSegments;
+
+	THREE.FontUtils.face = font;
+	THREE.FontUtils.weight = weight;
+	THREE.FontUtils.style = style;
+
+	// Get a Font data json object
+	// 调用THREE.FontUtils.drawText()方法,返回字符的比划图形路径
+	var data = THREE.FontUtils.drawText( text );
+
+	var paths = data.paths;
+	var shapes = [];
+	// 遍历图形数组
+	for ( var p = 0, pl = paths.length; p &lt; pl; p ++ ) {
+		// 将图形复制到shapes数组内.
+		Array.prototype.push.apply( shapes, paths[ p ].toShapes() );
+
+	}
+
+	return shapes;
+
+};
+
+
+/**
+ * This code is a quick port of code written in C++ which was submitted to
+ * flipcode.com by John W. Ratcliff  // July 22, 2000
+ * See original code and more information here:
+ * http://www.flipcode.com/archives/Efficient_Polygon_Triangulation.shtml
+ *
+ * ported to actionscript by Zevan Rosser
+ * www.actionsnippet.com
+ *
+ * ported to javascript by Joshua Koo
+ * http://www.lab4games.net/zz85/blog
+ *
+ */
+
+// 多边形三角化算法参考
+// 建议看http://sites-final.uclouvain.be/mema/Poly2Tri/ 最强大的三角剖分
+( function ( namespace ) {
+
+	var EPSILON = 0.0000000001;
+
+	// takes in an contour array and returns
+
+	var process = function ( contour, indices ) {
+
+		var n = contour.length;
+
+		if ( n &lt; 3 ) return null;
+
+		var result = [],
+			verts = [],
+			vertIndices = [];
+
+		/* we want a counter-clockwise polygon in verts */
+
+		var u, v, w;
+
+		if ( area( contour ) > 0.0 ) {
+
+			for ( v = 0; v &lt; n; v ++ ) verts[ v ] = v;
+
+		} else {
+
+			for ( v = 0; v &lt; n; v ++ ) verts[ v ] = ( n - 1 ) - v;
+
+		}
+
+		var nv = n;
+
+		/*  remove nv - 2 vertices, creating 1 triangle every time */
+
+		var count = 2 * nv;   /* error detection */
+
+		for ( v = nv - 1; nv > 2; ) {
+
+			/* if we loop, it is probably a non-simple polygon */
+
+			if ( ( count -- ) &lt;= 0 ) {
+
+				//** Triangulate: ERROR - probable bad polygon!
+
+				//throw ( "Warning, unable to triangulate polygon!" );
+				//return null;
+				// Sometimes warning is fine, especially polygons are triangulated in reverse.
+				console.log( 'Warning, unable to triangulate polygon!' );
+
+				if ( indices ) return vertIndices;
+				return result;
+
+			}
+
+			/* three consecutive vertices in current polygon, &lt;u,v,w> */
+
+			u = v; 	 	if ( nv &lt;= u ) u = 0;     /* previous */
+			v = u + 1;  if ( nv &lt;= v ) v = 0;     /* new v    */
+			w = v + 1;  if ( nv &lt;= w ) w = 0;     /* next     */
+
+			if ( snip( contour, u, v, w, nv, verts ) ) {
+
+				var a, b, c, s, t;
+
+				/* true names of the vertices */
+
+				a = verts[ u ];
+				b = verts[ v ];
+				c = verts[ w ];
+
+				/* output Triangle */
+
+				result.push( [ contour[ a ],
+					contour[ b ],
+					contour[ c ] ] );
+
+
+				vertIndices.push( [ verts[ u ], verts[ v ], verts[ w ] ] );
+
+				/* remove v from the remaining polygon */
+
+				for ( s = v, t = v + 1; t &lt; nv; s++, t++ ) {
+
+					verts[ s ] = verts[ t ];
+
+				}
+
+				nv --;
+
+				/* reset error detection counter */
+
+				count = 2 * nv;
+
+			}
+
+		}
+
+		if ( indices ) return vertIndices;
+		return result;
+
+	};
+
+	// calculate area of the contour polygon
+
+	var area = function ( contour ) {
+
+		var n = contour.length;
+		var a = 0.0;
+
+		for ( var p = n - 1, q = 0; q &lt; n; p = q ++ ) {
+
+			a += contour[ p ].x * contour[ q ].y - contour[ q ].x * contour[ p ].y;
+
+		}
+
+		return a * 0.5;
+
+	};
+
+	var snip = function ( contour, u, v, w, n, verts ) {
+
+		var p;
+		var ax, ay, bx, by;
+		var cx, cy, px, py;
+
+		ax = contour[ verts[ u ] ].x;
+		ay = contour[ verts[ u ] ].y;
+
+		bx = contour[ verts[ v ] ].x;
+		by = contour[ verts[ v ] ].y;
+
+		cx = contour[ verts[ w ] ].x;
+		cy = contour[ verts[ w ] ].y;
+
+		if ( EPSILON > ( ( ( bx - ax ) * ( cy - ay ) ) - ( ( by - ay ) * ( cx - ax ) ) ) ) return false;
+
+		var aX, aY, bX, bY, cX, cY;
+		var apx, apy, bpx, bpy, cpx, cpy;
+		var cCROSSap, bCROSScp, aCROSSbp;
+
+		aX = cx - bx;  aY = cy - by;
+		bX = ax - cx;  bY = ay - cy;
+		cX = bx - ax;  cY = by - ay;
+
+		for ( p = 0; p &lt; n; p ++ ) {
+
+			px = contour[ verts[ p ] ].x
+			py = contour[ verts[ p ] ].y
+
+			if ( ( ( px === ax ) && ( py === ay ) ) ||
+				 ( ( px === bx ) && ( py === by ) ) ||
+				 ( ( px === cx ) && ( py === cy ) ) )	continue;
+
+			apx = px - ax;  apy = py - ay;
+			bpx = px - bx;  bpy = py - by;
+			cpx = px - cx;  cpy = py - cy;
+
+			// see if p is inside triangle abc
+
+			aCROSSbp = aX * bpy - aY * bpx;
+			cCROSSap = cX * apy - cY * apx;
+			bCROSScp = bX * cpy - bY * cpx;
+
+			if ( ( aCROSSbp >= - EPSILON ) && ( bCROSScp >= - EPSILON ) && ( cCROSSap >= - EPSILON ) ) return false;
+
+		}
+
+		return true;
+
+	};
+
+
+	namespace.Triangulate = process;
+	namespace.Triangulate.area = area;
+
+	return namespace;
+
+} )( THREE.FontUtils );
+
+// To use the typeface.js face files, hook up the API
+self._typeface_js = { faces: THREE.FontUtils.faces, loadFace: THREE.FontUtils.loadFace };
+THREE.typeface_js = self._typeface_js;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="THREE.html">THREE</a></li><li><a href="THREE.AmbientLight.html">AmbientLight</a></li><li><a href="THREE.AreaLight.html">AreaLight</a></li><li><a href="THREE.Bone.html">Bone</a></li><li><a href="THREE.Box2.html">Box2</a></li><li><a href="THREE.Box3.html">Box3</a></li><li><a href="THREE.BufferAttribute.html">BufferAttribute</a></li><li><a href="THREE.BufferGeometry.html">BufferGeometry</a></li><li><a href="THREE.Camera.html">Camera</a></li><li><a href="THREE.Clock.html">Clock</a></li><li><a href="THREE.Color.html">Color</a></li><li><a href="THREE.CompressedTexture.html">CompressedTexture</a></li><li><a href="THREE.CubeCamera.html">CubeCamera</a></li><li><a href="THREE.CubeTexture.html">CubeTexture</a></li><li><a href="THREE.DataTexture.html">DataTexture</a></li><li><a href="THREE.DirectionalLight.html">DirectionalLight</a></li><li><a href="THREE.Euler.html">Euler</a></li><li><a href="THREE.EventDispatcher.html">EventDispatcher</a></li><li><a href="THREE.Face3.html">Face3</a></li><li><a href="THREE.Fog.html">Fog</a></li><li><a href="THREE.FogExp2.html">FogExp2</a></li><li><a href="THREE.FontUtils.html">FontUtils</a></li><li><a href="THREE.Frustum.html">Frustum</a></li><li><a href="THREE.Geometry.html">Geometry</a></li><li><a href="THREE.Group.html">Group</a></li><li><a href="THREE.HemisphereLight.html">HemisphereLight</a></li><li><a href="THREE.ImageUtils.html">ImageUtils</a></li><li><a href="THREE.ImmediateRenderObject.html">ImmediateRenderObject</a></li><li><a href="THREE.LensFlare.html">LensFlare</a></li><li><a href="THREE.LensFlarePlugin.html">LensFlarePlugin</a></li><li><a href="THREE.Light.html">Light</a></li><li><a href="THREE.Line.html">Line</a></li><li><a href="THREE.Line3.html">Line3</a></li><li><a href="THREE.LineBasicMaterial.html">LineBasicMaterial</a></li><li><a href="THREE.LineDashedMaterial.html">LineDashedMaterial</a></li><li><a href="THREE.LOD.html">LOD</a></li><li><a href="THREE.Material.html">Material</a></li><li><a href="THREE.Math.html">Math</a></li><li><a href="THREE.Matrix3.html">Matrix3</a></li><li><a href="THREE.Matrix4.html">Matrix4</a></li><li><a href="THREE.Mesh.html">Mesh</a></li><li><a href="THREE.MeshBasicMaterial.html">MeshBasicMaterial</a></li><li><a href="THREE.MeshDepthMaterial.html">MeshDepthMaterial</a></li><li><a href="THREE.MeshFaceMaterial.html">MeshFaceMaterial</a></li><li><a href="THREE.MeshLambertMaterial.html">MeshLambertMaterial</a></li><li><a href="THREE.MeshNormalMaterial.html">MeshNormalMaterial</a></li><li><a href="THREE.MeshPhongMaterial.html">MeshPhongMaterial</a></li><li><a href="THREE.MorphAnimMesh.html">MorphAnimMesh</a></li><li><a href="THREE.MorphBlendMesh.html">MorphBlendMesh</a></li><li><a href="THREE.Object3D.html">Object3D</a></li><li><a href="THREE.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="THREE.Particle.html">Particle</a></li><li><a href="THREE.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="THREE.Plane.html">Plane</a></li><li><a href="THREE.PointCloud.html">PointCloud</a></li><li><a href="THREE.PointCloudMaterial.html">PointCloudMaterial</a></li><li><a href="THREE.PointLight.html">PointLight</a></li><li><a href="THREE.Quaternion.html">Quaternion</a></li><li><a href="THREE.RawShaderMaterial.html">RawShaderMaterial</a></li><li><a href="THREE.Ray.html">Ray</a></li><li><a href="THREE.Raycaster.html">Raycaster</a></li><li><a href="THREE.Scene.html">Scene</a></li><li><a href="THREE.SceneUtils.html">SceneUtils</a></li><li><a href="THREE.ShaderLib.html">ShaderLib</a></li><li><a href="THREE.ShaderMaterial.html">ShaderMaterial</a></li><li><a href="THREE.ShadowMapPlugin.html">ShadowMapPlugin</a></li><li><a href="THREE.Skeleton.html">Skeleton</a></li><li><a href="THREE.SkinnedMesh.html">SkinnedMesh</a></li><li><a href="THREE.Sphere.html">Sphere</a></li><li><a href="THREE.Spline.html">Spline</a></li><li><a href="THREE.SpotLight.html">SpotLight</a></li><li><a href="THREE.Sprite.html">Sprite</a></li><li><a href="THREE.SpriteMaterial.html">SpriteMaterial</a></li><li><a href="THREE.SpritePlugin.html">SpritePlugin</a></li><li><a href="THREE.Texture.html">Texture</a></li><li><a href="THREE.Triangle.html">Triangle</a></li><li><a href="THREE.UniformsLib.html">UniformsLib</a></li><li><a href="THREE.UniformsUtils.html">UniformsUtils</a></li><li><a href="THREE.Vector2.html">Vector2</a></li><li><a href="THREE.Vector3.html">Vector3</a></li><li><a href="THREE.Vector4.html">Vector4</a></li><li><a href="THREE.VideoTexture.html">VideoTexture</a></li><li><a href="THREE.WebGLExtensions.html">WebGLExtensions</a></li><li><a href="THREE.WebGLProgram.html">WebGLProgram</a></li><li><a href="THREE.WebGLRenderer.html">WebGLRenderer</a></li><li><a href="THREE.WebGLRenderTarget.html">WebGLRenderTarget</a></li><li><a href="THREE.WebGLRenderTargetCube.html">WebGLRenderTargetCube</a></li><li><a href="THREE.WebGLShader.html">WebGLShader</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Feb 06 2015 12:49:14 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: math/Spline.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: math/Spline.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * Spline from Tween.js, slightly optimized (and trashed)
+ * http://sole.github.com/tween.js/examples/05_spline.html
+ *
+ * @author mrdoob / http://mrdoob.com/
+ * @author alteredq / http://alteredqualia.com/
+ */
+/**
+ * @classdesc 曲线对象类&lt;br />
+ * 注释内容部分参照 http://blog.csdn.net/omni360
+ * @desc 由Vector3数组（points）组成的曲线
+ * @param {THREE.Vector3[]} points
+ * @constructor
+ */
+THREE.Spline = function ( points ) {
+	/**
+	 * @desc 曲线控制点
+	 * @type {THREE.Vector3[]}
+	 */
+	this.points = points;
+
+	var c = [], v3 = { x: 0, y: 0, z: 0 },
+	point, intPoint, weight, w2, w3,
+	pa, pb, pc, pd;
+
+	/**
+	 * @desc 从数组初始化曲线
+	 * @param {THREE.Vector3} a
+	 */
+	this.initFromArray = function ( a ) {
+
+		this.points = [];
+
+		for ( var i = 0; i &lt; a.length; i ++ ) {
+
+			this.points[ i ] = { x: a[ i ][ 0 ], y: a[ i ][ 1 ], z: a[ i ][ 2 ] };
+
+		}
+
+	};
+	/**
+	 * @desc 当前样条曲线作为一个整体,返回位于当前样条曲线k位置上的点坐标.
+	 * @param {float} k
+	 * @returns {{x: float, y: float, z: float}}
+	 */
+	this.getPoint = function ( k ) {
+
+		point = ( this.points.length - 1 ) * k;
+		intPoint = Math.floor( point );
+		weight = point - intPoint;
+
+		c[ 0 ] = intPoint === 0 ? intPoint : intPoint - 1;
+		c[ 1 ] = intPoint;
+		c[ 2 ] = intPoint  > this.points.length - 2 ? this.points.length - 1 : intPoint + 1;
+		c[ 3 ] = intPoint  > this.points.length - 3 ? this.points.length - 1 : intPoint + 2;
+
+		pa = this.points[ c[ 0 ] ];
+		pb = this.points[ c[ 1 ] ];
+		pc = this.points[ c[ 2 ] ];
+		pd = this.points[ c[ 3 ] ];
+
+		w2 = weight * weight;
+		w3 = weight * w2;
+
+		v3.x = interpolate( pa.x, pb.x, pc.x, pd.x, weight, w2, w3 );
+		v3.y = interpolate( pa.y, pb.y, pc.y, pd.y, weight, w2, w3 );
+		v3.z = interpolate( pa.z, pb.z, pc.z, pd.z, weight, w2, w3 );
+
+		return v3;
+
+	};
+
+	/**
+	 * @desc 返回当前样条曲线节点坐标构成的数组
+	 * @returns {THREE.Vector3[]}
+	 */
+	this.getControlPointsArray = function () {
+
+		var i, p, l = this.points.length,
+			coords = [];
+
+		for ( i = 0; i &lt; l; i ++ ) {
+
+			p = this.points[ i ];
+			coords[ i ] = [ p.x, p.y, p.z ];
+
+		}
+
+		return coords;
+
+	};
+
+	// approximate length by summing linear segments
+	/**
+	 * @desc 被参数nSubDivisions(将当前样条曲线等分成多少段)等分当前样条曲线的长度数组和总长度组成的对象.
+	 * @param {number} nSubDivisions
+	 * @returns {{chunks: Array, total: number}}
+	 */
+	this.getLength = function ( nSubDivisions ) {
+
+		var i, index, nSamples, position,
+			point = 0, intPoint = 0, oldIntPoint = 0,
+			oldPosition = new THREE.Vector3(),
+			tmpVec = new THREE.Vector3(),
+			chunkLengths = [],
+			totalLength = 0;
+
+		// first point has 0 length
+
+		chunkLengths[ 0 ] = 0;
+
+		if ( ! nSubDivisions ) nSubDivisions = 100;
+
+		nSamples = this.points.length * nSubDivisions;
+
+		oldPosition.copy( this.points[ 0 ] );
+
+		for ( i = 1; i &lt; nSamples; i ++ ) {
+
+			index = i / nSamples;
+
+			position = this.getPoint( index );
+			tmpVec.copy( position );
+
+			totalLength += tmpVec.distanceTo( oldPosition );
+
+			oldPosition.copy( position );
+
+			point = ( this.points.length - 1 ) * index;
+			intPoint = Math.floor( point );
+
+			if ( intPoint != oldIntPoint ) {
+
+				chunkLengths[ intPoint ] = totalLength;
+				oldIntPoint = intPoint;
+
+			}
+
+		}
+
+		// last point ends with total length
+
+		chunkLengths[ chunkLengths.length ] = totalLength;
+
+		return { chunks: chunkLengths, total: totalLength };
+
+	};
+
+	this.reparametrizeByArcLength = function ( samplingCoef ) {
+
+		var i, j,
+			index, indexCurrent, indexNext,
+			linearDistance, realDistance,
+			sampling, position,
+			newpoints = [],
+			tmpVec = new THREE.Vector3(),
+			sl = this.getLength();
+
+		newpoints.push( tmpVec.copy( this.points[ 0 ] ).clone() );
+
+		for ( i = 1; i &lt; this.points.length; i ++ ) {
+
+			//tmpVec.copy( this.points[ i - 1 ] );
+			//linearDistance = tmpVec.distanceTo( this.points[ i ] );
+
+			realDistance = sl.chunks[ i ] - sl.chunks[ i - 1 ];
+
+			sampling = Math.ceil( samplingCoef * realDistance / sl.total );
+
+			indexCurrent = ( i - 1 ) / ( this.points.length - 1 );
+			indexNext = i / ( this.points.length - 1 );
+
+			for ( j = 1; j &lt; sampling - 1; j ++ ) {
+
+				index = indexCurrent + j * ( 1 / sampling ) * ( indexNext - indexCurrent );
+
+				position = this.getPoint( index );
+				newpoints.push( tmpVec.copy( position ).clone() );
+
+			}
+
+			newpoints.push( tmpVec.copy( this.points[ i ] ).clone() );
+
+		}
+
+		this.points = newpoints;
+
+	};
+
+	// Catmull-Rom
+
+	/**
+	 * @desc 三次样条插值算法,返回计算位于参数值t的曲线点
+	 * @param {float} p0	样条曲线起始点p0
+	 * @param {float} p1	样条曲线起始点p1
+	 * @param {float} p2	样条曲线起始点p2
+	 * @param {float} p3	样条曲线起始点p3
+	 * @param {float} t	参数值 (0,1)
+	 * @param {float} t2	参数值t的平方
+	 * @param {float} t3	参数值t的立方
+	 * @returns {float}	计算位于参数值t的曲线点
+	 */
+	function interpolate( p0, p1, p2, p3, t, t2, t3 ) {
+
+		var v0 = ( p2 - p0 ) * 0.5,
+			v1 = ( p3 - p1 ) * 0.5;
+
+		return ( 2 * ( p1 - p2 ) + v0 + v1 ) * t3 + ( - 3 * ( p1 - p2 ) - 2 * v0 - v1 ) * t2 + v0 * t + p1;
+
+	};
+
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="THREE.html">THREE</a></li><li><a href="THREE.AmbientLight.html">AmbientLight</a></li><li><a href="THREE.AreaLight.html">AreaLight</a></li><li><a href="THREE.Bone.html">Bone</a></li><li><a href="THREE.Box2.html">Box2</a></li><li><a href="THREE.Box3.html">Box3</a></li><li><a href="THREE.BufferAttribute.html">BufferAttribute</a></li><li><a href="THREE.BufferGeometry.html">BufferGeometry</a></li><li><a href="THREE.Camera.html">Camera</a></li><li><a href="THREE.Clock.html">Clock</a></li><li><a href="THREE.Color.html">Color</a></li><li><a href="THREE.CompressedTexture.html">CompressedTexture</a></li><li><a href="THREE.CubeCamera.html">CubeCamera</a></li><li><a href="THREE.CubeTexture.html">CubeTexture</a></li><li><a href="THREE.DataTexture.html">DataTexture</a></li><li><a href="THREE.DirectionalLight.html">DirectionalLight</a></li><li><a href="THREE.Euler.html">Euler</a></li><li><a href="THREE.EventDispatcher.html">EventDispatcher</a></li><li><a href="THREE.Face3.html">Face3</a></li><li><a href="THREE.Fog.html">Fog</a></li><li><a href="THREE.FogExp2.html">FogExp2</a></li><li><a href="THREE.FontUtils.html">FontUtils</a></li><li><a href="THREE.Frustum.html">Frustum</a></li><li><a href="THREE.Geometry.html">Geometry</a></li><li><a href="THREE.Group.html">Group</a></li><li><a href="THREE.HemisphereLight.html">HemisphereLight</a></li><li><a href="THREE.ImageUtils.html">ImageUtils</a></li><li><a href="THREE.ImmediateRenderObject.html">ImmediateRenderObject</a></li><li><a href="THREE.LensFlare.html">LensFlare</a></li><li><a href="THREE.LensFlarePlugin.html">LensFlarePlugin</a></li><li><a href="THREE.Light.html">Light</a></li><li><a href="THREE.Line.html">Line</a></li><li><a href="THREE.Line3.html">Line3</a></li><li><a href="THREE.LineBasicMaterial.html">LineBasicMaterial</a></li><li><a href="THREE.LineDashedMaterial.html">LineDashedMaterial</a></li><li><a href="THREE.LOD.html">LOD</a></li><li><a href="THREE.Material.html">Material</a></li><li><a href="THREE.Math.html">Math</a></li><li><a href="THREE.Matrix3.html">Matrix3</a></li><li><a href="THREE.Matrix4.html">Matrix4</a></li><li><a href="THREE.Mesh.html">Mesh</a></li><li><a href="THREE.MeshBasicMaterial.html">MeshBasicMaterial</a></li><li><a href="THREE.MeshDepthMaterial.html">MeshDepthMaterial</a></li><li><a href="THREE.MeshFaceMaterial.html">MeshFaceMaterial</a></li><li><a href="THREE.MeshLambertMaterial.html">MeshLambertMaterial</a></li><li><a href="THREE.MeshNormalMaterial.html">MeshNormalMaterial</a></li><li><a href="THREE.MeshPhongMaterial.html">MeshPhongMaterial</a></li><li><a href="THREE.MorphAnimMesh.html">MorphAnimMesh</a></li><li><a href="THREE.MorphBlendMesh.html">MorphBlendMesh</a></li><li><a href="THREE.Object3D.html">Object3D</a></li><li><a href="THREE.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="THREE.Particle.html">Particle</a></li><li><a href="THREE.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="THREE.Plane.html">Plane</a></li><li><a href="THREE.PointCloud.html">PointCloud</a></li><li><a href="THREE.PointCloudMaterial.html">PointCloudMaterial</a></li><li><a href="THREE.PointLight.html">PointLight</a></li><li><a href="THREE.Quaternion.html">Quaternion</a></li><li><a href="THREE.RawShaderMaterial.html">RawShaderMaterial</a></li><li><a href="THREE.Ray.html">Ray</a></li><li><a href="THREE.Raycaster.html">Raycaster</a></li><li><a href="THREE.Scene.html">Scene</a></li><li><a href="THREE.SceneUtils.html">SceneUtils</a></li><li><a href="THREE.ShaderLib.html">ShaderLib</a></li><li><a href="THREE.ShaderMaterial.html">ShaderMaterial</a></li><li><a href="THREE.ShadowMapPlugin.html">ShadowMapPlugin</a></li><li><a href="THREE.Skeleton.html">Skeleton</a></li><li><a href="THREE.SkinnedMesh.html">SkinnedMesh</a></li><li><a href="THREE.Sphere.html">Sphere</a></li><li><a href="THREE.Spline.html">Spline</a></li><li><a href="THREE.SpotLight.html">SpotLight</a></li><li><a href="THREE.Sprite.html">Sprite</a></li><li><a href="THREE.SpriteMaterial.html">SpriteMaterial</a></li><li><a href="THREE.SpritePlugin.html">SpritePlugin</a></li><li><a href="THREE.Texture.html">Texture</a></li><li><a href="THREE.Triangle.html">Triangle</a></li><li><a href="THREE.UniformsLib.html">UniformsLib</a></li><li><a href="THREE.UniformsUtils.html">UniformsUtils</a></li><li><a href="THREE.Vector2.html">Vector2</a></li><li><a href="THREE.Vector3.html">Vector3</a></li><li><a href="THREE.Vector4.html">Vector4</a></li><li><a href="THREE.VideoTexture.html">VideoTexture</a></li><li><a href="THREE.WebGLExtensions.html">WebGLExtensions</a></li><li><a href="THREE.WebGLProgram.html">WebGLProgram</a></li><li><a href="THREE.WebGLRenderer.html">WebGLRenderer</a></li><li><a href="THREE.WebGLRenderTarget.html">WebGLRenderTarget</a></li><li><a href="THREE.WebGLRenderTargetCube.html">WebGLRenderTargetCube</a></li><li><a href="THREE.WebGLShader.html">WebGLShader</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Feb 06 2015 12:49:14 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

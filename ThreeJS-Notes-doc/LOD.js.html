@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: objects/LOD.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: objects/LOD.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @author mikael emtinger / http://gomo.se/
+ * @author alteredq / http://alteredqualia.com/
+ * @author mrdoob / http://mrdoob.com/
+ */
+/**
+ * @classdesc LOD对象&lt;br />
+ * 注释内容部分参照 http://blog.csdn.net/omni360
+ * @desc LOD技术即Levels of Detail的简称，意为多细节层次。&lt;br />
+ * LOD技术指根据物体模型的节点在显示环境中所处的位置和重要度&lt;br />
+ * 决定物体渲染的资源分配，降低非重要物体的面数和细节度，从而获得高效率的渲染运算。
+ * @constructor
+ */
+THREE.LOD = function () {
+
+	THREE.Object3D.call( this );
+	/**
+	 * @desc 对象数组
+	 * @type {Array}
+	 */
+	this.objects = [];
+
+};
+
+/**
+ * @desc LOD.Objec3D的原型继承所有属性方法
+ * @type {THREE.Object3D}
+ */
+THREE.LOD.prototype = Object.create( THREE.Object3D.prototype );
+/**
+ * @desc 将对象(参数object)根据参数distance插入到存放层次细节展示的对象集合中(LOD.Objects)
+ * @param {THREE.Object3D} object 3D对象
+ * @param {float} distance 层次距离
+ */
+THREE.LOD.prototype.addLevel = function ( object, distance ) {
+
+	if ( distance === undefined ) distance = 0;
+
+	distance = Math.abs( distance );
+
+	for ( var l = 0; l &lt; this.objects.length; l ++ ) {
+
+		if ( distance &lt; this.objects[ l ].distance ) {
+
+			break;
+
+		}
+
+	}
+
+	this.objects.splice( l, 0, { distance: distance, object: object } );
+	this.add( object );
+
+};
+/**
+ * @desc 根据距离返回对应层次的对象
+ * @param {float} distance 层次距离
+ * @returns {THREE.Object3D}
+ */
+THREE.LOD.prototype.getObjectForDistance = function ( distance ) {
+	//排序由小到大遍历
+	for ( var i = 1, l = this.objects.length; i &lt; l; i ++ ) {
+
+		if ( distance &lt; this.objects[ i ].distance ) {
+
+			break;
+
+		}
+
+	}
+
+	return this.objects[ i - 1 ].object;
+
+};
+/**
+ * @function
+ * @desc LOD的拾取判断函数
+ * @param {THREE.Raycaster} raycaster 拾取射线对象
+ * @param {*} intersects 拾取结果对象数组
+ */
+THREE.LOD.prototype.raycast = ( function () {
+
+	var matrixPosition = new THREE.Vector3();
+
+	return function ( raycaster, intersects ) {
+
+		matrixPosition.setFromMatrixPosition( this.matrixWorld );
+
+		var distance = raycaster.ray.origin.distanceTo( matrixPosition );
+
+		//将当前层次的对象,进行光线跟踪计算.
+		this.getObjectForDistance( distance ).raycast( raycaster, intersects );
+
+	};
+
+}() );
+/**
+ * @function
+ * @desc 根据相机的位置更新显示的层次
+ * @param {THREE.Camera} camera 相机
+ * @return {THREE.Lod} 新的LOD对象
+ */
+THREE.LOD.prototype.update = function () {
+
+	var v1 = new THREE.Vector3();
+	var v2 = new THREE.Vector3();
+
+	return function ( camera ) {
+
+		if ( this.objects.length > 1 ) {
+
+			v1.setFromMatrixPosition( camera.matrixWorld );
+			v2.setFromMatrixPosition( this.matrixWorld );
+
+			// 重新计算相机的位置到当前层次的距离
+			var distance = v1.distanceTo( v2 );
+
+			this.objects[ 0 ].object.visible = true;
+
+			for ( var i = 1, l = this.objects.length; i &lt; l; i ++ ) {
+				// 如果计算相机的位置到当前层次的距离大于当前对象的距离
+				if ( distance >= this.objects[ i ].distance ) {
+				 	// 计算相机的位置到当前层次的距离之前的对象不显示
+					this.objects[ i - 1 ].object.visible = false;
+					// 计算相机的位置到当前层次的距离之后的对象显示.
+					this.objects[ i     ].object.visible = true;
+
+				} else {
+
+					break;
+
+				}
+
+			}
+
+			for ( ; i &lt; l; i ++ ) {
+
+				this.objects[ i ].object.visible = false;
+
+			}
+
+		}
+
+	};
+
+}();
+/**
+ * @desc Three.LOD 拷贝函数
+ * @param {THREE.LOD} object
+ * @returns {THREE.LOD}
+ */
+THREE.LOD.prototype.clone = function ( object ) {
+
+	if ( object === undefined ) object = new THREE.LOD();
+
+	THREE.Object3D.prototype.clone.call( this, object );
+
+	for ( var i = 0, l = this.objects.length; i &lt; l; i ++ ) {
+		var x = this.objects[ i ].object.clone();
+		x.visible = i === 0;
+		object.addLevel( x, this.objects[ i ].distance );
+	}
+
+	return object;
+
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="THREE.html">THREE</a></li><li><a href="THREE.AmbientLight.html">AmbientLight</a></li><li><a href="THREE.AreaLight.html">AreaLight</a></li><li><a href="THREE.Bone.html">Bone</a></li><li><a href="THREE.Box2.html">Box2</a></li><li><a href="THREE.Box3.html">Box3</a></li><li><a href="THREE.BufferAttribute.html">BufferAttribute</a></li><li><a href="THREE.BufferGeometry.html">BufferGeometry</a></li><li><a href="THREE.Camera.html">Camera</a></li><li><a href="THREE.Clock.html">Clock</a></li><li><a href="THREE.Color.html">Color</a></li><li><a href="THREE.CompressedTexture.html">CompressedTexture</a></li><li><a href="THREE.CubeCamera.html">CubeCamera</a></li><li><a href="THREE.CubeTexture.html">CubeTexture</a></li><li><a href="THREE.DataTexture.html">DataTexture</a></li><li><a href="THREE.DirectionalLight.html">DirectionalLight</a></li><li><a href="THREE.Euler.html">Euler</a></li><li><a href="THREE.EventDispatcher.html">EventDispatcher</a></li><li><a href="THREE.Face3.html">Face3</a></li><li><a href="THREE.Fog.html">Fog</a></li><li><a href="THREE.FogExp2.html">FogExp2</a></li><li><a href="THREE.FontUtils.html">FontUtils</a></li><li><a href="THREE.Frustum.html">Frustum</a></li><li><a href="THREE.Geometry.html">Geometry</a></li><li><a href="THREE.Group.html">Group</a></li><li><a href="THREE.HemisphereLight.html">HemisphereLight</a></li><li><a href="THREE.ImageUtils.html">ImageUtils</a></li><li><a href="THREE.ImmediateRenderObject.html">ImmediateRenderObject</a></li><li><a href="THREE.LensFlare.html">LensFlare</a></li><li><a href="THREE.LensFlarePlugin.html">LensFlarePlugin</a></li><li><a href="THREE.Light.html">Light</a></li><li><a href="THREE.Line.html">Line</a></li><li><a href="THREE.Line3.html">Line3</a></li><li><a href="THREE.LineBasicMaterial.html">LineBasicMaterial</a></li><li><a href="THREE.LineDashedMaterial.html">LineDashedMaterial</a></li><li><a href="THREE.LOD.html">LOD</a></li><li><a href="THREE.Material.html">Material</a></li><li><a href="THREE.Math.html">Math</a></li><li><a href="THREE.Matrix3.html">Matrix3</a></li><li><a href="THREE.Matrix4.html">Matrix4</a></li><li><a href="THREE.Mesh.html">Mesh</a></li><li><a href="THREE.MeshBasicMaterial.html">MeshBasicMaterial</a></li><li><a href="THREE.MeshDepthMaterial.html">MeshDepthMaterial</a></li><li><a href="THREE.MeshFaceMaterial.html">MeshFaceMaterial</a></li><li><a href="THREE.MeshLambertMaterial.html">MeshLambertMaterial</a></li><li><a href="THREE.MeshNormalMaterial.html">MeshNormalMaterial</a></li><li><a href="THREE.MeshPhongMaterial.html">MeshPhongMaterial</a></li><li><a href="THREE.MorphAnimMesh.html">MorphAnimMesh</a></li><li><a href="THREE.MorphBlendMesh.html">MorphBlendMesh</a></li><li><a href="THREE.Object3D.html">Object3D</a></li><li><a href="THREE.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="THREE.Particle.html">Particle</a></li><li><a href="THREE.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="THREE.Plane.html">Plane</a></li><li><a href="THREE.PointCloud.html">PointCloud</a></li><li><a href="THREE.PointCloudMaterial.html">PointCloudMaterial</a></li><li><a href="THREE.PointLight.html">PointLight</a></li><li><a href="THREE.Quaternion.html">Quaternion</a></li><li><a href="THREE.RawShaderMaterial.html">RawShaderMaterial</a></li><li><a href="THREE.Ray.html">Ray</a></li><li><a href="THREE.Raycaster.html">Raycaster</a></li><li><a href="THREE.Scene.html">Scene</a></li><li><a href="THREE.SceneUtils.html">SceneUtils</a></li><li><a href="THREE.ShaderLib.html">ShaderLib</a></li><li><a href="THREE.ShaderMaterial.html">ShaderMaterial</a></li><li><a href="THREE.ShadowMapPlugin.html">ShadowMapPlugin</a></li><li><a href="THREE.Skeleton.html">Skeleton</a></li><li><a href="THREE.SkinnedMesh.html">SkinnedMesh</a></li><li><a href="THREE.Sphere.html">Sphere</a></li><li><a href="THREE.Spline.html">Spline</a></li><li><a href="THREE.SpotLight.html">SpotLight</a></li><li><a href="THREE.Sprite.html">Sprite</a></li><li><a href="THREE.SpriteMaterial.html">SpriteMaterial</a></li><li><a href="THREE.SpritePlugin.html">SpritePlugin</a></li><li><a href="THREE.Texture.html">Texture</a></li><li><a href="THREE.Triangle.html">Triangle</a></li><li><a href="THREE.UniformsLib.html">UniformsLib</a></li><li><a href="THREE.UniformsUtils.html">UniformsUtils</a></li><li><a href="THREE.Vector2.html">Vector2</a></li><li><a href="THREE.Vector3.html">Vector3</a></li><li><a href="THREE.Vector4.html">Vector4</a></li><li><a href="THREE.VideoTexture.html">VideoTexture</a></li><li><a href="THREE.WebGLExtensions.html">WebGLExtensions</a></li><li><a href="THREE.WebGLProgram.html">WebGLProgram</a></li><li><a href="THREE.WebGLRenderer.html">WebGLRenderer</a></li><li><a href="THREE.WebGLRenderTarget.html">WebGLRenderTarget</a></li><li><a href="THREE.WebGLRenderTargetCube.html">WebGLRenderTargetCube</a></li><li><a href="THREE.WebGLShader.html">WebGLShader</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Feb 06 2015 12:49:14 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    适用于各种颜色处理的JavaScript库：Chroma.js
+    -->
+
+    <title>Trackball controls 轨迹球</title>
+    <link rel="stylesheet" href="../css/three-basic.css">
+</head>
+<body>
+
+<div id="Stats-output"></div>
+<div id="WebGL-output"></div>
+
+<script src="../libs/three.js"></script>
+<script src="../libs/OBJLoader.js"></script>
+<script src="../libs/MTLLoader.js"></script>
+<script src="../libs/OBJMTLLoader.js"></script>
+
+<script src="../libs/jquery-1.9.0.js"></script>
+<script src="../libs/stats.js"></script>
+<script  src="../libs/dat.gui.js"></script>
+
+<script src="../libs/chroma.js"></script>
+<script src="../libs/TrackballControls.js"></script>
+<script src="../js/three-basic.js"></script>
+<script>
+
+$(function () {
+    var clock = new THREE.Clock(); // 计算一个渲染循环耗费的时间
+    var stats = initStats(); // 开始统计
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var webGLRenderer = new THREE.WebGLRenderer();
+
+    // 设置常用参数
+    setBasic(camera, webGLRenderer);
+
+    // 创建轨迹球控件绑定到相机上
+    var trackballControls = new THREE.TrackballControls(camera);
+
+    trackballControls.rotateSpeed = 1.0;
+    trackballControls.zoomSpeed = 1.0;
+    trackballControls.panSpeed = 1.0;
+//        trackballControls.noZoom=false;
+//        trackballControls.noPan=false;
+    trackballControls.staticMoving = true;
+//        trackballControls.dynamicDampingFactor=0.3;
+
+    // 环境光
+    // add spotlight for the shadows
+    var ambientLight = new THREE.AmbientLight(0x383838);
+    scene.add(ambientLight);
+
+    var spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.set(300, 300, 300);
+    spotLight.intensity = 1; // 光强
+    scene.add(spotLight);
+
+    $("#WebGL-output").append(webGLRenderer.domElement);
+
+    var mesh;
+
+    // 加载OBJ对象
+    var loader = new THREE.OBJMTLLoader();
+    loader.addEventListener('load', function (event) {
+
+        var scale = chroma.scale(['red', 'green', 'blue']);
+        var object = event.content;
+        setRandomColors(object, scale);
+
+        mesh = object;
+        scene.add(mesh);
+    });
+
+
+        var texture = THREE.ImageUtils.loadTexture('../assets/textures/Metro01.JPG');
+    //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
+    loader.load('../assets/models/city.obj', '../assets/models/city.mtl', {side: THREE.DoubleSide});
+    //texture.repeat.set( 1 , 1);
+
+
+    // 开始渲染
+    render();
+
+    // 设置随机颜色
+    function setRandomColors(object, scale) {
+        var children = object.children;
+
+        if (children && children.length > 0) {
+            children.forEach(function (e) {
+                setRandomColors(e, scale)
+            });
+        } else {
+            // no children assume contains a mesh
+            if (object instanceof THREE.Mesh) {
+
+                object.material.color = new THREE.Color(scale(Math.random()).hex());
+                if (object.material.name.indexOf("building") == 0) {
+                    object.material.emissive = new THREE.Color(0x444444);
+                    object.material.transparent = true;
+                    object.material.opacity = 0.8;
+                }
+            }
+        }
+    }
+
+    // 在render循环中更新相机的位置
+    function render() {
+        stats.update();
+
+        var delta = clock.getDelta();
+
+        if (mesh) {
+//               mesh.rotation.y+=0.006;
+        }
+
+        trackballControls.update(delta);
+        // webGLRenderer.clear();
+        requestAnimationFrame(render); // 与浏览器同频
+        webGLRenderer.render(scene, camera)
+    }
+
+});
+
+</script>
+</body>
+</html>
