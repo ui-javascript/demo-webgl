@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>最简单的scene</title>
+    <script src="../libs/three.js"></script>
+    <script src="../libs/jquery-1.9.0.js"></script>
+    <!--<script src="../libs/stats.js"></script>-->
+    <!--<script src="../libs/dat.gui.js"></script>-->
+    <link rel="stylesheet" href="../css/three-helper.css">
+</head>
+<body>
+
+<!-- Div which will hold the Output -->
+<div id="WebGL-output"></div>
+
+<script src="../js/three-helper.js"></script>
+<script>
+$(function() {
+// 场景和相机
+var scene = new THREE.Scene(),
+    camera = new THREE.PerspectiveCamera(45,
+        window.innerWidth / window.innerHeight, 0.1, 1000),
+    renderer = new THREE.WebGLRenderer(),
+    axes = new THREE.AxisHelper(20),
+    plane,
+    cube,
+    sphere,
+    spotLight;
+
+
+// 设置参数,注意顺序
+setCamaraPara(scene, camera, -30, 40, 30); // 摆设相机
+setWebGLRendererPara(renderer, true); // 设置渲染器
+scene.add(axes); // 添加辅助箭头
+setPlanePara(scene, plane, "l", true); // 设置平面
+addCubePara(scene, cube, 4, "l", true); // 添加一个立方体
+addSpherePara(scene, sphere, 30, "l", true); // 添加一个球体
+addSpotLight(scene, spotLight, true); // 添加光源
+
+// 开始渲染
+$("#WebGL-output").append(renderer.domElement);
+renderer.render(scene, camera);
+
+});
+
+</script>
+</body>
+</html>
+
