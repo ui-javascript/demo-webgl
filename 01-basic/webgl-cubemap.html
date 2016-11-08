@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天空包围盒</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../css/webgl-cubemap.css">
+</head>
+<body>
+
+<script src="../js/libs/three.min.js"></script>
+<script src="../js/libs/BinaryLoader.js"></script>
+<script src="../js/libs/Detector.js"></script>
+<script src="../js/libs/stats.min.js"></script>
+<script>
+
+// 检测是否支持webgl,不支持提示
+if ( ! Detector.webgl ) Detector.addGetWebGLMessage(); 
+
+// 准备影棚元素
+var container,
+    stats,
+    camera, 
+    scene, 
+    renderer,
+    mesh, 
+    geometry,
+    loader,
+    pointLight;
+
+// 鼠标坐标
+var mouseX = 0,
+    mouseY = 0;
+
+// 窗口的一半
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+
+// 监听鼠标移动事件
+document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+// 开始渲染
+init();
+animate();
+
+/**
+ * [初始化场景]
+ */
+function init() {
+
+    container = document.createElement( 'div' );
+    document.body.appendChild( container );
+
+    // 设置相机
+    camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
+    camera.position.z = 2000;
+
+    // 天空包围盒的六个面
+    var path = "../images/cubemap/";
+    var format = '.jpg';
+    var urls = [
+        path + 'px' + format, path + 'nx' + format,
+        path + 'py' + format, path + 'ny' + format,
+        path + 'pz' + format, path + 'nz' + format
+    ];
+
+    // 映射上去六个面
+    var reflectionCube = new THREE.CubeTextureLoader().load( urls );
+    reflectionCube.format = THREE.RGBFormat;
+
+    // 创建scene
+    scene = new THREE.Scene();
+    scene.background = reflectionCube;
+
+    // 创建环境光
+    var ambient = new THREE.AmbientLight( 0xffffff );
+    scene.add( ambient );
+    pointLight = new THREE.PointLight( 0xffffff, 2 );
+    scene.add( pointLight );
+
+    // light representation
+    var sphere = new THREE.SphereGeometry( 100, 16, 8 );
+    var mesh = new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffaa00 } ) );
+    mesh.scale.set( 0.05, 0.05, 0.05 );
+    pointLight.add( mesh );
+
+    var refractionCube = new THREE.CubeTextureLoader().load( urls );
+    refractionCube.mapping = THREE.CubeRefractionMapping;
+    refractionCube.format = THREE.RGBFormat;
+
+    var cubeMaterial3 = new THREE.MeshLambertMaterial( { color: 0xff6600, envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 0.3 } );
+    var cubeMaterial2 = new THREE.MeshLambertMaterial( { color: 0xffee00, envMap: refractionCube, refractionRatio: 0.95 } );
+    var cubeMaterial1 = new THREE.MeshLambertMaterial( { color: 0xffffff, envMap: reflectionCube } );
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    container.appendChild( renderer.domElement );
+
+    // 渲染统计
+    stats = new Stats();
+    container.appendChild( stats.dom );
+
+    // 加载中间的三个头像
+    loader = new THREE.BinaryLoader();
+    loader.load( "../res/walt/WaltHead_bin.js", function( geometry ) { createScene( geometry, cubeMaterial1, cubeMaterial2, cubeMaterial3 ) } );
+
+    // 添加窗口大小改变事件的监听
+    window.addEventListener( 'resize', onWindowResize, false );
+}
+
+/**
+ * 窗口大小改变事件的调整函数
+ */
+function onWindowResize() {
+
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2; // 重新获取
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight ); 
+                                       // camera和renderer刷新
+}
+
+/**
+ * 创建scene
+ * @param  {[type]} geometry [description]
+ * @param  {[type]} m1       [description]
+ * @param  {[type]} m2       [description]
+ * @param  {[type]} m3       [description]
+ * @return {[type]}          [description]
+ */
+function createScene( geometry, m1, m2, m3 ) {
+
+    var s = 15;
+
+    // 三个头像的网格,位置,长宽比??
+    var mesh = new THREE.Mesh( geometry, m1 );
+    mesh.position.z = - 100;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = s;
+    scene.add( mesh );
+
+    var mesh = new THREE.Mesh( geometry, m2 );
+    mesh.position.x = - 900;
+    mesh.position.z = - 100;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = s;
+    scene.add( mesh );
+
+    var mesh = new THREE.Mesh( geometry, m3 );
+    mesh.position.x = 900;
+    mesh.position.z = - 100;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = s;
+    scene.add( mesh );
+
+}
+
+/**
+ * 鼠标移动事件的响应函数
+ * @param  {[type]} event [description]
+ * @return {[type]}       [description]
+ */
+function onDocumentMouseMove(event) {
+    mouseX = ( event.clientX - windowHalfX ) * 4;
+    mouseY = ( event.clientY - windowHalfY ) * 4;
+}
+
+/**
+ * 周期渲染函数
+ * @return {[type]} [description]
+ */
+function animate() {
+    requestAnimationFrame(animate); // 与浏览器同频
+    render(); // 再次渲染
+    stats.update(); // 刷新渲染统计条
+}
+
+/**
+ * 渲染函数
+ * 主要针对鼠标移动事件的渲染
+ * 调整scene,camera
+ * @return {[type]} [description]
+ */
+function render() {
+    var timer = -0.0002 * Date.now();
+
+    pointLight.position.x = 1500 * Math.cos( timer );
+    pointLight.position.z = 1500 * Math.sin( timer );
+
+    camera.position.x += ( mouseX - camera.position.x ) * .05;
+    camera.position.y += ( - mouseY - camera.position.y ) * .05;
+    camera.lookAt( scene.position );
+    renderer.render( scene, camera );
+}
+
+</script>
+</body>
+</html>

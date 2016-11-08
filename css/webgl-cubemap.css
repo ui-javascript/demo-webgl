@@ -1,0 +1,17 @@
+body {
+    background:#000;
+    color:#fff;
+    padding:0;
+    margin:0;
+    overflow:hidden;
+}
+a {	color: #ff0080;	text-decoration: none; }
+a:hover { color: #0080ff; }
+
+canvas { pointer-events:none; z-index:10; }
+
+#d { text-align:center; margin:1em 0 -7.5em 0; z-index:1000; position:relative; display:block }
+.button { background:orange; color:#fff; padding:0.2em 0.5em; cursor:pointer }
+.inactive { background:#999; color:#eee }
+
+#oldie { margin-top:11em !important }

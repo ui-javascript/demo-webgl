@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2815ed07-11c6-4ffb-9a57-ae0cd1584383" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-basic/simple-animation.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/04-materials-light-animation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/05-control-gui.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/06-ascii-renderer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/abc-index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/abc-r.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/abc-shaders-1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/abc-shaders-2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/basic-sphere-sample.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/first-scene-template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/rotate-cube.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/rotate-cube2.html" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-basic/webgl-cubemap.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/webgl-cubemap.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/three-helper.css" afterPath="$PROJECT_DIR$/css/three-helper.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/three-helper.js" afterPath="$PROJECT_DIR$/js/three-helper.js" />
     </list>
     <ignored path="luo-webGL-threeJS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,12 +26,34 @@
     <favorites_list name="luo-webGL-threeJS" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="webgl-cubemap.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/01-basic/webgl-cubemap.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="721">
+              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webgl-cubemap.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/webgl-cubemap.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -53,8 +63,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/08-animation/05-fly-controls-camera.html" />
-        <option value="$PROJECT_DIR$/08-animation/07-first-person-camera.html" />
         <option value="$PROJECT_DIR$/08-animation/08-controls-orbit.html" />
         <option value="$PROJECT_DIR$/08-animation/09-controls-path.html" />
         <option value="$PROJECT_DIR$/08-animation/10-morph-targets.html" />
@@ -104,6 +112,8 @@
         <option value="$PROJECT_DIR$/css/three-helper.css" />
         <option value="$PROJECT_DIR$/01-basic/basic-rotate-cube.html" />
         <option value="$PROJECT_DIR$/01-basic/rotate-cube-2.html" />
+        <option value="$PROJECT_DIR$/css/webgl-cubemap.css" />
+        <option value="$PROJECT_DIR$/01-basic/webgl-cubemap.html" />
       </list>
     </option>
   </component>
@@ -173,7 +183,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -187,7 +197,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cubemap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -208,6 +222,7 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="editor.config.accepted" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -218,10 +233,7 @@
       <recent name="E:\github-project\luo-webGL-threeJS\07-mesh" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.rotate-cube-2.html">
-    <configuration default="false" name="first-scene-template.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/luo-WebGL-ThreeJS/01-basic/first-scene-template.html">
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JavaScript Debug.webgl-cubemap.html">
     <configuration default="false" name="simple-animation.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/luo-WebGL-ThreeJS/01-basic/simple-animation.html">
       <method />
     </configuration>
@@ -232,6 +244,9 @@
       <method />
     </configuration>
     <configuration default="false" name="rotate-cube-2.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/luo-WebGL-ThreeJS/01-basic/rotate-cube-2.html">
+      <method />
+    </configuration>
+    <configuration default="false" name="webgl-cubemap.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/luo-WebGL-ThreeJS/01-basic/webgl-cubemap.html">
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -288,19 +303,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.first-scene-template.html" />
-      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.simple-animation.html" />
-      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.abc-r.html" />
-      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.abc-index.html" />
-      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.rotate-cube-2.html" />
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.simple-animation.html" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.abc-r.html" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.abc-index.html" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.rotate-cube-2.html" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.webgl-cubemap.html" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.rotate-cube-2.html" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.abc-index.html" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.abc-r.html" />
-        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.simple-animation.html" />
-        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.first-scene-template.html" />
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.webgl-cubemap.html" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.rotate-cube-2.html" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.abc-index.html" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.abc-r.html" />
+        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.simple-animation.html" />
       </list>
     </recent_temporary>
   </component>
@@ -342,7 +357,7 @@
       <workItem from="1478590917450" duration="4579000" />
       <workItem from="1478597175970" duration="861000" />
       <workItem from="1478598069699" duration="3691000" />
-      <workItem from="1478610508048" duration="4530000" />
+      <workItem from="1478610508048" duration="7676000" />
     </task>
     <task id="LOCAL-00001" summary="调整文件结构">
       <created>1476848584862</created>
@@ -355,13 +370,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81569000" />
+    <option name="totallyTimeSpent" value="84715000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1320" height="784" extended-state="7" />
+    <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21932516" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18174846" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -399,59 +414,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/09-texture/11-light-map-texture.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyNotes/three-Animation.md" />
-    <entry file="file://$PROJECT_DIR$/10-shader/08-basic-scene.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2983">
-          <caret line="163" column="88" selection-start-line="163" selection-start-column="88" selection-end-line="163" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/10-shader/05-shaderpass-blur.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1625">
-          <caret line="99" column="52" selection-start-line="99" selection-start-column="52" selection-end-line="99" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/10-shader/06-shaderpass-advanced.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-827">
-          <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyNotes/three-Texture.md" />
-    <entry file="file://$PROJECT_DIR$/assets/models/butterfly.mtl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/07-mesh/06-load-obj.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/custom/ThreeCanvas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/08-animation/13-animation-from-blender.html" />
-    <entry file="file://$PROJECT_DIR$/08-animation/04-trackball-controls-camera.html" />
     <entry file="file://$PROJECT_DIR$/MyNotes/VR-sth.md" />
     <entry file="file://$PROJECT_DIR$/08-animation-camera/04-trackball-controls-camera.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -460,24 +422,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webvr_cubes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/three.js-master/examples/webvr_panorama.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webgl_shaders_sky.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -492,13 +440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webgl_materials_cubemap.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -697,6 +638,118 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webgl_shaders_sky.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webvr_cubes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/canvas_geometry_cube.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/canvas_ascii_effect.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/canvas_geometry_earth.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/css3d_youtube.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webgl_geometry_cube.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webgl_gpgpu_birds.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webgl_interactive_cubes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webgl_materials_cars.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three.js-master/examples/webgl_materials_cubemap.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="211" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three-master/examples/canvas_geometry_earth.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/webgl-cubemap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01-basic/webgl-cubemap.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="721">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
         </state>
       </provider>
