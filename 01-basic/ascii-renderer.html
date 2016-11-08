@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASCII 文本效果</title>
+    <link rel="stylesheet" href="../css/three-helper.css">
+</head>
+<body>
+
+<!-- Div which will hold the Output -->
+<div id="Stats-output"></div>
+<div id="WebGL-output"></div>
+
+<script src="../libs/three.js"></script>
+<script src="../libs/jquery-1.9.0.js"></script>
+<script src="../libs/AsciiEffect.js"></script>
+<script src="../libs/stats.js"></script>
+<script src="../libs/dat.gui.js"></script>
+<script src="../js/three-helper.js"></script>
+<script>
+
+$(function() {
+// 存储位置信息的对象
+var cameraPos = { x: -30, y: 40, z: 30},
+    planePos = {x: 15, y: 0, z: 0 },
+    cubeInfo = { a: 4, b: 4, c: 4, x: -4, y: 3, z: 0 },
+    sphereInfo = { a: 4, b: 20, c: 20, x: 20, y: 0, z: 2},
+    spotLightPos = {x: -40, y: 60, z: -10 };
+
+// 场景和相机
+var stats = initStats(),  // 使场景拥有了统计功能
+    scene = new THREE.Scene(),
+    camera = new THREE.PerspectiveCamera(
+        45, window.innerWidth / window.innerHeight, 0.1, 1000),
+    renderer = new THREE.WebGLRenderer(),
+    axes = new THREE.AxisHelper(20),
+    plane,
+    cube,
+    sphere,
+    spotLight;
+
+
+
+// 设置参数,注意顺序
+camera = setCamaraPara(scene, camera, cameraPos); // 摆设相机
+renderer = setWebGLRendererPara(renderer, true); // 设置渲染器
+scene.add(axes); // 添加辅助箭头
+plane = setPlanePara(scene, plane, planePos, "l", true); // 设置平面
+cube = addCubePara(scene, cube, cubeInfo, "l", true); // 添加一个立方体
+sphere = addSpherePara(scene, sphere, sphereInfo, "l", true); // 添加一个球体
+spotLight = addSpotLight(scene, spotLight, spotLightPos, true); // 添加光源
+
+
+// add subtle ambient lighting
+var ambientLight = new THREE.AmbientLight(0x0c0c0c);
+scene.add(ambientLight);
+
+var effect = new THREE.AsciiEffect( renderer );
+effect.setSize( window.innerWidth, window.innerHeight );
+
+$("#WebGL-output").append(effect.domElement); // three.js的模块化体现
+// $("#WebGL-output").append(renderer.domElement);
+
+// call the render function
+var step = 0;
+
+// 创建controls对象
+var controls = new function() {
+    this.rotationSpeed = 0.02;
+    this.bouncingSpeed = 0.03;
+}
+
+var gui = new dat.GUI();
+gui.add(controls, 'rotationSpeed', 0, 0.5);  // 变量来自controls
+gui.add(controls, 'bouncingSpeed', 0, 0.5);  // 变量加入控制
+
+render(); // 开始渲染
+
+// 这个例子的渲染程序
+function render() {
+    stats.update();
+    // rotate the cube around its axes
+    cube.rotation.x += controls.rotationSpeed;
+    cube.rotation.y += controls.rotationSpeed;
+    cube.rotation.z += controls.rotationSpeed;
+
+    // bounce the sphere up and down
+    step += controls.bouncingSpeed;
+    // 调用到了controls里的这个变量
+    sphere.position.x = 20+( 10*(Math.cos(step)));
+    sphere.position.y = 2 +( 10*Math.abs(Math.sin(step)));
+
+    // render using requestAnimationFrame
+    requestAnimationFrame(render);
+    effect.render(scene, camera);
+    // renderer.render(scene, camera);
+}
+
+}); // jquery end
+
+
+</script>
+</body>
+</html>

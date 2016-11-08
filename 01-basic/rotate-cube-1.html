@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>旋转立方体</title>
+    <link rel="stylesheet" href="../css/three-helper.css">
+</head>
+<body>
+
+<!-- webgl输出 -->
+<div id="WebGL-output"></div>
+
+<script src="http://cdn.bootcss.com/three.js/r81/three.js"></script>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="../js/three-helper.js"></script>
+<script>
+
+$(function() {
+// 待可视化数据
+var cameraPos = { x: -30, y: 40, z: 30},
+    planePos = {x: 15, y: 0, z: 0 },
+    cubeInfo = { a: 4, b: 4, c: 4, x: -4, y: 3, z: 0 },
+    spotLightPos = {x: -40, y: 60, z: -10 };
+
+// 准备场景
+var scene = new THREE.Scene(),
+    camera = new THREE.PerspectiveCamera(45,
+        window.innerWidth / window.innerHeight, 0.1, 1000),
+    renderer = new THREE.WebGLRenderer(),
+    axes = new THREE.AxisHelper(20),
+    plane,
+    cube,
+    spotLight;
+
+camera = setCamaraPara(scene, camera, cameraPos); // 摆设相机
+renderer = setWebGLRendererPara(renderer, false); // 设置渲染器
+// scene.add(axes); // 添加辅助箭头
+// plane = setPlanePara(scene, plane, planePos, "l", false); // 设置平面
+cube = addCubePara(scene, cube, cubeInfo, "l", false); // 添加一个立方体
+spotLight = addSpotLight(scene, spotLight, spotLightPos, false); // 添加光源
+
+$("#WebGL-output").append(renderer.domElement);
+render();
+
+
+function render() {
+    cube.rotation.x += 0.02;
+    cube.rotation.y += 0.02;
+    cube.rotation.z += 0.02; // 让方块绕所有的轴旋转
+
+    requestAnimationFrame(render);  // 周期渲染 
+    renderer.render(scene, camera);
+}
+
+}); //end jquery    
+</script>    
+</body>
+</html>

@@ -40,11 +40,12 @@ function initStats() {
  * @param y
  * @param z
  */
-function setCamaraPara(scene, camera, x, y, z) {
-    camera.position.x = x;
-    camera.position.y = y;
-    camera.position.z = z;
+function setCamaraPara(scene, camera, cameraPos) {
+    camera.position.x = cameraPos.x;
+    camera.position.y = cameraPos.y;
+    camera.position.z = cameraPos.z;
     camera.lookAt(scene.position);
+    return camera;
 }
 
 /**
@@ -53,9 +54,12 @@ function setCamaraPara(scene, camera, x, y, z) {
  * @param isShadowMapEnabled
  */
 function  setWebGLRendererPara(renderer, isShadowMapEnabled) {
-    renderer.setClearColor(0xEEEEEE);  //  设置背景色
+    renderer.setClearColor(0xEEEEEE, 1.0);  //  设置背景色
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.shadowMapEnabled = isShadowMapEnabled; // 允许捕捉阴影,阴影计算耗费大量资源，默认关闭
+    renderer.shadowMapEnabled = isShadowMapEnabled; 
+          // 允许捕捉阴影,阴影计算耗费大量资源，默认关闭
+          // 改名称了.shadowMap.enabled
+    return renderer;
 }
 
 /**
@@ -65,8 +69,8 @@ function  setWebGLRendererPara(renderer, isShadowMapEnabled) {
  * @param mType
  * @param isReceiveShadow
  */
-function setPlanePara(scene, plane, mType, isReceiveShadow) {
-    var planeGeometry = new THREE.PlaneGeometry(60,20);
+function setPlanePara(scene, plane, planePos, mType, isReceiveShadow) {
+    var planeGeometry = new THREE.PlaneGeometry(60,20,1,1);
     if(mType === "basic" || mType === "b") {
         var planeMaterial = new THREE.MeshBasicMaterial({color: 0xcccccc});
     } else if(mType === "lambert" || mType === "l"){
@@ -77,10 +81,11 @@ function setPlanePara(scene, plane, mType, isReceiveShadow) {
     plane.receiveShadow  = isReceiveShadow;  // 是否允许生成阴影
 
     plane.rotation.x=-0.5*Math.PI; // 平面往负方向旋转90度
-    plane.position.x= 15;
-    plane.position.y= 0;
-    plane.position.z= 0;
+    plane.position.x= planePos.x;
+    plane.position.y= planePos.y;
+    plane.position.z= planePos.z;
     scene.add(plane); // 添加至场景
+    return plane;
 }
 
 /**
@@ -91,8 +96,8 @@ function setPlanePara(scene, plane, mType, isReceiveShadow) {
  * @param mType
  * @param isCastShadow
  */
-function addCubePara(scene, cube, len, mType, isCastShadow) {
-    var cubeGeometry = new THREE.CubeGeometry(len, len, len);
+function addCubePara(scene, cube, cubeInfo, mType, isCastShadow) {
+    var cubeGeometry = new THREE.CubeGeometry(cubeInfo.a, cubeInfo.b, cubeInfo.c);
     if(mType === "basic" || mType === "b") {
         var cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
     } else if(mType === "lambert" || mType === "l"){
@@ -103,10 +108,11 @@ function addCubePara(scene, cube, len, mType, isCastShadow) {
 
     cube.castShadow = isCastShadow;  // 允许生成阴影
 
-    cube.position.x=-4;
-    cube.position.y=3;
-    cube.position.z=0;
+    cube.position.x = cubeInfo.x;
+    cube.position.y = cubeInfo.y;
+    cube.position.z = cubeInfo.z;
     scene.add(cube);
+    return cube;
 }
 
 /**
@@ -117,8 +123,8 @@ function addCubePara(scene, cube, len, mType, isCastShadow) {
  * @param mType
  * @param isCastShadow
  */
-function addSpherePara(scene, sphere, len, mType, isCastShadow) {
-    var sphereGeometry = new THREE.SphereGeometry(4,20,20);
+function addSpherePara(scene, sphere, sphereInfo, mType, isCastShadow) {
+    var sphereGeometry = new THREE.SphereGeometry(sphereInfo.a, sphereInfo.b, sphereInfo.c);
     if(mType === "basic" || mType === "b") {
         var sphereMaterial = new THREE.MeshBasicMaterial({color: 0x7777ff, wireframe: true});
     } else if(mType === "lambert" || mType === "l"){
@@ -128,17 +134,19 @@ function addSpherePara(scene, sphere, len, mType, isCastShadow) {
     sphere = new THREE.Mesh(sphereGeometry,sphereMaterial);
     sphere.castShadow = isCastShadow;  // 允许生成阴影
 
-    sphere.position.x=20;
-    sphere.position.y=4;
-    sphere.position.z=2;
+    sphere.position.x = sphereInfo.x;
+    sphere.position.y = sphereInfo.y;
+    sphere.position.z = sphereInfo.z;
     scene.add(sphere);
+    return sphere;
 }
 
-function addSpotLight(scene, spotLight, isCastShadow) {
-    spotLight = new THREE.SpotLight( 0xffffff );
-    spotLight.position.set( -40, 60, -10);
+function addSpotLight(scene, spotLight, spotLightPos, isCastShadow) {
+    spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.set( spotLightPos.x, spotLightPos.y, spotLightPos.z);
     spotLight.castShadow = isCastShadow; // 不是所有的光源都可以产生阴影
     scene.add(spotLight);
+    return spotLight;
 }
 
 
