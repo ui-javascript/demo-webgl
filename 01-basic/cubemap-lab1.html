@@ -18,19 +18,20 @@
 <div id="webgl_output"></div>
 
 <!--引用cdn-->
-<script src="https://cdn.bootcss.com/three.js/r81/three.js"></script>
-<script src="https://rawgit.com/luo0412/luo-webGL-threeJS/master/js/libs/BinaryLoader.js"></script>
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+<!--<script src="https://cdn.bootcss.com/three.js/r81/three.js"></script>-->
+<!--<script src="https://rawgit.com/luo0412/luo-webGL-threeJS/master/js/libs/BinaryLoader.js"></script>-->
+<!--<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>-->
+<!--<script src="https://rawgit.com/luo0412/luo-WebGL-ThreeJS/master/js/libs/FirstPersonControls.js"></script>-->
 
-<!--<script src="../js/libs/three.min.js"></script>-->
-<!--<script src="../js/libs/BinaryLoader.js"></script>-->
-<!--<script src="../js/libs/jquery.min.js"></script>-->
+<script src="../js/libs/three.min.js"></script>
+<script src="../js/libs/BinaryLoader.js"></script>
+<script src="../js/libs/jquery.min.js"></script>
 <script  src="../libs/FirstPersonControls.js"></script>
 
 <!--three.js开写-->
 <script>
 
-$(function() { 
+$(function() {
 // 待可视化的数据
 var cameraInfo = { x: 100, y: 50, z: 20 },
     cubeInfo = { a: 40 , b: 40, c: 40, x: 1, y: 1, z: 1 },
@@ -50,19 +51,20 @@ var cameraInfo = { x: 100, y: 50, z: 20 },
         verticalMin: 1.0,
         verticalMax: 2.0,
         lon: -150,
-        lat: 120 
+        lat: 120
     };
 
 // 准备影棚元素
 var camera, scene, renderer, axes,
-    cube, 
-    ambientLight, pointLight;
+        cube,
+        ambientLight, pointLight;
 
 // 控制元素
 var clock, camControls,
-    mouseX = 0, mouseY = 0,
-    windowHalfX = window.innerWidth / 2,
-    windowHalfY = window.innerHeight / 2;
+        mouseX = 0, mouseY = 0,
+        windowHalfX = window.innerWidth / 2,
+        windowHalfY = window.innerHeight / 2;
+
 
 // 监听鼠标移动事件
 document.addEventListener('mousemove', onDocumentMouseMove, false);
@@ -82,7 +84,7 @@ function init() {
     camera.position.z = cameraInfo.z;
 
     // 天空包围盒的六个面
-    var path = picSrc.github;
+    var path = picSrc.local;
     var format = picSrc.picFormat;
     var urls = [
         path + picSrc.picName[0] + format,
@@ -114,6 +116,7 @@ function init() {
     scene = new THREE.Scene();
     scene.background = reflectionCube; // 以映射的这个立方体为背景
 
+
     var geometry = new THREE.CubeGeometry(cubeInfo.a, cubeInfo.b, cubeInfo.c);
     cube = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
     scene.add(cube);
@@ -135,7 +138,7 @@ function init() {
     // 渲染器设置
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio( window.devicePixelRatio );
-                // 防止在retina等屏幕上出现图像变形等显示问题
+    // 防止在retina等屏幕上出现图像变形等显示问题
     renderer.setSize( window.innerWidth, window.innerHeight );
     $("#webgl_output").append(renderer.domElement); // 开始画
 
@@ -177,8 +180,6 @@ function render() {
     camControls.update(delta);
     // renderer.clear();
 
-    pointLight.position.x = 1500 * Math.cos( timer );
-    pointLight.position.z = 1500 * Math.sin( timer );
 
     camera.position.x += ( mouseX - camera.position.x ) * .05;
     camera.position.y += ( - mouseY - camera.position.y ) * .05;
@@ -190,7 +191,7 @@ function render() {
     renderer.render(scene, camera);
 }
 
-}); // end jq   
+}); // end jq
 </script>
 
 
