@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天空包围盒实验,改编自three.js官网</title>
+    <style>
+        /* 全屏显示, 隐藏滚动条*/
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<!--webgl输出-->
+<div id="webgl_output"></div>
+
+<!--引用cdn-->
+<script src="https://cdn.bootcss.com/three.js/r81/three.js"></script>
+<script src="https://rawgit.com/luo0412/luo-webGL-threeJS/master/js/libs/BinaryLoader.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+
+<!--three.js开写-->
+<script>
+    // 准备影棚元素
+    var container, camera, scene, renderer, ambientLight, pointLight;
+
+    // 鼠标坐标
+    var mouseX = 0, mouseY = 0;
+
+    // 窗口的一半
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+
+    // 监听鼠标移动事件
+    document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+    // start
+    init(); // 影棚元素初始化
+    animate(); // 开始渲染
+
+    /**
+     * [初始化各元素]
+     */
+    function init() {
+        // 获取webgl输出div的id
+        container = document.getElementById("webgl_output");
+
+        // 设置相机
+        camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
+        camera.position.z = 2000;
+
+        // 天空包围盒的六个面
+        var path = "../images/cubemap/";
+        var format = '.jpg';
+        var urls = [
+            path + 'px' + format, path + 'nx' + format,
+            path + 'py' + format, path + 'ny' + format,
+            path + 'pz' + format, path + 'nz' + format
+        ];
+
+        // 映射?反射上去六个面
+        var reflectionCube = new THREE.CubeTextureLoader().load( urls );
+        reflectionCube.format = THREE.RGBFormat;
+
+        // 创建scene
+        scene = new THREE.Scene();
+        scene.background = reflectionCube; // 以映射的这个立方体为背景
+
+        // 创建光源
+        ambientLight = new THREE.AmbientLight( 0xffffff ); // 环境光
+        pointLight = new THREE.PointLight( 0xffffff, 2 ); // 点光源
+        scene.add( ambientLight );
+        scene.add( pointLight );
+
+        // 折射上去六个面
+//        var refractionCube = new THREE.CubeTextureLoader().load( urls );
+//        refractionCube.mapping = THREE.CubeRefractionMapping;
+//        refractionCube.format = THREE.RGBFormat;
+
+        // 渲染器设置
+        renderer = new THREE.WebGLRenderer();
+//        renderer.setPixelRatio( window.devicePixelRatio );
+//                    // 防止在retina等屏幕上出现图像变形等显示问题
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        container.appendChild( renderer.domElement ); // 开始画
+
+        // 添加窗口大小改变事件的监听
+        window.addEventListener( 'resize', onWindowResize, false );
+    }
+
+    /**
+     * 窗口大小改变事件的调整函数
+     * camera和renderer刷新
+     */
+    function onWindowResize() {
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2; // 重新获取
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+
+    /**
+     * 鼠标移动事件的响应函数
+     */
+    function onDocumentMouseMove(event) {
+        mouseX = ( event.clientX - windowHalfX ) * 4;
+        mouseY = ( event.clientY - windowHalfY ) * 4;
+    }
+
+    /**
+     * 周期渲染函数
+     */
+    function animate() {
+        requestAnimationFrame(animate); // 与浏览器同频
+        render();
+    }
+
+    /**
+     * 渲染函数
+     * 主要针对鼠标移动事件的渲染
+     * 调整scene,camera
+     */
+    function render() {
+        var timer = -0.0002 * Date.now();
+
+        pointLight.position.x = 1500 * Math.cos( timer );
+        pointLight.position.z = 1500 * Math.sin( timer );
+
+        camera.position.x += ( mouseX - camera.position.x ) * .05;
+        camera.position.y += ( - mouseY - camera.position.y ) * .05;
+        camera.lookAt( scene.position );
+        renderer.render( scene, camera );
+    }
+</script>
+
+
+</body>
+</html>
