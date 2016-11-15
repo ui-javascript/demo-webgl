@@ -9,7 +9,7 @@
      -->
     <meta charset="UTF-8">
     <title>天空包围盒实验2</title>
-    <link rel="stylesheet" href="../css/cubemap-lab2.css">
+    <link rel="stylesheet" href="../src/css/cubemap-lab2.css">
 </head>
 <body>
 
@@ -26,9 +26,9 @@
 <!--<script src="https://cdn.bootcss.com/three.js/r81/three.js"></script>-->
 <!--<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>-->
 
-<script src="../js/libs/three.min.js"></script>
-<script src="../js/libs/jquery.min.js"></script>
-<script src="../js/libs/PointerLockControls.js"></script>
+<script src="../src/js/libs/three.min.js"></script>
+<script src="../src/js/libs/jquery.min.js"></script>
+<script src="../src/js/libs/PointerLockControls.js"></script>
 
 <!--three.js开写-->
 <script>
@@ -135,7 +135,6 @@ var pointerlockchange = function (event) {
 var pointerlockerror = function ( event ) {
     instructions.style.display = '';
 };
-
 
 // 如果支持pointerlock
 if ( havePointerLock ) {
