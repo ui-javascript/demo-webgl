@@ -11,7 +11,7 @@
 <script src="../src/js/libs/three.min.js"></script>
 <script src="../src/js/libs/BinaryLoader.js"></script>
 <script src="../src/js/libs/Detector.js"></script>
-<script src="../src/js/libs/stats.min.js"></script>
+<script src="../src/js/libs/stats.js"></script>
 <script>
 
 // 检测是否支持webgl,不支持提示
@@ -56,7 +56,7 @@ function init() {
     camera.position.z = 2000;
 
     // 天空包围盒的六个面
-    var path = "../images/cubemap/";
+    var path = "../src/images/cubemap/";
     var format = '.jpg';
     var urls = [
         path + 'px' + format, path + 'nx' + format,
@@ -103,7 +103,7 @@ function init() {
 
     // 加载中间的三个头像
     loader = new THREE.BinaryLoader();
-    loader.load( "../res/walt/WaltHead_bin.js", function( geometry ) { createScene( geometry, cubeMaterial1, cubeMaterial2, cubeMaterial3 ) } );
+    loader.load( "../src/res/walt/WaltHead_bin.js", function( geometry ) { createScene( geometry, cubeMaterial1, cubeMaterial2, cubeMaterial3 ) } );
 
     // 添加窗口大小改变事件的监听
     window.addEventListener( 'resize', onWindowResize, false );

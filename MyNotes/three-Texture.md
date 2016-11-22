@@ -129,4 +129,10 @@ gl_FragColor = vec4( vec3( color, color * 0.5, sin( color + time / 3.0 ) * 0.75 
     + ConeTwistConstraint 球销 移动受一系列角度限制
     + DOFConstraint 实现细节的控制
 + _dirtyPosition _dirtyRotation 
+
+
+
+### OBJ文件
++ 基于ASCII的三维静态模型存储格式
++ 包含信息，顶点坐标，面数组，纹理坐标，材质文件
 + 

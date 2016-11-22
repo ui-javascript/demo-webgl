@@ -10,6 +10,7 @@
 +   Python  -- Unix/Mac
 +   Node.js+NPM -- HTTP Server
 +   Mongoose -- Mac/Windows移植  推荐
++ WebStrom对于(自己创建的域下)同名的文件会有本地保存，一直闹鬼的话浏览器手动清理下
 
 ###  三维对象
 +   Plane   平面 
