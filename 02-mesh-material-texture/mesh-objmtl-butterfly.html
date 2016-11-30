@@ -3,16 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <title>obj mtl的一个蝴蝶</title>
+    <link rel="stylesheet" href="../src/css/basic-helper.css">
 </head>
 <body>
 
+<div id="stats-output"></div>
+<div id="webgl-output"></div>
 
-<script src="../libs/three.js"></script>
-<script src="../libs/OBJLoader.js"></script>
-<script src="../libs/MTLLoader.js"></script>
-<script src="../libs/OBJMTLLoader.js"></script>
-<script src="../libs/jquery-1.9.0.js"></script>
-<script src="../libs/stats.js"></script>
-<script src="../libs/dat.gui.js"></script>
+<script src="../src/js/libs/three.js"></script>
+<script src="../src/js/libs/OBJLoader.js"></script>
+<script src="../src/js/libs/MTLLoader.js"></script>
+<script src="../src/js/libs/OBJMTLLoader.js"></script>
+<script src="../src/js/libs/jquery-1.9.0.js"></script>
+<script src="../src/js/libs/stats.js"></script>
+<script src="../src/js/libs/dat.gui.js"></script>
+<script src="../src/js/basic-helper.js"></script>
+
+
+<script >
+    $(function () {
+        var stats = initStats();
+        var scene = new THREE.Scene();
+        var camera =initCameraEx(camera, -30, 40, 50, 0, 10, 0);
+
+        var webGLRenderer = new THREE.WebGLRenderer();
+        webGLRenderer.setClearColor(0xaaaaff, 1.0);
+        webGLRenderer.setSize(window.innerWidth, window.innerHeight);
+        webGLRenderer.shadowMapEnabled = true;
+
+        // add spotlight for the shadows
+        var spotLight = new THREE.SpotLight(0xffffff);
+        spotLight.position.set(0, 40, 30);
+        spotLight.intensity = 2;
+        scene.add(spotLight);
+
+
+        // call the render function
+        var step = 0;
+
+
+        // setup the control gui
+        var controls = new function () {
+            // we need the first child, since it's a multimaterial
+
+
+        }
+
+        var gui = new dat.GUI();
+        var mesh;
+
+        var loader = new THREE.OBJMTLLoader();
+        loader.addEventListener('load', function (event) {
+
+            var object = event.content;
+
+            var wing2 = object.children[5].children[0];
+            var wing1 = object.children[4].children[0];
+
+            wing1.material.alphaTest = 0.5;
+            wing1.material.opacity = 0.6;
+            wing1.material.transparent = true;
+
+            wing2.material.alphaTest = 0.4;
+            wing2.material.opacity = 0.7;
+            wing2.material.transparent = true;
+
+            object.scale.set(140, 140, 140);
+            mesh = object;
+            scene.add(mesh);
+
+            object.rotation.x = 0.2;
+            object.rotation.y = -1.3;
+        });
+
+
+        loader.load('../src/res/butterfly/butterfly.obj', '../src/res/butterfly/butterfly.mtl', {side: THREE.DoubleSide});
+
+//                function ( geometry ) {
+//
+//
+//            geometry.morphTargets = [];
+//            geometry.morphNormals = [];
+//
+//            geometry.children.forEach(function(e) {
+//                e.morphTargets = [];
+//                e.morphNormals = [];
+//
+//                console.log(e);
+//            });
+//
+//           geometry.scale.set(200,200,200);
+////           scene.add(geometry);
+//
+//            console.log(geometry.position);
+//
+//
+////            mesh.position.x = 0;
+////            mesh.position.y = 0;
+////            mesh.position.z = 0;
+//////            mesh.rotation.x = 0;
+//////            mesh.rotation.y = 0;
+////
+////            //mesh.matrixAutoUpdate = false;
+////            // mesh.updateMatrix();
+////
+////            console.log(geometry);
+////
+////            mesh.scale.x=1;
+////            mesh.scale.y=1;
+////            mesh.scale.z=1;
+//            mesh = geometry;
+//            scene.add(mesh);
+//
+//        });
+
+
+        // 开始渲染
+        $("#webgl-output").append(webGLRenderer.domElement);
+        render();
+
+
+        function render() {
+            stats.update();
+
+            if (mesh) {
+                mesh.rotation.y+=0.006;
+            }
+
+            requestAnimationFrame(render);
+            webGLRenderer.render(scene, camera);
+        }
+
+    }); // jq end
+
+
+</script>
+
+
+
 </body>
 </html>
