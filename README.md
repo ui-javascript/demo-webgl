@@ -19,15 +19,15 @@
 
 ###  文件结构
 +  01-basic 基础 旋转cube 入门教程
-+  02-scene 场景
-+  03-light 光源
-+  04-material 材质
-+  05-geometry 几何体
-+  06-particle 粒子系统
-+  07-mesh 网格
-+  08-animation-camera 动画 相机
-+  09-texture 纹理
-+  10-shader 着色器以及高级
++  01-scene 场景
++  01-light 光源
++  02-material 材质
++  02-geometry 几何体
++  02-particle 粒子系统
++  02-mesh 网格
++  02-texture 纹理
++  02-shader 着色器以及高级
++  03-animation-camera 动画 相机
 
 ### 软件
 + 3Dmax 2009

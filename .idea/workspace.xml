@@ -2,215 +2,127 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2815ed07-11c6-4ffb-9a57-ae0cd1584383" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/02-scene/scene-basic.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/03-light/light-ambient.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/04-material/material-mesh-normal.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/05-complex-geometry/geometry-convex.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/05-geometry/geometry-2d-plane.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/06-particle/particle-snowy.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/memo/three-Geometry.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/basic-helper.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/basic-helper.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/02-scene/three-basic-scene.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/03-light/01-ambient-light.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/04-mesh-normal-material.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry-advanced/01-geometries-convex.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MyNotes/three-geometry.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/bitstream_vera_sans_mono_roman.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/droid/NOTICE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/droid/README.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/droid/droid_sans_bold.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/droid/droid_sans_mono_regular.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/droid/droid_sans_regular.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/droid/droid_serif_bold.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/droid/droid_serif_regular.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/gentilis_bold.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/gentilis_regular.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/helvetiker_bold.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/helvetiker_regular.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/optimer_bold.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/optimer_regular.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/GuyFawkesMask.ply" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/GuyFawkesMask_Cycles.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/GuyFawkesMask_Cycles.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/MinecraftSteve.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/SolidHead_2_lowPoly_42k.stl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/UVCube1.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/UVCube1.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/UVCube2.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/UVCube2.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/alien.dae" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/alien.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/alien.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/apple.ply" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/aspirin.pdb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/auditt_wheel.ctm" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/buffalo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/buffalo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/bunny.vtk" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/butterfly-jos-blend-2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/butterfly-jos-blend.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/butterfly.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/butterfly.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/butterfly.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/butterflywings.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/city.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/city.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/coffee_machine.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/cube1.blend" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/cubes.dae" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/Medieval_building.DAE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/Truck_dae.dae" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/RooftilesWood0005_2_S.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/RooftilesWood0005_2_Sspec.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/WoodPlanksBare0002_1_S.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/WoodPlanksBare0002_1_Sspec.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/WoodRough0106_2_S.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/WoodRough0106_2_Spec.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/black.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/default_specular.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/out_0_6E339CC8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/panneau_col.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/white.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/images/yellow.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/tex/Grass.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/tex/Grass_alph.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/tex/TrckGR.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/tex/TrckGR.tga" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/tex/TrckGRNrml.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/tex/TruckR.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/tex/TruckR.tga" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dae/tex/TruckRNrml.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/diamond.pdb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/dolphins.ply" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/hand-1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/hand-2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/hand.blend" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/horse.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica.lwo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica.max" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica.mb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica/1174-bump.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica/1174-normal.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica/1174.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica/Jessica Body Normals.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica/Jessica Body.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica/fmouth.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica/hair_bits.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/jessica/jessica/jessica_head_skin_d.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/mechanika_espresso_texture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/misc_chair01.blend" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/misc_chair01.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/misc_chair01_col.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/moai_fixed.vtk" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/monster.dae" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/monster.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/ogre/ogro.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/ogre/ogro.md2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/ogre/skins/skin.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/pinecone.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/pinecone.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/readme.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/rigged-2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/rigged_hand-3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/rigged_hand-4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/rigged_hand-5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/rigged_hand.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/sol/LibertStatue.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/sol/LibertStatue.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/sol/Liberty-DecorazioniMarmo-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/sol/Liberty-GreenBronze-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/sol/Liberty-MattoniBasamento-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/sol/Liberty-Pavimentazione-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/sol/Liberty-PortaBronzo-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/models/test.ply" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/movies/Big_Buck_Bunny_small.ogv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/ash_uvgrid01.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/cubemap/parliament/negx.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/cubemap/parliament/negy.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/cubemap/parliament/negz.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/cubemap/parliament/posx.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/cubemap/parliament/posy.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/cubemap/parliament/posz.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/cubemap/parliament/readme.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/bathroom-normal.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/bathroom.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/brick-wall.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/darker_wood.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/floor-wood.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/metal-floor-normal.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/metal-floor.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/metal-rust.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/plaster-diffuse.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/plaster-normal.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/plaster.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/stone-bump.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/stone.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/weave-bump.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/weave.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/general/wood-2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/ground/grasslight-big.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/lensflare/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/lensflare/hexangle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/lensflare/lensflare0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/lensflare/lensflare0_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/lensflare/lensflare1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/lensflare/lensflare2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/lensflare/lensflare3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/lensflare/lensflare4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/lightmap/lm-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/metro01.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/particles/raindrop-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/particles/raindrop-2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/particles/snowflake1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/particles/snowflake2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/particles/snowflake3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/particles/snowflake4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/particles/snowflake5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/particles/sprite-sheet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/particles/two_drops.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/planets/Earth.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/planets/EarthNormal.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/planets/EarthSpec.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/planets/Mars-normalmap_2k.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/planets/Mars_2k-050104.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/planets/earth-specular.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/planets/earth.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/planets/mars_1k_color.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/planets/mars_1k_normal.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/soil_diffuse.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/soil_normal.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/soil_specular.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/textures/starry-deep-outer-space-galaxy.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/ascii-renderer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/control-gui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/cubemap-lab1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/cubemap-lab2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/rotate-cube-1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/rotate-cube-2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/scene-template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/simple-animation.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/simple-sphere.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/webgl-cubemap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/01-basic-mesh-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/02-depth-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/03-combined-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/05-mesh-face-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/06-mesh-lambert-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/07-mesh-phong-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/08-shader-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/09-line-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/10-line-material-dashed.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/material-mesh-normal.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/02-geometries-lathe.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/03-extrude-geometry.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/04-extrude-tube.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/05-extrude-svg.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/06-parametric-geometries.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/07-text-geometry.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/08-binary-operations.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/geometry-convex.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/01-basic-2d-geometries-plane.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/02-basic-2d-geometries-circle.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/03-basic-2d-geometries-shape.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/04-basic-3d-geometries-cube.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/05-basic-3d-geometries-sphere.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/06-basic-3d-geometries-cylinder.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/07-basic-3d-geometries-torus.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/08-basic-3d-geometries-torus-knot.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/09-basic-3d-geometries-polyhedron.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/geometry-2d-plane.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/01-particles.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/02-particles-webgl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/03-basic-particle-system.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/04-program-based-particle-system.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/05-program-based-particle-system-webgl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/06-rainy-scene.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/07-snowy-scene.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/08-sprites.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/09-sprites-3D.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/10-create-particle-system-from-model.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/particle-snowy.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/01-grouping.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/02-merging.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/03-load-save-json-object.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/04-load-save-json-scene.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/05-blender-from-json.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/06-load-obj.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/07-load-obj-mtl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/08-load-collada.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/09-load-stl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/10-load-ctm.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/11-load-vtk.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/12-load-pdb.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/13-load-PLY.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/14-load-PLY2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/##-normal-obj-mtl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/01-basic-animation.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/02-selecting-objects.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/03-animation-tween.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/04-trackball-controls-camera.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/05-fly-controls-camera.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/06-roll-controls-camera.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/07-first-person-camera.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/08-controls-orbit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/09-controls-path.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/10-morph-targets.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/11-morph-targets-manually.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/12-bones-manually.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/13-animation-from-blender.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/14-animation-from-collada.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/15-animation-from-md2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/01-basic-texture.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/02-bump-map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/03-normal-map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/04-light-map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/05-env-map-dynamic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/05-env-map-static.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/06-specular-map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/07-uv-mapping.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/08-repeat-wrapping.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/09-canvas-texture.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/10-canvas-texture-bumpmap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/11-light-map-texture.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/11-video-texture.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/01-basic-effect-composer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/02-post-processing-simple-passes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/03-post-processing-masks.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/04-shaderpass-simple.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/05-shaderpass-blur.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/06-shaderpass-advanced.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/07-shaderpass-custom.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/08-basic-scene.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/09-material-properties.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/10-shapes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/11-constraints.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/12-dof-constraint.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/05-geometry/01-basic-2d-geometries-plane.html" afterPath="$PROJECT_DIR$/05-geometry/01-basic-2d-geometries-plane.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/06-particle/06-rainy-scene.html" afterPath="$PROJECT_DIR$/06-particle/06-rainy-scene.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/05-geometry-advanced/02-geometries-lathe.html" afterPath="$PROJECT_DIR$/05-complex-geometry/02-geometries-lathe.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/05-geometry-advanced/03-extrude-geometry.html" afterPath="$PROJECT_DIR$/05-complex-geometry/03-extrude-geometry.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/05-geometry-advanced/04-extrude-tube.html" afterPath="$PROJECT_DIR$/05-complex-geometry/04-extrude-tube.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/05-geometry-advanced/05-extrude-svg.html" afterPath="$PROJECT_DIR$/05-complex-geometry/05-extrude-svg.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/05-geometry-advanced/06-parametric-geometries.html" afterPath="$PROJECT_DIR$/05-complex-geometry/06-parametric-geometries.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/05-geometry-advanced/07-text-geometry.html" afterPath="$PROJECT_DIR$/05-complex-geometry/07-text-geometry.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/05-geometry-advanced/08-binary-operations.html" afterPath="$PROJECT_DIR$/05-complex-geometry/08-binary-operations.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/VR-sth.md" afterPath="$PROJECT_DIR$/memo/VR-sth.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/images/LensFlare.jpg" afterPath="$PROJECT_DIR$/memo/images/LensFlare.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/images/SpotLight-properties.jpg" afterPath="$PROJECT_DIR$/memo/images/SpotLight-properties.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/images/SpotLight-tip.jpg" afterPath="$PROJECT_DIR$/memo/images/SpotLight-tip.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/images/THREE.Color-1.jpg" afterPath="$PROJECT_DIR$/memo/images/THREE.Color-1.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/images/THREE.Color-2.jpg" afterPath="$PROJECT_DIR$/memo/images/THREE.Color-2.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/images/THREE.Color-3.jpg" afterPath="$PROJECT_DIR$/memo/images/THREE.Color-3.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/images/light-type.jpg" afterPath="$PROJECT_DIR$/memo/images/light-type.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/three-Animation.md" afterPath="$PROJECT_DIR$/memo/three-Animation.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/three-Light.md" afterPath="$PROJECT_DIR$/memo/three-Light.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/three-Material.md" afterPath="$PROJECT_DIR$/memo/three-Material.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/three-Particles.md" afterPath="$PROJECT_DIR$/memo/three-Particles.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/three-Texture.md" afterPath="$PROJECT_DIR$/memo/three-Texture.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/MyNotes/webgl-math-basic.md" afterPath="$PROJECT_DIR$/memo/webgl-math-basic.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/02-foggy-scene.html" afterPath="$PROJECT_DIR$/01-scene-light/02-foggy-scene.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/03-forced-materials.html" afterPath="$PROJECT_DIR$/01-scene-light/03-forced-materials.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/04-geometries.html" afterPath="$PROJECT_DIR$/01-scene-light/04-geometries.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/05-custom-geometry.html" afterPath="$PROJECT_DIR$/01-scene-light/05-custom-geometry.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/06-mesh-properties.html" afterPath="$PROJECT_DIR$/01-scene-light/06-mesh-properties.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/07-both-cameras.html" afterPath="$PROJECT_DIR$/01-scene-light/07-both-cameras.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/08-cameras-lookat.html" afterPath="$PROJECT_DIR$/01-scene-light/08-cameras-lookat.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/scene-basic.html" afterPath="$PROJECT_DIR$/01-scene-light/scene-basic.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/02-point-light.html" afterPath="$PROJECT_DIR$/01-scene-light/02-point-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/03-spot-light.html" afterPath="$PROJECT_DIR$/01-scene-light/03-spot-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/04-directional-light.html" afterPath="$PROJECT_DIR$/01-scene-light/04-directional-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/05-hemisphere-light.html" afterPath="$PROJECT_DIR$/01-scene-light/05-hemisphere-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/06-area-light.html" afterPath="$PROJECT_DIR$/01-scene-light/06-area-light.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/07-lensflares.html" afterPath="$PROJECT_DIR$/01-scene-light/07-lensflares.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/light-ambient.html" afterPath="$PROJECT_DIR$/01-scene-light/light-ambient.html" />
     </list>
     <ignored path="luo-webGL-threeJS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -272,7 +184,6 @@
         <option value="$PROJECT_DIR$/01-basic/basic-rotate-cube.html" />
         <option value="$PROJECT_DIR$/css/webgl-cubemap.css" />
         <option value="$PROJECT_DIR$/res/walt/WaltHead_bin.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/08-animation-camera/04-trackball-controls-camera.html" />
         <option value="$PROJECT_DIR$/08-animation-camera/07-first-person-camera.html" />
         <option value="$PROJECT_DIR$/css/cubemap-lab2.css" />
@@ -307,6 +218,7 @@
         <option value="$PROJECT_DIR$/src/js/basic-helper.js" />
         <option value="$PROJECT_DIR$/06-particle/particle-snowy.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -366,38 +278,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="luo-WebGL-ThreeJS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="luo-WebGL-ThreeJS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="luo-WebGL-ThreeJS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="luo-WebGL-ThreeJS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="06-particle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -422,11 +302,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\github-project\luo-WebGL-ThreeJS\01-scene-light" />
       <recent name="E:\github-project\luo-WebGL-ThreeJS\05-complex-geometry" />
       <recent name="E:\github-project\luo-WebGL-ThreeJS\memo" />
       <recent name="E:\github-project\luo-WebGL-ThreeJS\src\js" />
       <recent name="E:\github-project\luo-WebGL-ThreeJS\src\css" />
-      <recent name="E:\github-project\luo-WebGL-ThreeJS\src" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.01-ambient-light.html">
@@ -576,7 +456,7 @@
       <workItem from="1479281698066" duration="20000" />
       <workItem from="1479865820790" duration="8861000" />
       <workItem from="1479945488059" duration="57000" />
-      <workItem from="1480470830315" duration="3587000" />
+      <workItem from="1480470830315" duration="4477000" />
     </task>
     <task id="LOCAL-00001" summary="调整文件结构">
       <created>1476848584862</created>
@@ -589,13 +469,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134220000" />
+    <option name="totallyTimeSpent" value="135110000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1320" height="784" extended-state="7" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25460124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25613496" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -639,16 +519,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/memo/three-Material.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-480">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/memo/three-Geometry.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SECOND">
@@ -783,7 +653,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/04-material/04-mesh-normal-material.html" />
-    <entry file="file://$PROJECT_DIR$/03-light/light-ambient.html">
+    <entry file="file://$PROJECT_DIR$/01-scene-light/light-ambient.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
@@ -791,7 +661,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/02-scene/three-basic-scene.html" />
-    <entry file="file://$PROJECT_DIR$/02-scene/scene-basic.html">
+    <entry file="file://$PROJECT_DIR$/01-scene-light/scene-basic.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
@@ -983,6 +853,17 @@
         <state relative-caret-position="264">
           <caret line="57" column="27" lean-forward="false" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="480">
+            <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
