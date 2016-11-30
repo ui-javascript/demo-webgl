@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Example 08.02 - Merge objects</title>
+    <title>Merge objects</title>
     <script  src="../libs/three.js"></script>
     <script  src="../libs/jquery-1.9.0.js"></script>
     <script  src="../libs/stats.js"></script>
@@ -81,7 +81,7 @@
                 var geometry = new THREE.Geometry();
                 for (var i = 0; i < controls.numberOfObjects; i++) {
                     THREE.GeometryUtils.merge(geometry, controls.addCube());
-                } // 将多个几何体合并成联合体 提高性能
+                } // 将多个几何体合并成联合体 提高性能，否则后果很严重
                 scene.add(new THREE.Mesh(geometry, cubeMaterial));
                 } else {
                     for (var i = 0; i < controls.numberOfObjects; i++) {

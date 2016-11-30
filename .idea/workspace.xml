@@ -2,127 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2815ed07-11c6-4ffb-9a57-ae0cd1584383" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/ascii-renderer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/control-gui.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/cubemap-lab1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/cubemap-lab2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/rotate-cube-1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/rotate-cube-2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/scene-template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/simple-animation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/simple-sphere.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-basic/webgl-cubemap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/01-basic-mesh-material.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/02-depth-material.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/03-combined-material.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/05-mesh-face-material.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/06-mesh-lambert-material.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/07-mesh-phong-material.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/08-shader-material.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/09-line-material.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/10-line-material-dashed.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-material/material-mesh-normal.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/02-geometries-lathe.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/03-extrude-geometry.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/04-extrude-tube.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/05-extrude-svg.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/06-parametric-geometries.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/07-text-geometry.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/08-binary-operations.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-complex-geometry/geometry-convex.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/01-basic-2d-geometries-plane.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/02-basic-2d-geometries-circle.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/03-basic-2d-geometries-shape.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/04-basic-3d-geometries-cube.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/05-basic-3d-geometries-sphere.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/06-basic-3d-geometries-cylinder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/07-basic-3d-geometries-torus.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/08-basic-3d-geometries-torus-knot.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/09-basic-3d-geometries-polyhedron.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-geometry/geometry-2d-plane.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/01-particles.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/02-particles-webgl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/03-basic-particle-system.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/04-program-based-particle-system.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/05-program-based-particle-system-webgl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/06-rainy-scene.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/07-snowy-scene.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/08-sprites.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/09-sprites-3D.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/10-create-particle-system-from-model.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/06-particle/particle-snowy.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/01-grouping.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/02-merging.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/03-load-save-json-object.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/04-load-save-json-scene.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/05-blender-from-json.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/06-load-obj.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/07-load-obj-mtl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/08-load-collada.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/09-load-stl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/10-load-ctm.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/11-load-vtk.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/12-load-pdb.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/13-load-PLY.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/07-mesh/14-load-PLY2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/##-normal-obj-mtl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/01-basic-animation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/02-selecting-objects.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/03-animation-tween.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/04-trackball-controls-camera.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/05-fly-controls-camera.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/06-roll-controls-camera.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/07-first-person-camera.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/08-controls-orbit.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/09-controls-path.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/10-morph-targets.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/11-morph-targets-manually.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/12-bones-manually.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/13-animation-from-blender.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/14-animation-from-collada.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/08-animation-camera/15-animation-from-md2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/01-basic-texture.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/02-bump-map.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/03-normal-map.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/04-light-map.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/05-env-map-dynamic.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/05-env-map-static.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/06-specular-map.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/07-uv-mapping.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/08-repeat-wrapping.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/09-canvas-texture.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/10-canvas-texture-bumpmap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/11-light-map-texture.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/09-texture/11-video-texture.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/01-basic-effect-composer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/02-post-processing-simple-passes.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/03-post-processing-masks.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/04-shaderpass-simple.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/05-shaderpass-blur.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/06-shaderpass-advanced.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/07-shaderpass-custom.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/08-basic-scene.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/09-material-properties.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/10-shapes.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/11-constraints.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/10-shader/12-dof-constraint.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/01-basic-mesh-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/02-depth-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/03-combined-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/05-mesh-face-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/06-mesh-lambert-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/07-mesh-phong-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/08-shader-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/09-line-material.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/10-line-material-dashed.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-material/material-mesh-normal.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/01-grouping.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/02-merging.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/03-load-save-json-object.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/04-load-save-json-scene.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/05-blender-from-json.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/06-load-obj.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/07-load-obj-mtl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/08-load-collada.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/09-load-stl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/10-load-ctm.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/11-load-vtk.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/12-load-pdb.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/13-load-PLY.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-mesh/14-load-PLY2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/01-particles.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/02-particles-webgl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/03-basic-particle-system.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/04-program-based-particle-system.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/05-program-based-particle-system-webgl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/06-rainy-scene.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/07-snowy-scene.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/08-sprites.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/09-sprites-3D.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/10-create-particle-system-from-model.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-particle/particle-snowy.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/01-basic-effect-composer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/02-post-processing-simple-passes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/03-post-processing-masks.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/04-shaderpass-simple.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/05-shaderpass-blur.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/06-shaderpass-advanced.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/07-shaderpass-custom.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/08-basic-scene.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/09-material-properties.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/10-shapes.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/11-constraints.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-shader/12-dof-constraint.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/01-basic-texture.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/02-bump-map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/03-normal-map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/04-light-map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/05-env-map-dynamic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/05-env-map-static.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/06-specular-map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/07-uv-mapping.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/08-repeat-wrapping.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/09-canvas-texture.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/10-canvas-texture-bumpmap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/11-light-map-texture.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/02-texture/11-video-texture.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/02-foggy-scene.html" afterPath="$PROJECT_DIR$/01-scene-light/02-foggy-scene.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/03-forced-materials.html" afterPath="$PROJECT_DIR$/01-scene-light/03-forced-materials.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/04-geometries.html" afterPath="$PROJECT_DIR$/01-scene-light/04-geometries.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/05-custom-geometry.html" afterPath="$PROJECT_DIR$/01-scene-light/05-custom-geometry.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/06-mesh-properties.html" afterPath="$PROJECT_DIR$/01-scene-light/06-mesh-properties.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/07-both-cameras.html" afterPath="$PROJECT_DIR$/01-scene-light/07-both-cameras.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/08-cameras-lookat.html" afterPath="$PROJECT_DIR$/01-scene-light/08-cameras-lookat.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02-scene/scene-basic.html" afterPath="$PROJECT_DIR$/01-scene-light/scene-basic.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/02-point-light.html" afterPath="$PROJECT_DIR$/01-scene-light/02-point-light.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/03-spot-light.html" afterPath="$PROJECT_DIR$/01-scene-light/03-spot-light.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/04-directional-light.html" afterPath="$PROJECT_DIR$/01-scene-light/04-directional-light.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/05-hemisphere-light.html" afterPath="$PROJECT_DIR$/01-scene-light/05-hemisphere-light.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/06-area-light.html" afterPath="$PROJECT_DIR$/01-scene-light/06-area-light.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/07-lensflares.html" afterPath="$PROJECT_DIR$/01-scene-light/07-lensflares.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/03-light/light-ambient.html" afterPath="$PROJECT_DIR$/01-scene-light/light-ambient.html" />
     </list>
     <ignored path="luo-webGL-threeJS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -168,10 +108,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/08-animation/13-animation-from-blender.html" />
-        <option value="$PROJECT_DIR$/08-animation/04-trackball-controls-camera.html" />
-        <option value="$PROJECT_DIR$/three.js-master/examples/webgl_materials_cubemap.html" />
-        <option value="$PROJECT_DIR$/01-basic/02-first-scene.html" />
         <option value="$PROJECT_DIR$/01-basic/01-basic-template.html" />
         <option value="$PROJECT_DIR$/js/three-basic.js" />
         <option value="$PROJECT_DIR$/01-basic/first-simple-scene.html" />
@@ -219,6 +155,10 @@
         <option value="$PROJECT_DIR$/06-particle/particle-snowy.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/02-particle/particle-snowy.html" />
+        <option value="$PROJECT_DIR$/02-mesh/02-merging.html" />
+        <option value="$PROJECT_DIR$/02-mesh/06-load-obj.html" />
+        <option value="$PROJECT_DIR$/02-mesh/mesh-objmtl-butterfly.html" />
       </list>
     </option>
   </component>
@@ -261,20 +201,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="luo-WebGL-ThreeJS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="luo-WebGL-ThreeJS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="luo-WebGL-ThreeJS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -456,7 +382,7 @@
       <workItem from="1479281698066" duration="20000" />
       <workItem from="1479865820790" duration="8861000" />
       <workItem from="1479945488059" duration="57000" />
-      <workItem from="1480470830315" duration="4477000" />
+      <workItem from="1480470830315" duration="8065000" />
     </task>
     <task id="LOCAL-00001" summary="调整文件结构">
       <created>1476848584862</created>
@@ -469,7 +395,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135110000" />
+    <option name="totallyTimeSpent" value="138698000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1320" height="784" extended-state="7" />
@@ -519,162 +445,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/memo/three-Geometry.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="-960">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/three-helper.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/memo/webgl-math-basic.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="280">
-            <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/02-scene/basic-scene-template.html" />
-    <entry file="file://$PROJECT_DIR$/02-scene/01-basic-scene.html" />
-    <entry file="file://$PROJECT_DIR$/02-scene/basic-scene.html" />
-    <entry file="file://$PROJECT_DIR$/memo/VR-sth.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="538">
-            <caret line="75" column="6" lean-forward="false" selection-start-line="75" selection-start-column="6" selection-end-line="75" selection-end-column="6" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/libs/three-new.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1220">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/libs/three.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432820">
-          <caret line="27136" column="39" lean-forward="false" selection-start-line="27136" selection-start-column="37" selection-end-line="27136" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/libs/PointerLockControls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="3" lean-forward="true" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/libs/three.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-basic/ascii-renderer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-basic/cubemap-lab1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="26" column="54" lean-forward="false" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-basic/cubemap-lab2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="25" column="51" lean-forward="false" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-basic/rotate-cube-2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-basic/webgl-cubemap.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="47" lean-forward="false" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-basic/scene-template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="47" lean-forward="true" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/03-light/01-ambient-light.html" />
-    <entry file="file://$PROJECT_DIR$/04-material/01-basic-mesh-material.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-material/02-depth-material.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-material/material-mesh-basic.html" />
-    <entry file="file://$PROJECT_DIR$/src/css/basic-helper.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-material/04-mesh-normal-material.html" />
-    <entry file="file://$PROJECT_DIR$/01-scene-light/light-ambient.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/02-scene/three-basic-scene.html" />
-    <entry file="file://$PROJECT_DIR$/01-scene-light/scene-basic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-basic/simple-sphere.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-685">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/01-basic/simple-animation.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-885">
@@ -824,14 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/06-particle/particle-snowy.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -864,6 +626,245 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/02-merging.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="83" column="46" lean-forward="false" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/01-grouping.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/03-load-save-json-object.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="49" lean-forward="false" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/04-load-save-json-scene.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="45" lean-forward="true" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/05-blender-from-json.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/08-load-collada.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="73" lean-forward="true" selection-start-line="13" selection-start-column="73" selection-end-line="13" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/09-load-stl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="46" lean-forward="true" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/10-load-ctm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="52" lean-forward="true" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/11-load-vtk.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/12-load-pdb.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/14-load-PLY2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1959">
+          <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/06-load-obj.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="47" lean-forward="true" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/13-load-PLY.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/07-load-obj-mtl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="12" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-mesh/mesh-objmtl-butterfly.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-texture/08-repeat-wrapping.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-material/05-mesh-face-material.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="50" lean-forward="false" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-material/06-mesh-lambert-material.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-material/material-mesh-normal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="41" lean-forward="false" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-material/02-depth-material.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memo/three-Texture.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memo/VR-sth.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memo/three-Particles.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memo/three-Geometry.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-material/09-line-material.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memo/three-Material.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-516">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/02-particle/particle-snowy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1421">
+          <caret line="143" column="7" lean-forward="false" selection-start-line="143" selection-start-column="7" selection-end-line="143" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
