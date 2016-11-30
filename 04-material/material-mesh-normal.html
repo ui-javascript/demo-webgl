@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../src/css/basic-helper.css">
+</head>
+<body>
+<div id="stats-output"></div>
+<div id="webgl-output"></div>
+
+<script  src="../src/js/libs/three.js"></script>
+<script  src="../src/js/libs/jquery-1.9.0.js"></script>
+<script  src="../src/js/libs/stats.js"></script>
+<script  src="../src/js/libs/dat.gui.js"></script>
+<script  src="../src/js/basic-helper.js"></script>
+<script>
+$(function () {
+
+    var stats, gui, spGui, controls;
+    var scene, camera, renderer, webGLRenderer, canvasRenderer;
+    var plane;
+    var cube, sphere;
+    var ambiColor, ambientLight, spotLight;
+
+    // 统计与控制条初始化
+    stats = initStats();
+
+    // 元素初始化
+    scene = initScene(scene);
+    camera = initCamera(camera, -20, 30, 40);
+
+    // create a render and set the size;
+    webGLRenderer = new THREE.WebGLRenderer();
+    webGLRenderer.setClearColor(0xEEEEEE, 1.0);
+    webGLRenderer.setSize(window.innerWidth, window.innerHeight);
+    webGLRenderer.shadowMapEnabled = true;
+
+    canvasRenderer = new THREE.CanvasRenderer();
+    canvasRenderer.setSize(window.innerWidth, window.innerHeight);
+    renderer = webGLRenderer; // 初始化渲染器
+
+    var groundGeom = new THREE.PlaneGeometry(100, 100, 4, 4);
+    var groundMesh = new THREE.Mesh(groundGeom, new THREE.MeshBasicMaterial({color: 0x777777}));
+    groundMesh.rotation.x = -Math.PI / 2;
+    groundMesh.position.y = -20;
+    scene.add(groundMesh);
+
+    var sphereGeometry = new THREE.SphereGeometry(14, 20, 20);
+    var cubeGeometry = new THREE.CubeGeometry(15, 15, 15);
+    var planeGeometry = new THREE.PlaneGeometry(14, 14, 4, 4);
+    var meshMaterial = new THREE.MeshNormalMaterial({color: 0x7777ff});
+
+    sphere = new THREE.Mesh(sphereGeometry, meshMaterial);
+    cube = new THREE.Mesh(cubeGeometry, meshMaterial);
+    plane = new THREE.Mesh(planeGeometry, meshMaterial);
+
+    sphere.position.x = 0;
+    sphere.position.y = 3;
+    sphere.position.z = 2;
+
+    // THREE.ArrowHelper 添加法向量的箭头
+    for (var f = 0, fl = sphere.geometry.faces.length; f < fl; f++) {
+        var face = sphere.geometry.faces[ f ];
+        var arrow = new THREE.ArrowHelper(
+            face.normal,
+            face.centroid,
+            2,
+            0x3333FF);
+        sphere.add(arrow);
+    }
+
+
+    cube.position = sphere.position;
+    plane.position = sphere.position;
+
+
+    // add the sphere to the scene
+    scene.add(cube);
+
+    // add subtle ambient lighting
+    var ambientLight = new THREE.AmbientLight(0x0c0c0c);
+    scene.add(ambientLight);
+
+    // add spotlight for the shadows
+    var spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.set(-40, 60, -10);
+    spotLight.castShadow = true;
+    scene.add(spotLight);
+
+    // add the output of the renderer to the html element
+
+
+    // call the render function
+    var step = 0;
+    var oldContext = null;
+
+    controls = new function () {
+        this.rotationSpeed = 0.02;
+        this.bouncingSpeed = 0.03;
+
+        this.opacity = meshMaterial.opacity;
+        this.transparent = meshMaterial.transparent;
+
+        this.visible = meshMaterial.visible;
+        this.side = "front";
+
+        this.wireframe = meshMaterial.wireframe;
+        this.wireframeLinewidth = meshMaterial.wireframeLinewidth;
+
+        this.selectedMesh = "cube";
+
+        this.shadow = "flat";
+
+    }
+
+    gui = new dat.GUI();
+    spGui = gui.addFolder("Mesh"); // 创建文件夹,下面可以有多个子选项
+
+    // 物体透明度
+    spGui.add(controls, 'opacity', 0, 1).onChange(function (e) {
+        meshMaterial.opacity = e
+    });
+
+    // 背景透明度
+    spGui.add(controls, 'transparent').onChange(function (e) {
+        meshMaterial.transparent = e
+    });
+
+    // 线框图
+    spGui.add(controls, 'wireframe').onChange(function (e) {
+        meshMaterial.wireframe = e
+    });
+
+    // 线框图长宽
+    spGui.add(controls, 'wireframeLinewidth', 0, 50).onChange(function (e) {
+        meshMaterial.wireframeLinewidth = e
+    });
+
+    // 物体可见度
+    spGui.add(controls, 'visible').onChange(function (e) {
+        meshMaterial.visible = e
+    });
+
+    // 面
+    spGui.add(controls, 'side', ["front", "back", "double" ]).onChange(function (e) {
+        console.log(e);
+        switch (e) {
+            case "front":
+                meshMaterial.side = THREE.FrontSide;
+                break;
+            case "back":
+                meshMaterial.side = THREE.BackSide;
+                break;
+            case "double":
+                meshMaterial.side = THREE.DoubleSide
+                break;
+        }
+        meshMaterial.needsUpdate = true;
+
+    });
+
+    // 阴影
+    spGui.add(controls, 'shadow', ["flat", "smooth"]).onChange(function (e) {
+        switch (e) {
+            case "flat":
+                // https://github.com/mrdoob/three.js/issues/1929
+                meshMaterial.shading = THREE.FlatShading;
+                break;
+            case "smooth":
+                meshMaterial.shading = THREE.SmoothShading;
+                break;
+        }
+
+        var oldPos = sphere.position.clone();
+        scene.remove(sphere);
+        scene.remove(plane);
+        scene.remove(cube);
+        sphere = new THREE.Mesh(sphere.geometry.clone(), meshMaterial);
+        cube = new THREE.Mesh(cube.geometry.clone(), meshMaterial);
+        plane = new THREE.Mesh(plane.geometry.clone(), meshMaterial);
+
+        sphere.position = oldPos;
+        cube.position = oldPos;
+        plane.position = oldPos;
+
+        switch (controls.selectedMesh) {
+            case "cube":
+                scene.add(cube);
+
+                break;
+            case "sphere":
+                scene.add(sphere);
+
+                break;
+            case "plane":
+                scene.add(plane);
+                break;
+
+        }
+
+        meshMaterial.needsUpdate = true;
+        console.log(meshMaterial);
+    });
+
+    // 选择对象
+    spGui.add(controls, 'selectedMesh', ["cube", "sphere", "plane"]).onChange(function (e) {
+
+        // 统一移除
+        scene.remove(plane);
+        scene.remove(cube);
+        scene.remove(sphere);
+
+        // 根据选择的对象添加
+        switch (e) {
+            case "cube":
+                scene.add(cube);
+                break;
+            case "sphere":
+                scene.add(sphere);
+                break;
+            case "plane":
+                scene.add(plane);
+                break;
+        }
+
+        scene.add(e);
+    });
+
+    // 开始渲染
+    $("#webgl-output").append(renderer.domElement);
+    render();
+
+    // 渲染函数
+    function render() {
+        stats.update();
+
+        cube.rotation.y = step += 0.01;
+        plane.rotation.y = step;
+        sphere.rotation.y = step;
+
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+    }
+
+});
+</script>
+
+</body>
+</html>
