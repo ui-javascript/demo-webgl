@@ -1,48 +1,39 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Example 11.03 - Post processing masks</title>
-    <script  src="../src/js/libs/three.js"></script>
-    <script  src="../src/js/libs/jquery-1.9.0.js"></script>
-    <script  src="../src/js/libs/stats.js"></script>
-    <script  src="../src/js/libs/dat.gui.js"></script>
-    <script  src="../src/js/libs/OrbitControls.js"></script>
-    <script  src="../src/js/libs/postprocessing/ShaderPass.js"></script>
-    <script  src="../src/js/libs/shaders/CopyShader.js"></script>
-    <script  src="../src/js/libs/shaders/ColorifyShader.js"></script>
-
-    <script  src="../src/js/libs/postprocessing/BloomPass.js"></script>
-    <script  src="../src/js/libs/shaders/ConvolutionShader.js"></script>
-
-
-    <script  src="../src/js/libs/postprocessing/EffectComposer.js"></script>
-
-    <script  src="../src/js/libs/postprocessing/MaskPass.js"></script>
-    <script  src="../src/js/libs/postprocessing/FilmPass.js"></script>
-    <script  src="../src/js/libs/shaders/FilmShader.js"></script>
-    <script  src="../src/js/libs/shaders/SepiaShader.js"></script>
-    <script  src="../src/js/libs/postprocessing/RenderPass.js"></script>
-    <script  src="../src/js/libs/postprocessing/SavePass.js"></script>
-    <script  src="../src/js/libs/postprocessing/TexturePass.js"></script>
-
-    <style>
-        body {
-            /* set margin to 0 and overflow to hidden, to go fullscreen */
-            margin: 0;
-            overflow: hidden;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>后期处理掩膜</title>
+    <link rel="stylesheet" href="../src/css/basic-helper.css">
 </head>
 <body>
 
-<div id="Stats-output">
-</div>
-<!-- Div which will hold the Output -->
-<div id="WebGL-output">
-</div>
+<div id="stats-output"></div>
+<div id="webgl-output"></div>
 
-<!-- Javascript code that runs our Three.js examples -->
+<script src="../src/js/libs/three.js"></script>
+<script src="../src/js/libs/jquery-1.9.0.js"></script>
+<script src="../src/js/libs/stats.js"></script>
+<script src="../src/js/libs/dat.gui.js"></script>
+
+<script src="../src/js/libs/OrbitControls.js"></script>
+<script src="../src/js/libs/postprocessing/ShaderPass.js"></script>
+<script src="../src/js/libs/shaders/CopyShader.js"></script>
+<script src="../src/js/libs/shaders/ColorifyShader.js"></script>
+
+<script src="../src/js/libs/postprocessing/BloomPass.js"></script>
+<script src="../src/js/libs/shaders/ConvolutionShader.js"></script>
+
+<script src="../src/js/libs/postprocessing/EffectComposer.js"></script>
+
+<script src="../src/js/libs/postprocessing/MaskPass.js"></script>
+<script src="../src/js/libs/postprocessing/FilmPass.js"></script>
+<script src="../src/js/libs/shaders/FilmShader.js"></script>
+<script src="../src/js/libs/shaders/SepiaShader.js"></script>
+<script src="../src/js/libs/postprocessing/RenderPass.js"></script>
+<script src="../src/js/libs/postprocessing/SavePass.js"></script>
+<script src="../src/js/libs/postprocessing/TexturePass.js"></script>
+<script src="../src/js/basic-helper.js" ></script>
+
 <script >
 
     // once everything is loaded, we run our Three.js stuff.
@@ -107,7 +98,7 @@
         sceneBG.add(bgPlane);
 
         // add the output of the renderer to the html element
-        $("#WebGL-output").append(webGLRenderer.domElement);
+        $("#webgl-output").append(webGLRenderer.domElement);
 
         var bgPass = new THREE.RenderPass(sceneBG, cameraBG);
         var renderPass = new THREE.RenderPass(sceneEarth, camera);
@@ -124,6 +115,7 @@
         // earth mask
         var earthMask = new THREE.MaskPass(sceneEarth, camera);
 //        earthMask.inverse = true;
+
         // mars mask
         var marsMask = new THREE.MaskPass(sceneMars, camera);
 //        marsMask.inverse = true;
@@ -210,24 +202,9 @@
 //            webGLRenderer.render(scene, camera);
             composer.render(delta);
         }
-
-        function initStats() {
-
-            var stats = new Stats();
-            stats.setMode(0); // 0: fps, 1: ms
-
-            // Align top-left
-            stats.domElement.style.position = 'absolute';
-            stats.domElement.style.left = '0px';
-            stats.domElement.style.top = '0px';
-
-            $("#Stats-output").append(stats.domElement);
-
-            return stats;
-        }
     });
 
-
 </script>
+
 </body>
 </html>
