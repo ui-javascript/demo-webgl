@@ -26,8 +26,8 @@
 +  02-particle 粒子系统
 +  02-mesh 网格
 +  02-texture 纹理
-+  02-shader 着色器以及高级
 +  03-animation-camera 动画 相机
++  04-shader 着色器以及高级
 
 ### 软件
 + 3Dmax 2009

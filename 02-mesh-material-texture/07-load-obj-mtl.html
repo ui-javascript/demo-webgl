@@ -43,7 +43,7 @@
 
         // create a render and set the size
         var webGLRenderer = new THREE.WebGLRenderer();
-        webGLRenderer.setClearColorHex(0xaaaaff, 1.0);
+        webGLRenderer.setClearColor(0xaaaaff, 1.0);
         webGLRenderer.setSize(window.innerWidth, window.innerHeight);
         webGLRenderer.shadowMapEnabled = true;
 
@@ -102,7 +102,7 @@
         });
 
 
-        loader.load('../assets/models/butterfly.obj', '../assets/models/butterfly.mtl', {side: THREE.DoubleSide});
+        loader.load('../src/res/models/butterfly.obj', '../src/res/models/butterfly.mtl', {side: THREE.DoubleSide});
 
 //                function ( geometry ) {
 //
