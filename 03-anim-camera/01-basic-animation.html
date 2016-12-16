@@ -53,9 +53,9 @@
 
         // rotate and position the plane
         plane.rotation.x = -0.5 * Math.PI;
-        plane.position.x = 15
-        plane.position.y = 0
-        plane.position.z = 0
+        plane.position.x = 15;
+        plane.position.y = 0;
+        plane.position.z = 0;
 
         // add the plane to the scene
         scene.add(plane);
@@ -117,11 +117,11 @@
         var step = 0;
         var scalingStep = 0;
 
-        var controls = new function () {
+        var controls = new function() {
             this.rotationSpeed = 0.02;
             this.bouncingSpeed = 0.03;
             this.scalingSpeed = 0.03;
-        }
+        };
 
         var gui = new dat.GUI();
         gui.add(controls, 'rotationSpeed', 0, 0.5);

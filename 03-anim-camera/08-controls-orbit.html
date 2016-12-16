@@ -4,7 +4,8 @@
 
 <head>
     <title>Example 09.08 - Orbit controls</title>
-    <script  src="../src/js/libs/three.js"></script>
+    <!--<script src="https://cdn.bootcss.com/three.js/r62/three.js"></script>-->
+    <script  src="../src/js/libs/three.min.js"></script>
     <script  src="../src/js/libs/jquery-1.9.0.js"></script>
     <script  src="../src/js/libs/stats.js"></script>
     <script  src="../src/js/libs/dat.gui.js"></script>
@@ -41,7 +42,7 @@
 
         // create a render and set the size
         var webGLRenderer = new THREE.WebGLRenderer();
-        webGLRenderer.setClearColorHex(0x000, 1.0);
+        webGLRenderer.setClearColor(0x000, 1.0);
         webGLRenderer.setSize(window.innerWidth, window.innerHeight);
         webGLRenderer.shadowMapEnabled = true;
 
@@ -53,7 +54,7 @@
         camera.position.x = -20;
         camera.position.y = 30;
         camera.position.z = 40;
-        camera.lookAt(new THREE.Vector3(00, 0, 0));
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
 
         var orbitControls = new THREE.OrbitControls(camera);
         orbitControls.autoRotate = true;
@@ -76,8 +77,8 @@
         render();
 
         function createMesh(geom) {
-            var planetTexture = THREE.ImageUtils.loadTexture("../assets/textures/planets/mars_1k_color.jpg");
-            var normalTexture = THREE.ImageUtils.loadTexture("../assets/textures/planets/mars_1k_normal.jpg");
+            var planetTexture = THREE.ImageUtils.loadTexture("../src/res/textures/planets/mars_1k_color.jpg");
+            var normalTexture = THREE.ImageUtils.loadTexture("../src/res/textures/planets/mars_1k_normal.jpg");
 
             var planetMaterial = new THREE.MeshPhongMaterial({map: planetTexture, bumpMap: normalTexture});
 
